@@ -1,7 +1,7 @@
 class Business < ActiveRecord::Base
   validates :name, :city_state_zip, presence: true
   validates :name, uniqueness: { scope: :city_state_zip,
-    message: "Business already has a page on YelpLite."}
+    message: "with given address is already listed on YelpLite."}
     
   belongs_to(
     :owner,

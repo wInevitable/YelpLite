@@ -1,1 +1,18 @@
-<h2>Business Show Page</h2>
+<h2><%= @business.name %></h2>
+<p>Average review.</p>
+
+<button class="write-review">Write a Review button</button>
+
+<ul class="buttons">
+  <li><%= button_to "Add Photo", root_url %></li>
+  <li><%= button_to "Share", root_url %></li>
+  <li><%= button_to "Bookmark", root_url %></li>
+</ul>
+
+<p>Info with Google Map</p>
+
+<p>Photos</p>
+
+<p>Reviews</p>
+
+<a href="/businesses/<%= @business.id %>/edit">Edit</a>

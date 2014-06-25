@@ -28,4 +28,4 @@ en:
         lname: "Last Name"
       business:
         name: "Business Name"
-        city_state_zip: "City, State, and Zip Code"
+        city_state_zip: "City, State, and Zip"

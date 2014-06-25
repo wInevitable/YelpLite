@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'figaro'
 gem 'devise'
 
+
 group :doc do
   gem 'sdoc', require: false
 end
@@ -29,6 +30,10 @@ group :development do
   gem 'pry-rails'
   gem 'annotate'
   gem "letter_opener"
+end
+
+group :production do
+  gem 'rails_12factor'
 end
 
 gem 'bcrypt'

@@ -9,10 +9,11 @@ class BusinessesController < ApplicationController
   
   def create
     @business = Business.new(business_params)
+    @business.owner = current_user
     
     if @business.save
       flash[:errors] = "Great, your business has been created!"
-      redirect_to ('/businesses/' + @business.id)
+      redirect_to ('/businesses/' + @business.id.to_s)
     else
       flash.now[:errors] = @business.errors.full_messages
       render :new
@@ -21,7 +22,6 @@ class BusinessesController < ApplicationController
   
   def show
     @business = Business.find(params[:id])
-    
   end
   
   def edit
@@ -33,7 +33,7 @@ class BusinessesController < ApplicationController
     
     if @business.update_attributes(business_params)
       flash[:errors] = "Great, your business' profile has been updated!"
-      redirect_to ('/businesses/' + @business.id)
+      redirect_to ('/businesses/' + @business.id.to_s)
     else
       flash.now[:errors] = @business.errors.full_messages
       render :edit

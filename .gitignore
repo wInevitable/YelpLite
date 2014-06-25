@@ -14,3 +14,11 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+<<<<<<< Local Changes
+
+
+=======
+
+# Ignore application configuration
+/config/application.yml
+>>>>>>> External Changes

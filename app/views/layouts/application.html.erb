@@ -11,7 +11,7 @@
     <p>YelpLite Logo</p>
     
     <nav>
-      <form action="" method="">
+      <form action="" method="" id="search-bar">
         <input type="text" name="search[find]">
         
         <input type="text" name="search[near]">
@@ -45,15 +45,14 @@
   <!-- <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p> -->
   
- <% if flash.now %>
-   <p><%= flash.now[:errors] %></p>
+ <% if flash %>
+   <p><%= flash[:errors] %></p>
  <% end %>
   
 <%= yield %>
 
   <footer>
     <hr>
-      <p>YelpLite Footer Links</p>
       <h3>About</h3>
         <ul>
           <li><a href="#">About YelpLite</a></li>

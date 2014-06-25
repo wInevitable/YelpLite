@@ -31,15 +31,16 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     
     if @user.update_attributes(user_params)
-      
+      render :show
     else
-      flash.now[:error] = @user.errors.full_messages
+      flash.now[:errors] = @user.errors.full_messages
       render :edit
     end
   end
   
   private  
   def user_params
-    params.require(:user).permit(:email, :password, :fname, :lname)
+    params.require(:user).permit(:email, :password, :fname, :lname, :hometown,
+    :things_i_love, :nickname)
   end
 end

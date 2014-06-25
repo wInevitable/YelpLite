@@ -27,14 +27,14 @@ class ApplicationController < ActionController::Base
 
   def require_signed_in!
     if !signed_in?
-      flash.now[:error] = 'Must be signed in'
+      flash[:errors] = 'Must be signed in'
       redirect_to new_session_url
     end
   end
 
   def require_signed_out!
     if signed_in?
-      flash.now[:error] = 'Already signed in'
+      flash[:errors] = 'Already signed in'
       redirect_to root_url 
     end
   end
@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
   def require_authorized!
     @user = User.find(params[:id])
     if (!signed_in? || current_user != @user)
-      flash.now[:error] = "Cannot edit another user's profile."
+      flash[:errors] = "Cannot edit another user's profile."
       redirect_to root_url 
     end
   end

@@ -1,2 +1,47 @@
-<h2>"<%= current_user.fname %> <%= current_user.lname[0] %>.'s Profile"</h2>
-<a href="/users/<%= current_user.id %>/edit">[Add nickname]</a>
+<p>Google Ad</p>
+
+<h2>"<%= @user.fname %> <%= @user.lname[0] %>.'s Profile"</h2>
+
+<% if @user.id == current_user.id %>
+  <a href="/users/<%= @user.id %>/edit">[Add nickname]</a>
+<% end  %>
+
+<section class="user-info">
+  <p>User Image></p>
+  
+  <p>&#9733; Friends Count...</p>
+  
+  <ul class="user-info">
+    <% if @user != current_user %>
+      <li>&hearts;<a href="#">Follow this Reviewer</a></li>
+    <% end %>
+    <li>Location<br>
+      <%= @user.location %>
+    </li>
+    <li>Yelping Since<br> 
+      <%= Date::MONTHNAMES[@user.created_at.strftime("%m").to_i] + " " +
+          @user.created_at.strftime("%Y") %>
+    </li>
+    <li>Things I Love<br>
+      <% if @user != current_user %>
+        <%= @user.things_i_love || "They haven't told us yet ..." %>
+      <% else %>
+        <%= @user.things_i_love || "You haven't told us yet ... do tell!" %>
+      <% end %>
+    </li>
+    <% if @user.hometown %>
+      <li>My Hometown<br>
+        <%= @user.hometown %>
+      </li>
+    <% end %>
+    <li><a href="/users/<%= @user.id %>/edit">Update Your Profile</a></li>
+  </ul>
+</section>
+
+<section class="user-reviews">
+  <p>Plug in reviews</p>
+</section>
+
+<section class="followings">
+  <p>Plug in Users Following and Businesses Bookmarked</p>
+</section>

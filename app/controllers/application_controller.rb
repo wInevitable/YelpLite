@@ -46,4 +46,12 @@ class ApplicationController < ActionController::Base
       redirect_to root_url 
     end
   end
+  
+  def require_business_owner!
+    @business = Business.find(params[:id])
+    if (!signed_in? || current_user != @business.owner)
+      flash[:errors] = "Cannot edit another owner's business profile."
+      redirect_to "/"
+    end
+  end
 end

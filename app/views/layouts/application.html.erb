@@ -34,6 +34,7 @@
       <p>User Profile Button</p>
       <ul>
         <li><a href="/users/<%= current_user.id %>">About Me</a></li>
+        <li><a href="/users/<%= current_user.id %>/businesses/new">Add a Business</a></li>
         <li><%= button_to "Log Out", session_url, method: :delete %></li>
       </ul>
     <% else %>

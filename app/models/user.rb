@@ -9,6 +9,13 @@ class User < ActiveRecord::Base
   validates :email, :encrypted_password, :fname, :lname, presence: true
   validates :password, :length => { :minimum => 6, :allow_nil => true }
   
+  has_many(
+    :businesses,
+    class_name: "Business",
+    foreign_key: :owner_id,
+    inverse_of: :owner
+  )
+  
   def password
     @password
   end

@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     
     if @user.save
       sign_in(@user)
+      flash[:errors] = "Great, your account has been created!"
       redirect_to root_url
     else
       flash.now[:errors] = @user.errors.full_messages
@@ -31,6 +32,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     
     if @user.update_attributes(user_params)
+      flash[:errors] = "Great, your profile has been updated!"
       render :show
     else
       flash.now[:errors] = @user.errors.full_messages

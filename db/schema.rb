@@ -11,10 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140625135604) do
+ActiveRecord::Schema.define(version: 20140625193801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "businesses", force: true do |t|
+    t.string   "name",           default: "",    null: false
+    t.string   "address"
+    t.string   "city_state_zip", default: "",    null: false
+    t.string   "country"
+    t.string   "phone_number"
+    t.string   "website_url"
+    t.integer  "owner_id",                       null: false
+    t.boolean  "recent",         default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "businesses", ["city_state_zip"], name: "index_businesses_on_city_state_zip", using: :btree
+  add_index "businesses", ["name", "city_state_zip"], name: "index_businesses_on_name_and_city_state_zip", unique: true, using: :btree
+  add_index "businesses", ["name"], name: "index_businesses_on_name", using: :btree
 
   create_table "sessions", force: true do |t|
     t.datetime "created_at"

@@ -24,5 +24,8 @@ en:
   activerecord:
     attributes:
       user:
-          fname: "First Name"
-          lname: "Last Name"
+        fname: "First Name"
+        lname: "Last Name"
+      business:
+        name: "Business Name"
+        city_state_zip: "City, State, and Zip Code"

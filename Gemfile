@@ -28,9 +28,10 @@ group :development do
   gem 'binding_of_caller'
   gem 'pry-rails'
   gem 'annotate'
+  gem "letter_opener"
 end
 
-gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'bcrypt'
 
 # Use unicorn as the app server
 # gem 'unicorn'

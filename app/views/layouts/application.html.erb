@@ -7,10 +7,72 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <header>
+    <p>YelpLite Logo</p>
+    
+    <nav>
+      <form action="" method="">
+        <input type="text" name="search[find]">
+        
+        <input type="text" name="search[near]">
+        
+        <input type ="submit" id="search-button">
+      </form>
+      <ul>
+        <li><a href="/">Home</a></li>
+        
+        <% if current_user %>
+          <li><a href="users/<%= current_user.id %>">About Me</a></li>         
+        <% else %>
+          <li><a href="/users/new">About Me</a></li>
+        <% end %>
+        
+        <li><a href="#">Write a Review</a></li>
+      </ul>
+    </nav>
+    <% if current_user %>
+      <p>User Profile Button</p>
+      <ul>
+        <li><a href="/users/<%= current_user.id %>">About Me</a></li>
+        <li><%= button_to "Log Out", session_url, method: :delete %></li>
+      </ul>
+    <% else %>
+      <a href="/users/new">Sign Up</a>
+      <a href="/session/new">Log In</a>
+    <% end %>
+    <hr>
+  </header>
+  <!-- <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p> -->
+  
+ <% if flash.now %>
+   <p><%= flash.now[:errors] %></p>
+ <% end %>
   
 <%= yield %>
 
+  <footer>
+    <hr>
+      <p>YelpLite Footer Links</p>
+      <h3>About</h3>
+        <ul>
+          <li><a href="#">About YelpLite</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      <h3>Help</h3>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Content Guidelines</a></li>
+          <li><a href="#">Contact YelpLite</a></li>
+        </ul>
+      <h3>More</h3>
+        <ul>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Top Searches</a></li>
+        </ul>
+        
+      <p>Footer Image</p>
+  </footer>
 </body>
 </html>

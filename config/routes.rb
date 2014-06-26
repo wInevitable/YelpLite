@@ -1,7 +1,5 @@
 YelpLite::Application.routes.draw do
 
-  resources :reviews
-
   #devise_for :users
 
   root to: 'pages#home'
@@ -10,5 +8,11 @@ YelpLite::Application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create, :show, :edit, :update]
 
-  resources :businesses, only: [:new, :create, :edit, :update, :show, :destroy]
+  shallow do
+    resources :businesses, only: [:new, :create, :edit, :update, :show, :destroy] do
+      resources :reviews
+    end
+  end
+
+  get '/review/:id/delete', to: 'reviews#delete'
 end

@@ -28,6 +28,7 @@ en:
         lname: "Last Name"
       business:
         name: "Business Name"
+        address: "Business Address"
         city_state_zip: "City, State, and Zip"
     errors:
       models:

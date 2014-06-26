@@ -1,0 +1,49 @@
+<section class="review">
+  <h3><%= @business.name %></h3>
+
+  <p><%= @business.address %></p>
+  <p><%= @business.city_state_zip %></p>
+
+  <form action="<%= business_reviews_url @business %>" method="post">
+    <%= form_token %>
+
+    <label>Rating</label>
+
+    <input type="radio" name="review[rating]" id="rating-1" value="1">
+
+    <input type="radio" name="review[rating]" id="rating-2" value="2">
+
+    <input type="radio" name="review[rating]" id="rating-3" value="3">
+
+    <input type="radio" name="review[rating]" id="rating-4" value="4">
+
+    <input type="radio" name="review[rating]" id="rating-5" value="5">
+
+    <label for="rating-1">Cockroaches, Rats, and Things...</label>
+    <label for="rating-2">Eh, I've had better.</label>
+    <label for="rating-3">Okay.</label>
+    <label for="rating-4">New favorite place!</label>
+    <label for="rating-5">Oh baby, that was delicious!</label>
+
+    <br>
+    <label for="review-content">Your review</label>
+    <textarea id="review-content" name="review[content]"></textarea>
+
+    <a href="#" class="guidelines-link">Read our review guidelines</a>
+
+    <%= link_to "Cancel", :back %>
+    <input type="submit" value="Post">
+  </form>
+</section>
+
+<section class="review-sidebar">
+  <h4>Reviews for <%= @business.name %></h4>
+
+  <ul class="reviews">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</section>

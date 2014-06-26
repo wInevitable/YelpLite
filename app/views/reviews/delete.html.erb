@@ -1,0 +1,5 @@
+<h3>Confirm Removal</h3>
+
+<p>Are you sure you want to delete your review from <%= @review.created_at %> for <%= @review.business %> in <%= @review.business.city_state_zip.split(",")[0] %>?</p>
+
+<%= button_to "Confirm", review_url @review %>

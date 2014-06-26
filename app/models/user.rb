@@ -22,12 +22,13 @@ class User < ActiveRecord::Base
     inverse_of: :owner
   )
 
-  # has_many(
-  #   :reviews,
-  #   class_name: "Review",
-  #   foreign_key: :author_id,
-  #   inverse_of: :author
-  # )
+  has_many(
+    :reviews,
+    dependent: :destroy,
+    class_name: "Review",
+    foreign_key: :author_id,
+    inverse_of: :author
+  )
 
   def password
     @password

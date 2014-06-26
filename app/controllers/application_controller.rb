@@ -54,4 +54,12 @@ class ApplicationController < ActionController::Base
       redirect_to root_url
     end
   end
+
+  def require_review_owner!
+    @review = Review.find(params[:id])
+    if (!signed_in? || current_user != @review.owner)
+      flash[:errors] = "Cannot edit another user's reviews."
+      redirect_to root_url
+    end
+  end
 end

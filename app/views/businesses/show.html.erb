@@ -1,7 +1,7 @@
 <h2><%= @business.name %></h2>
 <p>Average review.</p>
 
-<button class="write-review">Write a Review</button>
+<%= button_to "Write a Review", new_business_review_url(@business), class: "write-review", method: :get %>
 
 <ul class="buttons">
   <li><%= button_to "Add Photo", root_url %></li>

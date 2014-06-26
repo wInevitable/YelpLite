@@ -6,6 +6,21 @@ RSpec.describe User, :type => :model do
     it { should validate_presence_of(:fname)}
     it { should validate_presence_of(:lname)}
     it { should ensure_length_of(:password).is_at_least(6)}
+
+    it "validates format of email" do
+      user1 = User.new({email: "yelp.org", fname: "bob", lname: "smith", password: "secret"})
+      user2 = User.new({email: "alpha@red.p", fname: "bob", lname: "smith", password: "secret"})
+
+      expect(user1).not_to be_valid
+      expect(user2).not_to be_valid
+    end
+  end
+
+  it "validates uniqueness of email" do
+    user1 = User.create!({email: "lite@yelp.org", fname: "bob", lname: "smith", password: "secret"})
+    user2 = User.new({email: "lite@yelp.org", fname: "mike", lname: "ford", password: "guesses"})
+
+    expect(user2).not_to be_valid
   end
 
   describe "error messages" do
@@ -39,10 +54,3 @@ RSpec.describe User, :type => :model do
     #it { should have_many(:reviews)}
   end
 end
-
-
-# doesn't accept wonky emails
-# emails unique
-# fname and lname are alphanumeric
-
-#test error messages?

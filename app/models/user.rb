@@ -12,8 +12,8 @@ class User < ActiveRecord::Base
             :format => { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
 
   validates :email, uniqueness: true
-  validates_format_of :fname, with: /\A[-a-z]+\Z/
-  validates_format_of :lname, with: /\A[-a-z]+\Z/
+  validates_format_of :fname, with: /\A[a-zA-Z]+\Z/
+  validates_format_of :lname, with: /\A[a-zA-Z]+\Z/
 
   has_many(
     :businesses,
@@ -21,6 +21,13 @@ class User < ActiveRecord::Base
     foreign_key: :owner_id,
     inverse_of: :owner
   )
+
+  # has_many(
+  #   :reviews,
+  #   class_name: "Review",
+  #   foreign_key: :author_id,
+  #   inverse_of: :author
+  # )
 
   def password
     @password

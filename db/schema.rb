@@ -18,19 +18,21 @@ ActiveRecord::Schema.define(version: 20140625193801) do
 
   create_table "businesses", force: true do |t|
     t.string   "name",           default: "",    null: false
-    t.string   "address"
+    t.string   "address",        default: "",    null: false
     t.string   "city_state_zip", default: "",    null: false
     t.string   "country"
     t.string   "phone_number"
     t.string   "website_url"
     t.integer  "owner_id",                       null: false
     t.boolean  "recent",         default: false, null: false
+    t.integer  "rating",         default: 0
+    t.integer  "num_ratings",    default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "businesses", ["city_state_zip"], name: "index_businesses_on_city_state_zip", using: :btree
-  add_index "businesses", ["name", "city_state_zip"], name: "index_businesses_on_name_and_city_state_zip", unique: true, using: :btree
+  add_index "businesses", ["name", "city_state_zip", "address"], name: "index_businesses_on_name_and_city_state_zip_and_address", unique: true, using: :btree
   add_index "businesses", ["name"], name: "index_businesses_on_name", using: :btree
 
   create_table "sessions", force: true do |t|

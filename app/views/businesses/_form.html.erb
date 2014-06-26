@@ -5,7 +5,7 @@
   <form action="<%= businesses_url %>" method="post">
 <% end %>
 
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <%= form_token %>
 
   <label for="name">Business Name</label>
   <br>

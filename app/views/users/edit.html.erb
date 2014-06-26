@@ -4,7 +4,7 @@
 <form class="user-edit" action="<%= user_url @user.id %>" method="post">
   <input type="hidden" name="_method" value="patch">
 
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <%= form_token %>
 
   <input type="submit" value="Save Changes">
 

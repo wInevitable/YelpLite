@@ -29,3 +29,14 @@ en:
       business:
         name: "Business Name"
         city_state_zip: "City, State, and Zip"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              invalid: "must be in a valid format. Example: me@example.com"
+              taken: "belongs to an existing account."
+            fname:
+              invalid: "must not contain numbers, symbols, or spaces."
+            lname:
+              invalid: "must not contain numbers, symbols, or spaces."

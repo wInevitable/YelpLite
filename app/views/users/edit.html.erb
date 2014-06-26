@@ -1,30 +1,30 @@
 <h2>Your Public Profile</h2>
 <p>So who are you, then? Tell the rest of YelpLite about your pretty little self.</p>
 
-<form class="user-edit" action="/users/<%= @user.id %>" method="POST">
-  <input type="hidden" name="_method" value="PATCH">
-  
+<form class="user-edit" action="<%= user_url @user.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  
+
   <input type="submit" value="Save Changes">
-  
+
   <p>User Image</p>
-  
+
   <label for="first-name">First Name</label><br>
   <small>This field is required.</small><br>
   <input type="text" id="first-name" name="user[fname]" value="<%= @user.fname %>">
   <br>
-  
+
   <label for="last-name">Last Name</label><br>
   <small>This field is required. Only your last initial will show on your profile.</small><br>
   <input type="text" id="last-name" name="user[lname]" value="<%= @user.lname %>">
   <br>
-  
+
   <label for="nickname">Nickname</label><br>
   <small>Primetime, Captain America, wInevitable</small><br>
   <input type="text" id="nickname" name="user[nickname]" value="<%= @user.nickname %>">
   <br>
-  
+
   <label for="loves">I Love...</label><br>
   <small>Comma separated phrases (e.g. barbeque, beer, long walks on the beach)</small><br>
   <input type="text" id="loves" name="user[things_i_love]" value="<%= @user.things_i_love %>">
@@ -34,9 +34,9 @@
   <small>Baltimore, MD</small><br>
   <input type="text" id="hometown" name="user[hometown]" value="<%= @user.hometown %>">
   <br>
-  
+
   <input type="submit" value="Save Changes">
-  <a href="/users/<%= @user.id %>">Cancel</a>
+  <a href="<%= user_url @user.id %>">Cancel</a>
 </form>
 
 

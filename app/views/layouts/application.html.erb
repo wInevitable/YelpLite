@@ -9,47 +9,46 @@
 <body>
   <header>
     <p>YelpLite Logo</p>
-    
+
     <nav>
       <form action="" method="" id="search-bar">
         <input type="text" name="search[find]">
-        
+
         <input type="text" name="search[near]">
-        
+
         <input type ="submit" id="search-button">
       </form>
       <ul>
         <li><a href="/">Home</a></li>
-        
+
         <% if current_user %>
-          <li><a href="users/<%= current_user.id %>">About Me</a></li>         
+          <li><a href="<%= user_url current_user.id %>">About Me</a></li>
         <% else %>
-          <li><a href="/users/new">About Me</a></li>
+          <li><a href="<%= new_user_url %>">About Me</a></li>
         <% end %>
-        
+
         <li><a href="#">Write a Review</a></li>
       </ul>
     </nav>
     <% if current_user %>
       <p>User Profile Button</p>
       <ul>
-        <li><a href="/users/<%= current_user.id %>">About Me</a></li>
-        <li><a href="/users/<%= current_user.id %>/businesses/new">Add a Business</a></li>
+        <li><a href="<%= user_url current_user.id %>">About Me</a></li>
+        <li><a href="<%= new_business_url %>">Add a Business</a></li>
         <li><%= button_to "Log Out", session_url, method: :delete %></li>
       </ul>
     <% else %>
-      <a href="/users/new">Sign Up</a>
-      <a href="/session/new">Log In</a>
+      <a href="<%= new_user_url %>">Sign Up</a>
+      <a href="<%= new_session_url %>">Log In</a>
     <% end %>
     <hr>
   </header>
-  <!-- <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p> -->
-  
- <% if flash %>
-   <p><%= flash[:errors] %></p>
- <% end %>
-  
+
+  <!-- ERRORS and NOTICES -->
+  <% if flash %>
+    <p><%= flash[:errors] %></p>
+  <% end %>
+
 <%= yield %>
 
   <footer>
@@ -71,7 +70,7 @@
           <li><a href="#">Careers</a></li>
           <li><a href="#">Top Searches</a></li>
         </ul>
-        
+
       <p>Footer Image</p>
   </footer>
 </body>

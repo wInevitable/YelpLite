@@ -1,17 +1,21 @@
 <p>Google Ad</p>
 
-<h2>"<%= @user.fname %> <%= @user.lname[0] %>.'s Profile"</h2>
+<% if @user.nickname %>
+  <h2><%= @user.fname + " \"" + @user.nickname + "\" " + @user.lname[0] %>.'s Profile</h2>
+<% else %>
+  <h2><%= @user.fname + " " + @user.lname[0] %>.'s Profile</h2>
+<% end %>
 
 <% if @user.id == current_user.id %>
-  <a href="/users/<%= @user.id %>/edit">
+  <a href="<%= edit_user_url @user.id %>">
     <%= @user.nickname ? "[Edit nickname]" : "[Add nickname]" %></a>
 <% end  %>
 
 <section class="user-info">
   <p>User Image></p>
-  
+
   <p>&#9733; Friends Count...</p>
-  
+
   <ul class="user-info">
     <% if @user != current_user %>
       <li>&hearts;<a href="#">Follow this Reviewer</a></li>
@@ -19,7 +23,7 @@
     <li>Location<br>
       <%= @user.location %>
     </li>
-    <li>Yelping Since<br> 
+    <li>Yelping Since<br>
       <%= Date::MONTHNAMES[@user.created_at.strftime("%m").to_i] + " " +
           @user.created_at.strftime("%Y") %>
     </li>
@@ -35,7 +39,7 @@
         <%= @user.hometown %>
       </li>
     <% end %>
-    <li><a href="/users/<%= @user.id %>/edit">Update Your Profile</a></li>
+    <li><a href="<%= edit_user_url @user.id %>">Update Your Profile</a></li>
   </ul>
 </section>
 

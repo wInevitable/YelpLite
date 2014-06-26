@@ -6,26 +6,26 @@
 
 <p>OR</p>
 
-<form action="/users" method="POST">
+<form action="<%= users_url %>" method="POST">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  
+
   <input type="text" name="user[fname]">
-  
+
   <input type="text" name="user[lname]">
-  
+
   <br>
-  
+
   <input type="text" name="user[email]">
-  
+
   <br>
-  
+
   <input type="password" name="user[password]">
-  
+
   <p>By creating an account, you agree to YelpLite’s <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
-  
+
   <input type="submit" value="Sign Up">
 </form>
 
-<p>Already on YelpLite? <a href="/session/new">Log in</p>
+<p>Already on YelpLite? <a href="<%= new_session_url %>">Log in</p>
 
 <p>"Sign Up Image"</p>

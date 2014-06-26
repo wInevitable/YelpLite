@@ -1,7 +1,7 @@
 <h2><%= @business.name %></h2>
 <p>Average review.</p>
 
-<button class="write-review">Write a Review button</button>
+<button class="write-review">Write a Review</button>
 
 <ul class="buttons">
   <li><%= button_to "Add Photo", root_url %></li>
@@ -15,4 +15,4 @@
 
 <p>Reviews</p>
 
-<a href="/businesses/<%= @business.id %>/edit">Edit</a>
+<a href="<%= edit_business_url @business.id %>">Edit</a>

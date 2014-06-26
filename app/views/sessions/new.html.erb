@@ -2,26 +2,26 @@
   <h3>Log In</h3>
   <p>Please enter your email address and password to log in.</p>
 
-  <form action="/session" method="POST">
+  <form action="<%= session_url %>" method="POST">
       <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-      
+
       <input type="text" name="user[email]">
-      
+
       <input type="password" name="user[password]">
-      
+
       <a href="#">Forgot your password?</a>
-      
+
       <input type="submit" value="Log In">
   </form>
 
   <p>By logging in you agree to YelpLite’s <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
 <section>
-  
+
 <section class="sign-up">
   <h3>No Account Yet?</h3>
   <p>That's okay, we still love you.</p>
-  
+
   <button class="sign-up">Sign Up</button>
-  
+
   <p>YelpLite is the fun and easy way to find, review and talk about what's great - and not so great - in your local area. It's about real people giving their honest and personal opinions on everything from restaurants and spas to coffee shops and bars.</p>
 </section>

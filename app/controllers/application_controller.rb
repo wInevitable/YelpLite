@@ -2,15 +2,15 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  
+
   helper_method :current_user, :signed_in?
-  
+
   private
   def current_user
       return nil unless session[:token]
       @current_user ||= User.find_by(session_token: session[:token])
   end
-  
+
   def sign_in(user)
     @current_user = user
     session[:token] = user.reset_session_token!
@@ -35,23 +35,23 @@ class ApplicationController < ActionController::Base
   def require_signed_out!
     if signed_in?
       flash[:errors] = 'Already signed in'
-      redirect_to root_url 
+      redirect_to root_url
     end
   end
-  
+
   def require_authorized!
     @user = User.find(params[:id])
     if (!signed_in? || current_user != @user)
       flash[:errors] = "Cannot edit another user's profile."
-      redirect_to root_url 
+      redirect_to root_url
     end
   end
-  
+
   def require_business_owner!
     @business = Business.find(params[:id])
     if (!signed_in? || current_user != @business.owner)
       flash[:errors] = "Cannot edit another owner's business profile."
-      redirect_to "/"
+      redirect_to root_url
     end
   end
 end

@@ -1,5 +1,6 @@
 <h2><%= @business.name %></h2>
-<p>Average review.</p>
+<%= @business.average_rating %>
+<%= @business.num_reviews + " reviews"  %>
 
 <%= button_to "Write a Review", new_business_review_url(@business), class: "write-review", method: :get %>
 
@@ -13,6 +14,8 @@
 
 <p>Photos</p>
 
-<p>Reviews</p>
+<section class="business-reviews">
+  <%= render partial: 'reviews', locals: { business: @business } %>
+</section>
 
 <a href="<%= edit_business_url @business.id %>">Edit</a>

@@ -1,0 +1,20 @@
+<% if @user.reviews.length > 0 %>
+<h4><%= @user.fname + "'s Reviews" %></h4>
+  <ul class="reviews">
+    <% @user.reviews.each do |review| %>
+      <ul>
+        <li><a href="<%= business_url review.business %>"><%= review.business.name %></a></li>
+        <li><%= review.business.address %></li>
+
+        <li><%= review.rating %></li>
+        <li><%= review.created_at.strftime("%m/%d/%Y") %></li>
+        <li><%= review.content %></li>
+      </ul>
+      <br>
+    <% end %>
+</ul>
+<% elsif (current_user == @user) %>
+  <p>You haven't posted any reviews yet. Why not post one <a href="#">now</a>?</p>
+<% else %>
+  <p>This user has yet to post a review.</p>
+<% end %>

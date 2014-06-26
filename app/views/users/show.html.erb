@@ -1,4 +1,4 @@
-<p>Google Ad</p>
+<p>Ad</p>
 
 <% if @user.nickname %>
   <h2><%= @user.fname + " \"" + @user.nickname + "\" " + @user.lname[0] %>.'s Profile</h2>
@@ -12,9 +12,9 @@
 <% end  %>
 
 <section class="user-info">
-  <p>User Image></p>
+  <p>User Image</p>
 
-  <p>&#9733; Friends Count...</p>
+  <p>&#9733; Follower Count...</p>
 
   <ul class="user-info">
     <% if @user != current_user %>
@@ -44,7 +44,7 @@
 </section>
 
 <section class="user-reviews">
-  <p>Plug in reviews</p>
+  <%= render partial: 'reviews', locals: { user: @user } %>
 </section>
 
 <section class="followings">

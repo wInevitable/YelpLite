@@ -55,9 +55,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def require_review_owner!
+  def require_review_author!
     @review = Review.find(params[:id])
-    if (!signed_in? || current_user != @review.owner)
+    if (!signed_in? || current_user != @review.author)
       flash[:errors] = "Cannot edit another user's reviews."
       redirect_to root_url
     end

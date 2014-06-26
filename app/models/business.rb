@@ -18,4 +18,29 @@ class Business < ActiveRecord::Base
     inverse_of: :business
   )
 
+  def update_rating(review)
+    if self.num_ratings > 0
+      self.num_ratings += 1
+      self.rating += review.rating
+    else
+      self.num_ratings = 1
+      self.rating = review.rating
+    end
+
+    self.update_attributes!({num_ratings: num_ratings, rating: rating})
+  end
+
+  def remove_rating(review)
+    self.num_ratings -= 1
+    self.rating -= review.rating
+    self.update_attributes!({num_ratings: num_ratings, rating: rating})
+  end
+
+  def num_reviews
+    self.num_ratings.to_s
+  end
+
+  def average_rating
+    self.rating / self.num_ratings
+  end
 end

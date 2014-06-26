@@ -34,16 +34,23 @@
     <%= link_to "Cancel", :back %>
     <input type="submit" value="Post">
   </form>
+
+    <small>* You can always edit or remove reviews later.</small>
 </section>
 
 <section class="review-sidebar">
   <h4>Reviews for <%= @business.name %></h4>
 
   <ul class="reviews">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
+    <% if @business.reviews.length > 0 %>
+      <% reviews(@business, 5).each do |review| %>
+        <ul>
+          <li><%= review.author.fname + " " + review.author.lname[0] + "." %></li>
+          <li><%= review.rating %></li>
+          <li><%= review.created_at.strftime("%m/%d/%Y") %></li>
+          <li><%= review.content %></li>
+        </ul>
+      <% end %>
+    <% end %>
   </ul>
 </section>

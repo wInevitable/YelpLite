@@ -1,7 +1,7 @@
-<% if @user.reviews.length > 0 %>
-<h4><%= @user.fname + "'s Reviews" %></h4>
+<% if user.reviews.length > 0 %>
+<h4><%= user.fname + "'s Reviews" %></h4>
   <ul class="reviews">
-    <% @user.reviews.reverse.each do |review| %>
+    <% user.reviews.reverse.each do |review| %>
       <ul>
         <li><a href="<%= business_url review.business %>"><%= review.business.name %></a></li>
         <li><%= review.business.address %></li>
@@ -16,7 +16,7 @@
       <br>
     <% end %>
 </ul>
-<% elsif (current_user == @user) %>
+<% elsif (current_user == user) %>
   <p>You haven't posted any reviews yet. Why not post one <a href="#">now</a>?</p>
 <% else %>
   <p>This user has yet to post a review.</p>

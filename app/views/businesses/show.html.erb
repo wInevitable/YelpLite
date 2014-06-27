@@ -8,7 +8,9 @@
   <li><%= button_to "Add Photo", root_url %></li>
   <li><%= button_to "Share", root_url %></li>
   <li><%= button_to "Bookmark", root_url %></li>
-  <li><%= button_to "Remove Business", delete_business_url(@business), method: :get %>
+  <% if @business.owner == current_user %>
+    <li><%= button_to "Remove Business", delete_business_url(@business), method: :get %>
+  <% end %>
 </ul>
 
 <p>Info with Google Map</p>
@@ -19,4 +21,4 @@
   <%= render partial: 'reviews', locals: { business: @business } %>
 </section>
 
-<a href="<%= edit_business_url @business.id %>">Edit</a>
+<a href="<%= edit_business_url @business %>">Edit</a>

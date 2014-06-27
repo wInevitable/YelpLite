@@ -6,8 +6,8 @@
   <h2><%= @user.fname + " " + @user.lname[0] %>.'s Profile</h2>
 <% end %>
 
-<% if @user.id == current_user.id %>
-  <a href="<%= edit_user_url @user.id %>">
+<% if @user == current_user %>
+  <a href="<%= edit_user_url @user %>">
     <%= @user.nickname ? "[Edit nickname]" : "[Add nickname]" %></a>
 <% end  %>
 
@@ -39,7 +39,7 @@
         <%= @user.hometown %>
       </li>
     <% end %>
-    <li><a href="<%= edit_user_url @user.id %>">Update Your Profile</a></li>
+    <li><a href="<%= edit_user_url @user %>">Update Your Profile</a></li>
   </ul>
 </section>
 

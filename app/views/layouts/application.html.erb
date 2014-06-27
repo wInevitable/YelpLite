@@ -25,7 +25,7 @@
         <li><a href="/">Home</a></li>
 
         <% if current_user %>
-          <li><a href="<%= user_url current_user.id %>">About Me</a></li>
+          <li><a href="<%= user_url current_user %>">About Me</a></li>
         <% else %>
           <li><a href="<%= new_user_url %>">About Me</a></li>
         <% end %>
@@ -36,7 +36,7 @@
     <% if current_user %>
       <p>User Profile Button</p>
       <ul>
-        <li><a href="<%= user_url current_user.id %>">About Me</a></li>
+        <li><a href="<%= user_url current_user %>">About Me</a></li>
         <li><a href="<%= search_url %>">Write a Review</a></li>
         <li><a href="<%= new_business_url %>">Add a Business</a></li>
         <li><%= button_to "Log Out", session_url, method: :delete %></li>

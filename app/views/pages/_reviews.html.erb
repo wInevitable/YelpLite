@@ -1,0 +1,20 @@
+<% Review.latest_activity.each do |review| %>
+  <article class="review">
+    <div class="user-thumb">User Image</div>
+    <div class="review-headline"><a href="<%= user_url review.author %>"><%= user_name(review.author) %></a> wrote a review for <a href="<%= business_url review.business %>"><%= review.business.name %></a></div>
+
+    <% if review.author == current_user %>
+      <%= render partial: 'reviews/edit', locals: { review: review } %>
+      <%= render partial: 'reviews/delete', locals: { review: review } %>
+    <% end %>
+
+    <div class="time-ago"><%= time_ago(review) %></div>
+
+    <div class="review-rating"><%= review.rating %></div>
+
+    <div class="review-date"><%= review.created_at.strftime('%m/%d/%Y') %></div>
+
+    <div class="review-content"><%= review.content %></div>
+  </article>
+  <br>
+<% end %>

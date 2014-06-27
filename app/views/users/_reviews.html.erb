@@ -1,7 +1,7 @@
 <% if @user.reviews.length > 0 %>
 <h4><%= @user.fname + "'s Reviews" %></h4>
   <ul class="reviews">
-    <% @user.reviews.each do |review| %>
+    <% @user.reviews.reverse.each do |review| %>
       <ul>
         <li><a href="<%= business_url review.business %>"><%= review.business.name %></a></li>
         <li><%= review.business.address %></li>
@@ -10,6 +10,9 @@
         <li><%= review.created_at.strftime("%m/%d/%Y") %></li>
         <li><%= review.content %></li>
       </ul>
+      <% if review.author == current_user %>
+        <%= button_to "Remove Review", delete_review_url(review), method: :get %>
+      <% end %>
       <br>
     <% end %>
 </ul>

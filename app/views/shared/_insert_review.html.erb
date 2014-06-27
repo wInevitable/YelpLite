@@ -1,0 +1,33 @@
+<% if @business.persisted? %>
+
+  <form action="<%= business_reviews_url business %>" method="post">
+    <div class="biz-name"><a href="<%= business_url business %>"><%= business.name %></a></div>
+
+    <%= form_token %>
+
+<% end %>
+
+      <input type="radio" name="review[rating]" id="rating-1" value="1" <%= "checked" if review.rating == 1 %>>
+
+      <input type="radio" name="review[rating]" id="rating-2" value="2" <%= "checked" if review.rating == 2 %>>
+
+      <input type="radio" name="review[rating]" id="rating-3" value="3" <%= "checked" if review.rating == 3 %>>
+
+      <input type="radio" name="review[rating]" id="rating-4" value="4" <%= "checked" if review.rating == 4 %>>
+
+      <input type="radio" name="review[rating]" id="rating-5" value="5" <%= "checked" if review.rating == 5 %>>
+
+      <label for="rating-1">Cockroaches, Rats, and Things...</label>
+      <label for="rating-2">Eh, I've had better.</label>
+      <label for="rating-3">Okay.</label>
+      <label for="rating-4">New favorite place!</label>
+      <label for="rating-5">Oh baby, that was delicious!</label>
+
+    <br>
+    <textarea id="review-content" name="review[content]"><%= review.content %></textarea>
+
+<% if @business.persisted? %>
+    <a href="#">Cancel</a>
+    <input type="submit" class="post-submit" value="Post Review">
+  </form>
+<% end %>

@@ -1,24 +1,31 @@
 <% if business.reviews.length > 0 %>
 <h4><%= business.name + "'s Reviews" %></h4>
-  <ul class="reviews">
-    <% business.reviews.each do |review| %>
-      <ul>
-        <li>User Image</li>
-        <li><a href="<%= user_url review.author %>"><%= user_name(review.author)  %></a></li>
-        <li><%= review.author.location %></li>
 
-        <li><%= review.rating %></li>
-        <li><%= review.created_at.strftime("%m/%d/%Y") %></li>
-        <li><%= review.content %></li>
-        <% if review.author == current_user %>
-          <li><a href="<%= edit_review_url review %>">Edit Review</a></li>
-        <% end %>
-      </ul>
-      <br>
-    <% end %>
-</ul>
-<% elsif (current_user == business) %>
-  <p>You haven't posted any reviews yet. Why not post one <a href="#">now</a>?</p>
+  <% business.reviews.reverse.each do |review| %>
+    <article class="review">
+      <div class="user-thumb">User Image</div>
+      <div class="review-headline"><a href="<%= user_url review.author %>"><%= user_name(review.author)  %></a></div>
+      <div class="reviewer-location"><%= review.author.location %></div>
+
+      <div class="review-rating"><%= review.rating %></div>
+      <div class="review-date"><%= review.created_at.strftime("%m/%d/%Y") %></div>
+      <div class="review-content"><%= review.content %></div>
+
+      <% if review.author == current_user %>
+        <%= render partial: 'reviews/edit', locals: { review: review } %>
+        <%= render partial: 'reviews/delete', locals: { review: review } %>
+      <% end %>
+
+    </article>
+    <br>
+  <% end %>
+
+<% elsif (current_user == business.owner) %>
+
+  <p>Your business has yet to be reviewed. Why not encourage your customers to post some?</p>
+
 <% else %>
-  <p>This user has yet to post a review.</p>
+
+  <p>This business has yet to be reviewed.</p>
+
 <% end %>

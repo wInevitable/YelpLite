@@ -14,4 +14,16 @@ class Review < ActiveRecord::Base
     foreign_key: :author_id,
     inverse_of: :reviews
   )
+
+  def self.latest_activity
+    # @refresh ||= Time.now
+    # if ((Time.now - @refresh) > 120)
+      latest_reviews = Review.find(:all, order: 'id desc', limit: 5)
+    #   @refresh = Time.now
+    # else
+    #   @latest_reviews ||= Review.find(:all, order: 'id desc', limit: 5)
+    # end
+    #
+    # @latest_reviews
+  end
 end

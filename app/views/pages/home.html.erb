@@ -12,31 +12,15 @@
 <section class="content">
   <div class="next-review">
     <h1>Your Next Review Awaits</h1>
-    <p>Review form</p>
+
+    <div class="biz-thumb">Business Photo</div>
+    <%= render partial: 'shared/insert_review', locals: { review: Review.new, business: @business } %>
   </div>
-  
+
   <div class="recent-activity">
     <h1>Recent Activity</h1>
-    
-    <article>
-        <p>Review 1</p>
-    </article>
-    
-    <article>
-        <p>Review 2</p>
-    </article>
-    
-    <article>
-        <p>Review 3</p>
-    </article>
-    
-    <article>
-        <p>Review 4</p>
-    </article>
-    
-    <article>
-        <p>Review 5</p>
-    </article>
+
+    <%= render partial: 'reviews' %>
   </div>
 </section>
 
@@ -46,6 +30,6 @@
       <p> review text </p>
       <a href="#">Archive</a>
   </article>
-  
-  <p>Google Ad</p>
+
+  <p>My Ad</p>
 </section>

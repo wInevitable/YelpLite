@@ -53,10 +53,11 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review = Review.find(params[:id])
-    @review.destroy
-    @review.business.remove_rating(@review)
-    flash[:errors] = "Your review has been removed from YelpLite."
-    redirect_to :back
+    if @review.destroy
+      @review.business.remove_rating(@review)
+      flash[:errors] = "Your review has been removed from YelpLite."
+    end
+    redirect_to root_url
   end
 
   private

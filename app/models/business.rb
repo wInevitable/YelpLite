@@ -41,6 +41,10 @@ class Business < ActiveRecord::Base
   end
 
   def average_rating
-    self.rating / self.num_ratings
+    if self.num_ratings > 0
+      self.rating / self.num_ratings
+    else
+      0
+    end
   end
 end

@@ -46,11 +46,9 @@
   <label for"review">Write a review for this business.</label>
   <br>
 
-  <!-- <form>
-    <a href="#">Read our review guidelines</a>
-    <textarea name="review[content]" id="content"></textarea>
-  </form> -->
-
+  <div class="biz-review">
+    <%= render partial: 'shared/insert_review', locals: { review: Review.new, business: @business} %>
+  </div>
   <% end %>
 
   <input type="submit" value="<%= verb %> Business">

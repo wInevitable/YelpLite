@@ -1,0 +1,6 @@
+<h3>Confirm Removal</h3>
+
+<p>Are you sure you want to delete <%= @business.name %> from <%= @business.created_at.strftime('%m/%d/%Y') %> in <%= @business.city_state_zip.split(",")[0] %>?</p>
+
+<%= button_to "Confirm", business_url(@business), method: :delete %>
+<%= link_to "Cancel", :back %>

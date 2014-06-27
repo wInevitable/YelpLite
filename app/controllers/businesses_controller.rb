@@ -19,6 +19,7 @@ class BusinessesController < ApplicationController
       if (@review.valid? && @business.valid?)
         @review.save
         @business.save
+        @business.update_rating(@review)
         flash[:errors] = "Great, your business and review have been added to YelpLite!"
         redirect_to business_url @business
       elsif @business.valid?

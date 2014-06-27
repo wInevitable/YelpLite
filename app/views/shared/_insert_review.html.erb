@@ -1,4 +1,4 @@
-<% if @business.persisted? %>
+<% if business && business.persisted? %>
 
   <form action="<%= business_reviews_url business %>" method="post">
     <div class="biz-name"><a href="<%= business_url business %>"><%= business.name %></a></div>
@@ -26,7 +26,7 @@
     <br>
     <textarea id="review-content" name="review[content]"><%= review.content %></textarea>
 
-<% if @business.persisted? %>
+<% if business && business.persisted? %>
     <a href="#">Cancel</a>
     <input type="submit" class="post-submit" value="Post Review">
   </form>

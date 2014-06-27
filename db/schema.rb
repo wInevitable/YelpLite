@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140626180656) do
+ActiveRecord::Schema.define(version: 20140627190438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(version: 20140626180656) do
   add_index "businesses", ["city_state_zip"], name: "index_businesses_on_city_state_zip", using: :btree
   add_index "businesses", ["name", "city_state_zip", "address"], name: "index_businesses_on_name_and_city_state_zip_and_address", unique: true, using: :btree
   add_index "businesses", ["name"], name: "index_businesses_on_name", using: :btree
+
+  create_table "pg_search_documents", force: true do |t|
+    t.text     "content"
+    t.integer  "searchable_id"
+    t.string   "searchable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "reviews", force: true do |t|
     t.text     "content",     null: false

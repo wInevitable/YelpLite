@@ -1,4 +1,7 @@
 class Business < ActiveRecord::Base
+  include PgSearch
+  multisearchable :against => [:name, :address, :city_state_zip]
+
   validates :name, :city_state_zip, :address, :owner, presence: true
   validates :name, uniqueness: { scope: [:city_state_zip, :address],
     message: "with given address is already listed on YelpLite."}

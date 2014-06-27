@@ -10,7 +10,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'figaro'
 gem 'devise'
-
+gem 'pg_search'
+gem 'kaminari'
 
 group :doc do
   gem 'sdoc', require: false

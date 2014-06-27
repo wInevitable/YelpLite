@@ -1,5 +1,5 @@
-<% if @business.persisted? %>
-  <form action="<%= business_url @business %>" method="post">
+<% if business.persisted? %>
+  <form action="<%= business_url business %>" method="post">
     <input type="hidden" name="_method" value="put">
 <% else %>
   <form action="<%= businesses_url %>" method="post">
@@ -9,35 +9,35 @@
 
   <label for="name">Business Name</label>
   <br>
-  <input type="text" name="business[name]" value="<%= @business.name %>" id="name">
+  <input type="text" name="business[name]" value="<%= business.name %>" id="name">
   <br>
 
   <label for="address">Address</label>
   <br>
-  <input type="text" name="business[address]" value="<%= @business.address %>" id="address">
+  <input type="text" name="business[address]" value="<%= business.address %>" id="address">
   <br>
 
   <label for="city_state_zip">City, State, and Zip</label>
   <br>
-  <input type="text" name="business[city_state_zip]" value="<%= @business.city_state_zip %>" id="city_state_zip">
+  <input type="text" name="business[city_state_zip]" value="<%= business.city_state_zip %>" id="city_state_zip">
   <br>
 
   <label for="country">Country</label>
   <br>
-  <input type="text" name="business[country]" value="<%= @business.country %>" id="country">
+  <input type="text" name="business[country]" value="<%= business.country %>" id="country">
   <br>
 
   <label for="phone_number">Phone Number</label>
   <br>
-  <input type="text" name="business[phone_number]" value="<%= @business.phone_number %>" id="phone_number">
+  <input type="text" name="business[phone_number]" value="<%= business.phone_number %>" id="phone_number">
   <br>
 
   <label for="website_url">Website Address</label>
   <br>
-  <input type="text" name="business[website_url]" value="<%= @business.website_url %>" id="website_url">
+  <input type="text" name="business[website_url]" value="<%= business.website_url %>" id="website_url">
   <br>
 
-  <input type="checkbox" name="business[recent]" id="recent" value="true" <%= "checked" if @business.recent == true %>>
+  <input type="checkbox" name="business[recent]" id="recent" value="true" <%= "checked" if business.recent == true %>>
   <label for"recent">This business recently opened or is opening soon.</label>
   <br>
 
@@ -47,7 +47,7 @@
   <br>
 
   <div class="biz-review">
-    <%= render partial: 'shared/insert_review', locals: { review: Review.new, business: @business} %>
+    <%= render partial: 'shared/insert_review', locals: { review: Review.new, business: business} %>
   </div>
   <% end %>
 

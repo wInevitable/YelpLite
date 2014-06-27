@@ -1,4 +1,7 @@
 class Review < ActiveRecord::Base
+  include PgSearch
+  multisearchable against: :content
+
   validates :content, :rating, :author, :business, presence: true
 
   belongs_to(

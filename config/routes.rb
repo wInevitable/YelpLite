@@ -15,4 +15,5 @@ YelpLite::Application.routes.draw do
 
   get '/business/:id/delete', to: 'businesses#delete', as: 'delete_business'
   get '/reviews/:id/delete', to: 'reviews#delete', as: 'delete_review'
+  get '/search', to: 'pages#search'
 end

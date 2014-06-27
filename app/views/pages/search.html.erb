@@ -1,0 +1,13 @@
+<h2>Search Results</h2>
+
+<% if @results %>
+  <%= paginate @results %>
+
+  <ul>
+    <% @results.map(&:searchable).each do |result| %>
+      <li><%= render result %></li> <!-- calls partial -->
+    <% end %>
+  </ul>
+
+  <%= paginate @results %>
+<% end %>

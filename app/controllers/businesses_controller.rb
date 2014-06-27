@@ -11,17 +11,34 @@ class BusinessesController < ApplicationController
     @business = Business.new(business_params)
     @business.owner = current_user
 
-    @review = Review.new(review_params)
-    @review.business = @business
-    @review.author = current_user
-    @review.save
+    if (params[:business][:review] == "true")
+      @review = Review.new(review_params)
+      @review.business = @business
+      @review.author = current_user
 
-    if @business.save
+      if (@review.valid? && @business.valid?)
+        @review.save
+        @business.save
+        flash[:errors] = "Great, your business and review have been added to YelpLite!"
+        redirect_to business_url @business
+      elsif @business.valid?
+        @review.save
+        flash[:errors] = @review.errors.full_messages
+        redirect_to :back
+      elsif @review.valid?
+        @business.save
+        flash[:errors] = @business.errors.full_messages
+        redirect_to :back
+      else #neither was valid
+        flash[:errors] = @business.errors.full_messages, @review.errors.full_messages
+        redirect_to :back
+      end
+    elsif @business.save
       flash[:errors] = "Great, your business has been created!"
       redirect_to business_url @business
     else
-      flash.now[:errors] = @business.errors.full_messages
-      render :new
+      flash[:errors] = @business.errors.full_messages
+      redirect_to :back
     end
   end
 

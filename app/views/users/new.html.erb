@@ -6,7 +6,7 @@
 
 <p>OR</p>
 
-<form action="<%= users_url %>" method="POST">
+<form action="<%= users_url %>" method="POST" enctype="multipart/form-data">
   <%= form_token %>
 
   <label for="first-name">First Name</label>
@@ -20,6 +20,9 @@
   <br>
   <label for="password">Password</label>
   <input type="password" id="password" name="user[password]">
+
+  <label for="photo">Upload a Photo</label><br>
+  <input type="file" id="photo" name="user[avatar]">
 
   <p>By creating an account, you agree to YelpLite’s <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
 

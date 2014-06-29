@@ -13,7 +13,14 @@
   <div class="next-review">
     <h1>Your Next Review Awaits</h1>
 
-    <div class="biz-thumb">Business Photo</div>
+    <div class="biz-thumb">
+      <div class="user-thumb">
+        <% if @business.avatar %>
+          <img src="<%= @business.avatar.url(:thumb) %>">
+          <img src="<%= @business.avatar.url %>">
+        <% end %>
+      </div>
+    </div>
     <%= render partial: 'shared/insert_review', locals: { review: Review.new, business: @business } %>
   </div>
 

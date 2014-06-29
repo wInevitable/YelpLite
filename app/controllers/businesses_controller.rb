@@ -79,7 +79,7 @@ class BusinessesController < ApplicationController
   private
   def business_params
     params.require(:business).permit(:name, :address, :city_state_zip, :country,
-      :phone_number, :website_url, :owner_id, :recent)
+      :phone_number, :website_url, :owner_id, :recent, :avatar)
   end
 
   def review_params

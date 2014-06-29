@@ -1,8 +1,8 @@
 <h2>Your Public Profile</h2>
 <p>So who are you, then? Tell the rest of YelpLite about your pretty little self.</p>
 
-<form class="user-edit" action="<%= user_url @user %>" method="post">
-  <input type="hidden" name="_method" value="patch">
+<form class="user-edit" action="<%= user_url @user %>" method="post" enctype="multipart/form-data">
+  <input type="hidden" name="_method" value="put">
 
   <%= form_token %>
 
@@ -34,6 +34,9 @@
   <small>Baltimore, MD</small><br>
   <input type="text" id="hometown" name="user[hometown]" value="<%= @user.hometown %>">
   <br>
+
+  <label for="photo">Photo</label><br>
+  <input type="file" id="photo" name="user[avatar]">
 
   <input type="submit" value="Save Changes">
   <a href="<%= user_url @user %>">Cancel</a>

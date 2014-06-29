@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
   #        :omniauthable
   before_validation :ensure_session_token
 
+  has_attached_file :avatar, styles: {thumb: "100x100>"}
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
   validates :email, :encrypted_password, :fname, :lname, presence: true
   validates :password, :length => { :minimum => 6, :allow_nil => true }
   validates :email,

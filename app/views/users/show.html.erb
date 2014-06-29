@@ -12,7 +12,12 @@
 <% end  %>
 
 <section class="user-info">
-  <p>User Image</p>
+  <div class="user-thumb">
+    <% if @user.avatar %>
+      <img src="<%= @user.avatar.url(:thumb) %>">
+      <img src="<%= @user.avatar.url %>">
+    <% end %>
+  </div>
 
   <!-- <p>&#9733; Follower Count...</p> -->
 

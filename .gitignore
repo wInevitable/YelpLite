@@ -22,3 +22,6 @@
 # Ignore application configuration
 /config/application.yml
 >>>>>>> External Changes
+
+# Ignore application configuration
+/config/application.yml

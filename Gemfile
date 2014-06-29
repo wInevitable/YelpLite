@@ -12,6 +12,8 @@ gem 'figaro'
 gem 'devise'
 gem 'pg_search'
 gem 'kaminari'
+gem 'paperclip'
+gem 'aws-sdk'
 
 group :doc do
   gem 'sdoc', require: false

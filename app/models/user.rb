@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, styles: {thumb: "100x100>"}
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
-  validates :email, :encrypted_password, :fname, :lname, presence: true
+  validates :email, :fname, :lname, presence: true
   validates :password, :length => { :minimum => 6, :allow_nil => true }
   validates :email,
             :format => { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
@@ -62,6 +62,33 @@ class User < ActiveRecord::Base
     user = User.find_by(session_token: token)
     return nil if user.nil?
     user
+  end
+
+  def self.find_or_create_by_auth_hash(auth_hash)
+    user = User.find_by(provider: auth_hash[:provider], uid: auth_hash[:uid])
+
+    return user if user
+
+    User.create!(provider: auth_hash[:provider],
+                 uid: auth_hash[:uid],
+                 email: auth_hash[:info][:email],
+                 fname: auth_hash[:info][:first_name],
+                 lname: auth_hash[:info][:last_name]
+                )
+  end
+
+  def self.find_or_create_by_twitter_auth_hash(auth_hash)
+    user = User.find_by(provider: auth_hash[:provider], uid: auth_hash[:uid])
+
+    return user if user
+
+    #twitter does not appear to provide email or first and last names...
+    User.create!(provider: auth_hash[:provider],
+                 uid: auth_hash[:uid],
+                 email: "",
+                 fname: auth_hash[:info][:name].split(" ")[0],
+                 lname: auth_hash[:info][:name].split(" ")[-1]
+                )
   end
 
   def self.generate_session_token

@@ -1,33 +1,22 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.2'
-gem 'pg'
-gem 'sass-rails', '~> 4.0.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
-gem 'jquery-rails'
-gem 'turbolinks'
-gem 'jbuilder', '~> 1.2'
-gem 'figaro'
-gem 'devise'
-gem 'pg_search'
-gem 'kaminari'
-gem 'paperclip'
 gem 'aws-sdk'
-
-group :doc do
-  gem 'sdoc', require: false
-end
-
-group :development, :test do
-  gem 'rspec-rails'
-  gem 'rspec-collection_matchers'
-end
-
-group :test do
-  gem 'guard-rspec'
-  gem "shoulda-matchers"
-end
+gem 'bcrypt'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'devise'
+gem 'figaro'
+gem 'jbuilder', '~> 1.2'
+gem 'jquery-rails'
+gem 'kaminari'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'paperclip'
+gem 'pg'
+gem 'pg_search'
+gem 'rails', '4.0.2'
+gem 'sass-rails', '~> 4.0.0'
+gem 'turbolinks'
+gem 'uglifier', '>= 1.3.0'
 
 group :development do
   gem 'better_errors'
@@ -37,11 +26,23 @@ group :development do
   gem "letter_opener"
 end
 
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'rspec-collection_matchers'
+end
+
+group :doc do
+  gem 'sdoc', require: false
+end
+
 group :production do
   gem 'rails_12factor'
 end
 
-gem 'bcrypt'
+group :test do
+  gem 'guard-rspec'
+  gem "shoulda-matchers"
+end
 
 # Use unicorn as the app server
 # gem 'unicorn'

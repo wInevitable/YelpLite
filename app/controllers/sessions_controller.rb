@@ -21,6 +21,20 @@ class SessionsController < ApplicationController
     end
   end
 
+  def facebook
+    @user = User.find_or_create_by_auth_hash(request.env['omniauth.auth'])
+
+    sign_in(@user)
+    redirect_to root_url
+  end
+
+  def twitter
+    @user = User.find_or_create_by_twitter_auth_hash(request.env['omniauth.auth'])
+
+    sign_in(@user)
+    redirect_to root_url
+  end
+
   def destroy
     sign_out
     redirect_to root_url

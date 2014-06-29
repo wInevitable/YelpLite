@@ -14,6 +14,11 @@ YelpLite::Application.routes.draw do
   end
 
   get '/business/:id/delete', to: 'businesses#delete', as: 'delete_business'
+
   get '/reviews/:id/delete', to: 'reviews#delete', as: 'delete_review'
+
   get '/search', to: 'pages#search'
+
+  get 'auth/facebook/callback', to: 'sessions#facebook'
+  get 'auth/twitter/callback', to: 'sessions#twitter'
 end

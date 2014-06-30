@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
     )
 
     if @user
+      @user.location = request.location.data["ip"]
       sign_in(@user)
       redirect_to root_url
     else
@@ -23,14 +24,16 @@ class SessionsController < ApplicationController
 
   def facebook
     @user = User.find_or_create_by_auth_hash(request.env['omniauth.auth'])
-
+    @user.location = request.location.data["ip"]
+    
     sign_in(@user)
     redirect_to root_url
   end
 
   def twitter
     @user = User.find_or_create_by_twitter_auth_hash(request.env['omniauth.auth'])
-
+    @user.location = request.location.data["ip"]
+    
     sign_in(@user)
     redirect_to root_url
   end

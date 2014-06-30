@@ -20,6 +20,11 @@ class User < ActiveRecord::Base
   validates_format_of :fname, with: /\A[a-zA-Z]+\Z/, if: :traditional_login?
   validates_format_of :lname, with: /\A[a-zA-Z]+\Z/, if: :traditional_login?
 
+  geocoded_by :full_address
+  after_validation :geocode
+  reverse_geocoded_by :lat, :long
+  after_validation :reverse_geocode
+
   has_many(
     :businesses,
     class_name: "Business",
@@ -34,6 +39,10 @@ class User < ActiveRecord::Base
     foreign_key: :author_id,
     inverse_of: :author
   )
+  
+  def full_address
+    self.location
+  end
 
   def password
     @password

@@ -10,6 +10,11 @@ class Business < ActiveRecord::Base
   validates :name, uniqueness: { scope: [:city_state_zip, :address],
     message: "with given address is already listed on YelpLite."}
 
+  geocoded_by :full_address
+  after_validation :geocode
+  reverse_geocoded_by :lat, :long
+  after_validation :reverse_geocode
+
   belongs_to(
     :owner,
     class_name: "User",
@@ -24,6 +29,14 @@ class Business < ActiveRecord::Base
     foreign_key: :business_id,
     inverse_of: :business
   )
+  
+  def full_address
+    if self.country
+      self.address + self.city_state_zip + self.country
+    else
+      self.address + self.city_state_zip
+    end
+  end
 
   def update_rating(review)
     if self.num_ratings > 0

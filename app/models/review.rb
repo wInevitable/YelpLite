@@ -4,6 +4,8 @@ class Review < ActiveRecord::Base
 
   validates :content, :rating, :author, :business, presence: true
 
+  after_create :update_biz_rating
+
   belongs_to(
     :business,
     class_name: "Business",
@@ -19,14 +21,11 @@ class Review < ActiveRecord::Base
   )
 
   def self.latest_activity
-    # @refresh ||= Time.now
-    # if ((Time.now - @refresh) > 120)
-      latest_reviews = Review.find(:all, order: 'id desc', limit: 5)
-    #   @refresh = Time.now
-    # else
-    #   @latest_reviews ||= Review.find(:all, order: 'id desc', limit: 5)
-    # end
-    #
-    # @latest_reviews
+    latest_reviews = Review.find(:all, order: 'id desc', limit: 5)
+  end
+  
+  private
+  def update_biz_rating
+    self.business.update_rating(self)
   end
 end

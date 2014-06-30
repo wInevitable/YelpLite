@@ -12,7 +12,6 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.author = current_user
     @business = Business.find(params[:business_id])
-    @business.update_rating(@review)
     @review.business = @business
 
     if @review.save

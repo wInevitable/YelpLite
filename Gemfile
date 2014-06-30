@@ -4,6 +4,8 @@ gem 'aws-sdk'
 gem 'bcrypt'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
+
+gem 'faker'
 gem 'figaro'
 gem 'geocoder'
 gem 'jbuilder', '~> 1.2'
@@ -28,6 +30,8 @@ group :development do
 end
 
 group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'faker'
   gem 'rspec-rails'
   gem 'rspec-collection_matchers'
 end

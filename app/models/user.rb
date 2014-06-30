@@ -17,8 +17,8 @@ class User < ActiveRecord::Base
             :format => { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }, if: :traditional_login?
 
   validates :email, :session_token, uniqueness: true
-  validates_format_of :fname, with: /\A[a-zA-Z]+\Z/, if: :traditional_login?
-  validates_format_of :lname, with: /\A[a-zA-Z]+\Z/, if: :traditional_login?
+  #validates_format_of :fname, with: /\A[a-zA-Z]+\Z/, if: :traditional_login?
+  #validates_format_of :lname, with: /\A[a-zA-Z]+\Z/, if: :traditional_login?
 
   geocoded_by :full_address
   after_validation :geocode
@@ -39,6 +39,10 @@ class User < ActiveRecord::Base
     foreign_key: :author_id,
     inverse_of: :author
   )
+  
+  def address=(address)
+    self.location = address
+  end
   
   def full_address
     self.location

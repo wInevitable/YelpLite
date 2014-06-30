@@ -6,12 +6,66 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-user1 = User.create!(email: 'john@example.com', password: 'secret', fname: 'John', lname: 'Doe')
-user2 = User.create!(email: 'guest@example.com', password: 'secret', fname: 'Guest', lname: 'Account')
+FactoryGirl.define do
+  factory :user do
+    #avatar
+    
+    email { Faker::Internet.safe_email }
+    password { Faker::Internet.password(6) }
+    fname { Faker::Name.first_name }
+    lname { Faker::Name.last_name }
+    nickname { Faker::Name.title }
+    location { Faker::Internet.ip_v4_address }
+    hometown { Faker::Address.city }
+    created_at { rand(3000).days.ago }
+        
+    things_i_love do
+      [Faker::Commerce.color, Faker::Commerce.department,
+       Faker::Commerce.product_name].join(", ")
+    end
+  end
+  
+  factory :business do
+    #avatar
+    #location
+    
+    rec = [true, false]
+    
+    owner { User.find(rand(1..100)) }
+    name { Faker::Company.name }
+    address { Faker::Address.street_address }
+    
+    city_state_zip do
+      Faker::Address.city + ", " + Faker::Address.state + " "+ Faker::Address.zip 
+    end
+    
+    country { Faker::Address.country }
+    phone_number { Faker::PhoneNumber.phone_number }
+    website_url { Faker::Internet.url(name.downcase.gsub(/\s+/, "")) }
+    recent { rec.sample }
+    
+    created_at do
+      if recent
+        rand(100).days.ago
+      else
+        rand(3000).days.ago
+      end
+    end
+  end
+  
+  factory :review do
+    #improve content
 
-business1 = Business.create!(name: 'App Academy', address: 'Cooper Square', city_state_zip: 'New York, NY 10003', owner: user1)
-business2 = Business.create!(name: 'Major League Gaming', address: 'Park Avenue', city_state_zip: 'New York, NY', owner: user2)
+    rating { rand(1..5) }
+    author { User.find(rand(1..100)) }
+    business { Business.find(rand(1..50)) }
+    
+    content do
+      [Faker::Company.catch_phrase, Faker::Company.bs, Faker::Lorem.word].sample
+    end
+  end
+end
 
-Review.create!(content: "Top notch coding!", rating: 5, author: user1, business: business1)
-Review.create!(content: "#ragequit", rating: 4, author: user1, business: business2)
-Review.create!(content: "Yay!", rating: 4, author: user2, business: business1)
+FactoryGirl.create_list(:user, 100)
+FactoryGirl.create_list(:business, 50)
+FactoryGirl.create_list(:review, 150)

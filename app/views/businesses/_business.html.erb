@@ -1,1 +1,22 @@
-<div><%= link_to business.name, business %></div>
+<div class="biz-listing">
+  <div class="biz-thumb">
+    <img src="<%= asset_path(business.avatar.url(:profile)) %>">
+  </div>
+  
+  <div class="biz-info">
+    <%= link_to business.name, business %>
+    <%= business.rating %>
+    <%= business.num_ratings %> Reviews
+  </div>
+  
+  <div class="biz-address">
+    <%= business.address %>
+    <%= business.city_state_zip %>
+    <%= business.phone_number %>
+  </div>
+  
+  <div class="biz-review">
+    <img src="<%= asset_path(business.reviews.last.author.avatar.url(:mini)) %>">
+    <%= business.reviews.last.content %>
+  </div>
+</div>

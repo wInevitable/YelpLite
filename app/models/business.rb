@@ -1,6 +1,6 @@
 class Business < ActiveRecord::Base
   include PgSearch
-  multisearchable :against => [:name, :address, :city_state_zip]
+  pg_search_scope :search_by_name, :against => :name
 
   has_attached_file :avatar, styles: {profile: "300x300>", thumb: "100x100>"},
              default_url: 'default_business_image.png'

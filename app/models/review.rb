@@ -1,6 +1,6 @@
 class Review < ActiveRecord::Base
   include PgSearch
-  multisearchable against: :content
+  pg_search_scope :search_by_content, :against => :content
 
   validates :content, :rating, :author, :business, presence: true
 

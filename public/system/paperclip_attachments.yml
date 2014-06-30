@@ -1,0 +1,10 @@
+---
+:Business:
+  :avatar:
+  - :profile
+  - :thumb
+:User:
+  :avatar:
+  - :mini
+  - :profile
+  - :thumb

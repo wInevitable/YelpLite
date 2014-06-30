@@ -4,11 +4,10 @@
   </div>
   
   <div class="search-results">
-    <ul>
-      <% @results.map(&:searchable).each do |result| %>
-        <li><%= render result %></li> <!-- calls partial -->
-      <% end %>
-    </ul>
+    <% @results.each do |result| %>
+      <%= render result %>
+      <br>
+    <% end %>
   </div>
 
   <%= paginate @results %>

@@ -36,7 +36,7 @@
     <% if current_user %>
       <div class="user-thumb">
         <% if current_user.avatar %>
-          <img src="<%= asset_path(current_user.avatar.url(:thumb)) %>">
+          <img src="<%= asset_path(current_user.avatar.url(:mini)) %>">
         <% end %>
       </div>
       <ul>

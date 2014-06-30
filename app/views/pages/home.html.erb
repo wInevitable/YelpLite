@@ -15,9 +15,8 @@
 
     <div class="biz-thumb">
       <div class="user-thumb">
-        <% if @business.avatar %>
-          <img src="<%= @business.avatar.url(:thumb) %>">
-          <img src="<%= @business.avatar.url %>">
+        <% if @business && @business.avatar %>
+          <img src="<%= asset_path(@business.avatar.url(:thumb)) %>">
         <% end %>
       </div>
     </div>

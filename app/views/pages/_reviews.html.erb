@@ -2,8 +2,7 @@
   <article class="review">
     <div class="user-thumb">
       <% if review.author.avatar %>
-        <img src="<%= review.author.avatar.url(:thumb) %>">
-        <img src="<%= review.author.avatar.url %>">
+        <img src="<%= asset_path(review.author.avatar.url(:thumb)) %>">
       <% end %>
     </div>
     <div class="review-headline"><a href="<%= user_url review.author %>"><%= user_name(review.author) %></a> wrote a review for <a href="<%= business_url review.business %>"><%= review.business.name %></a></div>

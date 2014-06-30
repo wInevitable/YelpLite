@@ -34,7 +34,11 @@
       </ul>
     </nav>
     <% if current_user %>
-      <p>User Profile Button</p>
+      <div class="user-thumb">
+        <% if current_user.avatar %>
+          <img src="<%= asset_path(current_user.avatar.url(:thumb)) %>">
+        <% end %>
+      </div>
       <ul>
         <li><a href="<%= user_url current_user %>">About Me</a></li>
         <li><a href="<%= search_url %>">Write a Review</a></li>

@@ -2,7 +2,8 @@ class Business < ActiveRecord::Base
   include PgSearch
   multisearchable :against => [:name, :address, :city_state_zip]
 
-  has_attached_file :avatar, styles: {thumb: "100x100>"}
+  has_attached_file :avatar, styles: {profile: "300x300>", thumb: "100x100>"},
+             default_url: 'default_business_image.png'
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   
   validates :name, :city_state_zip, :address, :owner, presence: true

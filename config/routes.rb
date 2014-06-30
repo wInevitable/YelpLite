@@ -19,6 +19,6 @@ YelpLite::Application.routes.draw do
 
   get '/search', to: 'pages#search'
 
-  get 'auth/facebook/callback', to: 'sessions#facebook'
-  get 'auth/twitter/callback', to: 'sessions#twitter'
+  get 'auth/facebook/callback', to: 'sessions#facebook', as: 'facebook_auth'
+  get 'auth/twitter/callback', to: 'sessions#twitter', as: 'twitter_auth'
 end

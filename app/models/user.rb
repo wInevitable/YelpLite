@@ -10,14 +10,15 @@ class User < ActiveRecord::Base
              default_url: 'default_user_image.png'
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
-  validates :email, :fname, :lname, presence: true
+  validates :email, :encrypted_password, presence: true, if: :traditional_login?
+  validates :fname, :lname, presence: true
   validates :password, :length => { :minimum => 6, :allow_nil => true }
   validates :email,
-            :format => { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
+            :format => { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }, if: :traditional_login?
 
   validates :email, :session_token, uniqueness: true
-  validates_format_of :fname, with: /\A[a-zA-Z]+\Z/
-  validates_format_of :lname, with: /\A[a-zA-Z]+\Z/
+  validates_format_of :fname, with: /\A[a-zA-Z]+\Z/, if: :traditional_login?
+  validates_format_of :lname, with: /\A[a-zA-Z]+\Z/, if: :traditional_login?
 
   has_many(
     :businesses,
@@ -74,7 +75,8 @@ class User < ActiveRecord::Base
                  uid: auth_hash[:uid],
                  email: auth_hash[:info][:email],
                  fname: auth_hash[:info][:first_name],
-                 lname: auth_hash[:info][:last_name]
+                 lname: auth_hash[:info][:last_name],
+                 login_type: "social media"
                 )
   end
 
@@ -83,12 +85,11 @@ class User < ActiveRecord::Base
 
     return user if user
 
-    #twitter does not appear to provide email or first and last names...
     User.create!(provider: auth_hash[:provider],
                  uid: auth_hash[:uid],
-                 email: "",
                  fname: auth_hash[:info][:name].split(" ")[0],
-                 lname: auth_hash[:info][:name].split(" ")[-1]
+                 lname: auth_hash[:info][:name].split(" ")[-1],
+                 login_type: "social media"
                 )
   end
 
@@ -97,6 +98,10 @@ class User < ActiveRecord::Base
   end
 
   private
+  def traditional_login?
+    login_type != "social media"
+  end
+  
   def ensure_session_token
     self.session_token ||= self.class.generate_session_token
   end

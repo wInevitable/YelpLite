@@ -55,7 +55,7 @@ img {
 }
 
 input[type="text"], input[type="password"], input[type="submit"],
-/*input[type="checkbox"], input[type="radio"],*/ input[type="file"],
+/*input[type="checkbox"],*/ input[type="radio"], input[type="file"],
 button,
 textarea {
   display: inline-block;
@@ -80,7 +80,6 @@ textarea {
 }
 
 a.cancel {
-  font-size: 14px;
   padding: 5px;
   color: #0000FF;
 }
@@ -247,8 +246,25 @@ a.cancel {
 }
 
 .next-review > .review-form {
+}
 
-  /* pull from shared/insert_review */
+.next-review > .review-form > input[type="radio"] {
+  width: 10px;
+  height: 10px;
+  background: #f99;
+}
+
+.next-review > .review-form > label {
+  display: none;
+}
+
+.next-review > .review-form > textarea {
+  width: 400px;
+  height: 100px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  display: block;
+  margin-bottom: 10px;
 }
 
 .next-review > .review-form > input[type="submit"] {
@@ -258,12 +274,6 @@ a.cancel {
   font-weight: bold;
   border-bottom: 2px solid #ccc;
 }
-
-radio inputs
-radio labels
-textarea
-input submit
-
 
 .content > .home-content > .recent-activity {
   padding: 20px;

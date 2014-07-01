@@ -36,7 +36,8 @@ YelpLite.Collections.Reviews = Backbone.Collection.extend({
       //set business
       review = new YelpLite.Models.Review({
         id: id,
-        business: that.business
+        business: that.business,
+        author: null
       });
       review.collection = that.business.reviews;
       review.fetch({
@@ -51,7 +52,8 @@ YelpLite.Collections.Reviews = Backbone.Collection.extend({
       //set author
       review = new YelpLite.Models.Review({
         id: id,
-        author: that.author
+        author: that.author,
+        business: null
       });
       review.collection = that.author.reviews;
       review.fetch({

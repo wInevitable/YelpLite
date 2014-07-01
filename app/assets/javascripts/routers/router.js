@@ -8,24 +8,17 @@ YelpLite.Routers.Router = Backbone.Router.extend({
 
   routes: {
     '': 'home',
-    'users/:id': 'userShow',
-    'users/:id/edit': 'userEdit',
-    'businesses/new': 'businessNew',
-    'businesses/:id': 'businessShow',
-    'businesses/:id/edit': 'businessEdit',
-    // 'reviews': 'reviewIndex',
-    // 'businesses/:id/reviews/new': 'reviewNew',
-    // 'reviews/:id': 'reviewShow',
-    // 'reviews/:id/edit': 'reviewEdit',
-    // 'reviews/:id/delete': 'reviewDelete',
-    // 'reviews/:id/destroy': 'reviewDestroy'
+    // 'users/:id': 'userShow',
+    // 'users/:id/edit': 'userEdit',
+    // 'businesses/new': 'businessNew',
+    // 'businesses/:id': 'businessShow',
+    // 'businesses/:id/edit': 'businessEdit'
   },
 
   home: function() {
-    debugger
     var homeView = new YelpLite.Views.Home({
-      business: x, // random business to review
-      reviews: x// 5 most recent reviews
+      business: _.last(_.shuffle(this.businesses)), // random business to review
+      reviews: _.last(this.reviews) // 5 most recent reviews
     });
     this._swapView(homeView);
   },
@@ -35,6 +28,18 @@ YelpLite.Routers.Router = Backbone.Router.extend({
   },
 
   userEdit: function(id) {
+
+  },
+
+  businessNew: function() {
+
+  },
+
+  businessShow: function(id) {
+
+  },
+
+  businessEdit: function(id) {
 
   },
 

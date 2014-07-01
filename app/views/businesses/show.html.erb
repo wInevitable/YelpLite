@@ -1,15 +1,19 @@
 <h2><%= @business.name %></h2>
-<%= @business.average_rating %>
-<%= @business.num_reviews + " reviews"  %>
 
-<%= button_to "Write a Review", new_business_review_url(@business), class: "write-review", method: :get %>
+<div class="biz-ratings">
+  <%= @business.average_rating %>
+  <%= @business.num_reviews + " reviews"  %>
+</div>
 
-<ul class="buttons">
-  <li><%= button_to "Add Photo", root_url %></li>
-  <li><%= button_to "Share", root_url %></li>
-  <li><%= button_to "Bookmark", root_url %></li>
+<ul class="biz-buttons">
+  <li><%= button_to "Write a Review", new_business_review_url(@business), class: "write-review", method: :get %></li>
+
+  <li><%= button_to "Add Photo", root_url, class: "biz-button" %></li>
+  <li><%= button_to "Share", root_url, class: "biz-button" %></li>
+  <li><%= button_to "Bookmark", root_url, class: "biz-button" %></li>
+
   <% if @business.owner == current_user %>
-    <li><%= button_to "Remove Business", delete_business_url(@business), method: :get %>
+    <li><%= button_to "Remove Business", delete_business_url(@business), class: "biz-button", method: :get %></li>
   <% end %>
 </ul>
 

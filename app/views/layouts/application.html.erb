@@ -7,79 +7,105 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <header>
-    <p>YelpLite Logo</p>
+  <header class="header">
+    <div class="header-wrap group">
+      <h1 class="header-logo">
+        <a href="#">YelpLite</a>
+      </h1>
 
-    <nav>
-      <form action="<%= search_url %>" method="get">
-        <label for="find">Find</label>
-        <input type="text" id="find" name="query[find]">
+      <form class="search-form" action="<%= search_url %>" method="get">
+        <div class="post-form-input">
+          <label for="find">Find</label>
+          <input type="text" id="find" name="query[find]">
+        </div>
 
-        <label for="near">Near</label>
-        <input type="text" id="near" name="query[near]">
+        <div class="post-form-input">
+          <label for="near">Near</label>
+          <input type="text" id="near" name="query[near]">
+        </div>
 
-        <input type="submit" id="search-button" value="Search">
+        <div class="post-form-submit">
+          <input type="submit" id="search-button" value="Search">
+        </div>
       </form>
 
-      <ul>
-        <li><a href="/">Home</a></li>
+      <nav class="header-nav">
+        <ul>
+          <li><a href="/">Home</a></li>
 
-        <% if current_user %>
+          <% if current_user %>
+            <li><a href="<%= user_url current_user %>">About Me</a></li>
+          <% else %>
+            <li><a href="<%= new_user_url %>">About Me</a></li>
+          <% end %>
+
+          <li><a href="<%= search_url %>">Write a Review</a></li>
+        </ul>
+      </nav>
+
+      <% if current_user %>
+        <div class="user-thumb">
+          <% if current_user.avatar %>
+            <img src="<%= asset_path(current_user.avatar.url(:mini)) %>">
+          <% end %>
+        </div>
+        <ul>
           <li><a href="<%= user_url current_user %>">About Me</a></li>
-        <% else %>
-          <li><a href="<%= new_user_url %>">About Me</a></li>
-        <% end %>
-
-        <li><a href="<%= search_url %>">Write a Review</a></li>
-      </ul>
-    </nav>
-    <% if current_user %>
-      <div class="user-thumb">
-        <% if current_user.avatar %>
-          <img src="<%= asset_path(current_user.avatar.url(:mini)) %>">
-        <% end %>
-      </div>
-      <ul>
-        <li><a href="<%= user_url current_user %>">About Me</a></li>
-        <li><a href="<%= search_url %>">Write a Review</a></li>
-        <li><a href="<%= new_business_url %>">Add a Business</a></li>
-        <li><%= button_to "Log Out", session_url, method: :delete %></li>
-      </ul>
-    <% else %>
-      <a href="<%= new_user_url %>">Sign Up</a>
-      <a href="<%= new_session_url %>">Log In</a>
-    <% end %>
-    <hr>
+          <li><a href="<%= search_url %>">Write a Review</a></li>
+          <li><a href="<%= new_business_url %>">Add a Business</a></li>
+          <li><%= button_to "Log Out", session_url, method: :delete %></li>
+        </ul>
+      <% else %>
+        <a href="<%= new_user_url %>">Sign Up</a>
+        <a href="<%= new_session_url %>">Log In</a>
+      <% end %>
+    </div>
   </header>
 
   <!-- ERRORS and NOTICES -->
-  <% if flash %>
-    <p><%= flash[:errors] %></p>
-  <% end %>
+  <div class="errors">
+    <% if flash %>
+      <p><%= flash[:errors] %></p>
+    <% end %>
+  </div>
 
-<%= yield %>
+  <div class="content">
+    <%= yield %>
+  </div>
 
-  <footer>
-    <hr>
-    <h3>About</h3>
-      <ul>
-        <li><a href="#">About YelpLite</a></li>
-        <li><a href="#">Terms of Service</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-      </ul>
-    <h3>Help</h3>
-      <ul>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Content Guidelines</a></li>
-        <li><a href="#">Contact YelpLite</a></li>
-      </ul>
-    <h3>More</h3>
-      <ul>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#">Top Searches</a></li>
-      </ul>
-    <div class="footer-image">
-      Insert Footer Image
+  <footer class="footer">
+    <div class="footer-wrap group">
+      <nav class="footer-links">
+        <ul>
+          <li>
+            <h3>About</h3>
+            <ul>
+              <li><a href="#">About YelpLite</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+            </ul>
+          </li>
+          <li>
+            <h3>Help</h3>
+            <ul>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Content Guidelines</a></li>
+              <li><a href="#">Contact YelpLite</a></li>
+            </ul>
+          </li>
+          <li>
+            <h3>More</h3>
+            <ul>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Top Searches</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+
+      <div>
+        <%= image_tag "new_footer.png", class: "footer-image"  %>
+      </div>
     </div>
   </footer>
 </body>

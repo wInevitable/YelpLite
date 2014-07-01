@@ -11,3 +11,211 @@
  *= require_self
  *= require_tree .
  */
+
+/* --- RESET --- */
+
+html, body, header, footer, section, article, div,
+strong, a, img, p, nav, h1, h2, h3, h4, ul, li, small,
+form, label {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* --- ELEMENTS --- */
+
+body {
+  font-family: sans-serif;
+  background: #eee;
+  color: #333;
+  font-size: 16px;
+  line-height: normal;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+strong {
+  font-weight: bold;
+}
+
+small {
+  font-size: 12px;
+}
+
+img {
+  display: block;
+}
+
+input[type="text"], input[type="password"], input[type="submit"],
+/*input[type="checkbox"], input[type="radio"],*/ input[type="file"],
+button,
+textarea {
+  display: inline-block;
+  box-sizing: content-box;
+  -webkit-appearance: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  vertical-align: baseline;
+  background: transparent;
+  color: inherit;
+}
+
+/* --- UTILITIES --- */
+
+.group:after {
+ content: "";
+ display: block;
+ clear: both;
+}
+
+/* --- HEADER --- */
+
+.header {
+  background: #777;
+  border-radius: 5px;
+  margin-top: 1px;
+}
+
+.header-wrap {
+  width: 900px;
+  margin: auto;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+}
+
+.header-logo {
+  float: left;
+}
+
+.header-logo > a {
+  display: block;
+  font-weight: bold;
+  padding: 10px 20px;
+  color: #fff;
+}
+
+.search-form {
+  margin: ;
+  background: ;
+  padding : ;
+}
+
+.search-form > .post-form-input {
+  margin: ;
+}
+
+.search-form > .post-form-input > label {
+  display: inline-block;
+  font-weight: bold;
+  padding: ;
+}
+
+.search-form > .post-form-input > input[type="text"] {
+  background: ;
+  border: ;
+  padding: ;
+  width: ;
+}
+
+.search-form > .post-form-submit > input[type="submit"] {
+  padding: ;
+  background: ;
+  border: ;
+  /* background image */
+}
+
+.header-nav {
+  float: right;
+}
+
+.header-nav > ul > li {
+  float: left;
+  border-left: 1px solid #fff;
+}
+
+.header-nav > ul > li > a {
+  display: block;
+  padding: 10px 20px;
+  color: #fff;
+}
+
+/* --- ERRORS and NOTICES --- */
+
+/*.errors {
+  width: 860px;
+  padding: 20px;
+  margin: auto;
+  background: #eee;
+  border: 1px solid #fff;
+}*/
+
+/* --- CONTENT --- */
+
+.content {
+  width: 860px;
+  padding: 20px;
+  margin: auto;
+  background: #fff;
+  border-left: 1px solid #eee;
+  border-right: 1px solid #eee;
+}
+
+/* --- FOOTER --- */
+
+.footer {
+}
+
+.footer-wrap {
+  width: 900px;
+  margin: auto;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.footer-links {
+  float: right;
+  width: 900px;
+  margin-bottom: 50px;
+}
+
+.footer-links > ul {
+}
+
+.footer-links > ul > li {
+  float: left;
+  padding: 15px 30px;
+}
+
+.footer-links > ul > li > h3 {
+  font-size: 20px;
+  font-weight: bold;
+  float: left;
+}
+
+.footer-links > ul > li > ul {
+  padding: 30px 0 0 80px;
+}
+
+.footer-links > ul > li > ul > li {
+}
+
+.footer-links > ul > li > ul > li > a {
+  color: #333;
+}
+
+.footer-image {
+  width: 100%;
+  opacity: .7;
+  height: auto;
+}

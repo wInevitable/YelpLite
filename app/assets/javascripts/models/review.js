@@ -1,7 +1,20 @@
 YelpLite.Models.Review = Backbone.Model.extend({
-  initialize: function(options) {
-    this.business = options.business;
-    this.author = options.author;
+  business: function(model) {
+    if (!this._business) {
+      this._business = model;
+      this.collection = model.reviews;
+      model.reviews.add(this);
+    }
+    return this._business;
+  },
+
+  author: function(model) {
+    if (!this._author) {
+      this._author = model;
+      this.collection = model.reviews;
+      model.reviews.add(this);
+    }
+    return this._author;
   },
 
   validate: function (attributes) {

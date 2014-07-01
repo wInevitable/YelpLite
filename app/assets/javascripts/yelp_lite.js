@@ -7,9 +7,9 @@ window.YelpLite = {
 
     YelpLite.users = new YelpLite.Collections.Users();
     YelpLite.users.fetch();
-    YelpLite.businesses = new YelpLite.Collections.Businesses();
+    YelpLite.businesses = new YelpLite.Collections.Businesses({});
     YelpLite.businesses.fetch();
-    YelpLite.reviews = new YelpLite.Collections.Reviews();
+    YelpLite.reviews = new YelpLite.Collections.Reviews({});
     YelpLite.reviews.fetch();
 
     new YelpLite.Routers.Router({
@@ -18,6 +18,7 @@ window.YelpLite = {
       businesses: YelpLite.businesses,
       reviews: YelpLite.reviews
     });
+
     Backbone.history.start();
   }
 };

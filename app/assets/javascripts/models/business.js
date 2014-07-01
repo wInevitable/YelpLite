@@ -1,11 +1,18 @@
 YelpLite.Models.Business = Backbone.Model.extend({
-  initialize: function(options) {
-    this.owner = options.owner
+  owner: function(model) {
+    if (!this._owner) {
+      this._owner = model;
+      this.collection = model.businesses;
+      model.businesses.add(this);
+    }
+    return this._owner;
   },
 
   reviews: function() {
    if(!this._reviews) {
-     this._reviews = new YelpLite.Collections.Reviews([], { business: this });
+     this._reviews = new YelpLite.Collections.Reviews([], {
+       business: this,
+     });
    }
    return this._reviews;
   },

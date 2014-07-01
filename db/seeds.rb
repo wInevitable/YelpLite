@@ -9,7 +9,7 @@
 FactoryGirl.define do
   factory :user do
     #avatar
-    
+
     email { Faker::Internet.safe_email }
     password { Faker::Internet.password(6) }
     fname { Faker::Name.first_name }
@@ -18,32 +18,32 @@ FactoryGirl.define do
     location { Faker::Internet.ip_v4_address }
     hometown { Faker::Address.city }
     created_at { rand(3000).days.ago }
-        
+
     things_i_love do
       [Faker::Commerce.color, Faker::Commerce.department,
        Faker::Commerce.product_name].join(", ")
     end
   end
-  
+
   factory :business do
     #avatar
     #location
-    
+
     rec = [true, false]
-    
+
     owner { User.find(rand(1..100)) }
     name { Faker::Company.name }
     address { Faker::Address.street_address }
-    
+
     city_state_zip do
-      Faker::Address.city + ", " + Faker::Address.state + " "+ Faker::Address.zip 
+      Faker::Address.city + ", " + Faker::Address.state + " "+ Faker::Address.zip
     end
-    
+
     country { Faker::Address.country }
     phone_number { Faker::PhoneNumber.phone_number }
     website_url { Faker::Internet.url(name.downcase.gsub(/\s+/, "")) }
     recent { rec.sample }
-    
+
     created_at do
       if recent
         rand(100).days.ago
@@ -52,16 +52,20 @@ FactoryGirl.define do
       end
     end
   end
-  
+
   factory :review do
     #improve content
 
     rating { rand(1..5) }
     author { User.find(rand(1..100)) }
     business { Business.find(rand(1..50)) }
-    
+
     content do
       [Faker::Company.catch_phrase, Faker::Company.bs, Faker::Lorem.word].sample
+    end
+
+    created_at do
+      author.created_at.days.ago
     end
   end
 end

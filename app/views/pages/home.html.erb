@@ -14,11 +14,9 @@
     <h1>Your Next Review Awaits</h1>
 
     <div class="biz-thumb">
-      <div class="user-thumb">
-        <% if @business && @business.avatar %>
-          <img src="<%= asset_path(@business.avatar.url(:thumb)) %>">
-        <% end %>
-      </div>
+      <% if @business && @business.avatar %>
+        <img src="<%= asset_path(@business.avatar.url(:mini)) %>">
+      <% end %>
     </div>
     <%= render partial: 'shared/insert_review', locals: { review: Review.new, business: @business } %>
   </div>

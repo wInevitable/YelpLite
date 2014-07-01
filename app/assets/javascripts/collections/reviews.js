@@ -1,11 +1,6 @@
 YelpLite.Collections.Reviews = Backbone.Collection.extend({
   model: YelpLite.Models.Review,
 
-  initialize: function(options) {
-    this.business = options.business;
-    this.author = options.author;
-  },
-
   url: function() {
      return "/api/businesses/" + this.business.id + "/reviews";
   },

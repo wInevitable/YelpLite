@@ -79,6 +79,12 @@ textarea {
  clear: both;
 }
 
+a.cancel {
+  font-size: 14px;
+  padding: 5px;
+  color: #0000FF;
+}
+
 /* --- HEADER --- */
 
 .header {
@@ -212,6 +218,75 @@ textarea {
   border-left: 1px solid #eee;
   border-right: 1px solid #eee;
 }
+
+.content > .home-content {
+}
+
+.content > .home-content > .next-review {
+  padding: 20px;
+}
+
+.next-review > h1 {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.next-review > .biz-thumb {
+  width: 50px;
+  height: 50px;
+}
+
+.next-review > .biz-thumb > img {
+  float: left;
+  width: 50px;
+  height: 50px;
+}
+
+.next-review > .review-form {
+
+  /* pull from shared/insert_review */
+}
+
+.next-review > .review-form > input[type="submit"] {
+  background: #0c6;
+  padding: 10px 15px;
+  color: #fff;
+  font-weight: bold;
+  border-bottom: 2px solid #ccc;
+}
+
+radio inputs
+radio labels
+textarea
+input submit
+
+
+.content > .home-content > .recent-activity {
+  padding: 20px;
+}
+
+.content > .home-content > .recent-activity > h1 {
+  border-top: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 0px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.content > .home-content > .recent-activity > .review {
+  border-top: 1px solid #ccc;
+  padding: 20px 0 5px 0;
+}
+
+.recent-activity > .review {
+  /* pull from pages partial - reviews */
+}
+
+</section>
 
 /* --- FOOTER --- */
 

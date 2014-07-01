@@ -1,1 +1,9 @@
 <div id="content"></div>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function(){
+    YelpLite.initialize({
+      currentUserID: <%= current_user.try(:id) || 'null' %>
+    });
+  });
+</script>

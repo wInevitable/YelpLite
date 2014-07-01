@@ -2,10 +2,10 @@ class Business < ActiveRecord::Base
   include PgSearch
   pg_search_scope :search_by_name, :against => :name
 
-  has_attached_file :avatar, styles: {profile: "300x300>", thumb: "100x100>"},
-             default_url: 'default_business_image.png'
+  has_attached_file :avatar, styles: {profile: "300x300>", thumb: "100x100>",
+                  mini: "50x50>"}, default_url: 'default_business_image.png'
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
-  
+
   validates :name, :city_state_zip, :address, :owner, presence: true
   validates :name, uniqueness: { scope: [:city_state_zip, :address],
     message: "with given address is already listed on YelpLite."}
@@ -29,7 +29,7 @@ class Business < ActiveRecord::Base
     foreign_key: :business_id,
     inverse_of: :business
   )
-  
+
   def full_address
     if self.country
       self.address + self.city_state_zip + self.country

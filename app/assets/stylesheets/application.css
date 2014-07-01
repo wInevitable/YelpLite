@@ -199,13 +199,14 @@ a.cancel {
 
 /* --- ERRORS and NOTICES --- */
 
-/*.errors {
+.errors {
   width: 860px;
   padding: 20px;
   margin: auto;
-  background: #eee;
-  border: 1px solid #fff;
-}*/
+  background: #fff;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+}
 
 /* --- CONTENT --- */
 

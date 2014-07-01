@@ -10,7 +10,7 @@
   <header class="header">
     <div class="header-wrap group">
       <h1 class="header-logo">
-        <a href="#">YelpLite</a>
+        <a href="<%= root_url %>">YelpLite</a>
       </h1>
 
       <div class="header-middle">
@@ -68,11 +68,9 @@
     </div>
   </header>
 
-  <div class="errors">
-    <% if flash %>
-      <p><%= flash[:errors] %></p>
-    <% end %>
-  </div>
+  <% if flash[:errors] %>
+    <em><%= render "shared/notices" %></em>
+  <% end %>
 
   <div class="content">
     <%= yield %>

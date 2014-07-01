@@ -1,11 +1,7 @@
-YelpLite.Models.Business = Backbone.Model.extend({
+YelpLite.Models.Review = Backbone.Model.extend({
   initialize: function(options) {
-    if options.business {
-      this.business = options.business;
-    }
-    else {
-      this.author = options.author;
-    }
+    this.business = options.business;
+    this.author = options.author;
   },
 
   validate: function (attributes) {

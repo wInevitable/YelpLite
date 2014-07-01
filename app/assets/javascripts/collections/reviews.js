@@ -2,12 +2,8 @@ YelpLite.Collections.Reviews = Backbone.Collection.extend({
   model: YelpLite.Models.Review,
 
   initialize: function(options) {
-    if options.business {
-      this.business = options.business;
-    }
-    else {
-      this.author = options.author;
-    }
+    this.business = options.business;
+    this.author = options.author;
   },
 
   url: function() {
@@ -35,36 +31,36 @@ YelpLite.Collections.Reviews = Backbone.Collection.extend({
           callback(review);
         }
       });
-    } else {
-      //set business/author
-      if that.business {
-        review = new YelpLite.Models.Review({
-          id: id,
-          business: that.business
-        });
-        review.collection = that.business.reviews;
-        review.fetch({
-          success: function() {
-            that.business.reviews.add(review);
-            YelpLite.reviews.add(review);
-            callback(review);
-          }
-        });
-      }
-      else {
-        review = new YelpLite.Models.Review({
-          id: id,
-          author: that.author
-        });
-        review.collection = that.author.reviews;
-        review.fetch({
-          success: function() {
-            that.author.reviews.add(review);
-            YelpLite.reviews.add(review);
-            callback(review);
-          }
-        });
-      }
+    }
+    else if (that.business) {
+      //set business
+      review = new YelpLite.Models.Review({
+        id: id,
+        business: that.business
+      });
+      review.collection = that.business.reviews;
+      review.fetch({
+        success: function() {
+          that.business.reviews.add(review);
+          YelpLite.reviews.add(review);
+          callback(review);
+        }
+      });
+    }
+    else {
+      //set author
+      review = new YelpLite.Models.Review({
+        id: id,
+        author: that.author
+      });
+      review.collection = that.author.reviews;
+      review.fetch({
+        success: function() {
+          that.author.reviews.add(review);
+          YelpLite.reviews.add(review);
+          callback(review);
+        }
+      });
     }
   }
 });

@@ -12,9 +12,9 @@ class PagesController < ApplicationController
       @how_far = 20 #dist in miles
 
       @businesses = Business.search_by_name(@what).near(@where, @how_far)
-                 
+
       @reviews = Review.search_by_content(@what).includes(:business)
-            
+
       @reviews.each do |review|
         biz = review.business
         if biz.distance_from(@where) < @how_far
@@ -24,5 +24,9 @@ class PagesController < ApplicationController
 
       @results = Kaminari.paginate_array(@businesses).page(params[:page])
     end
+  end
+
+  def root
+    render layout: "backbone"
   end
 end

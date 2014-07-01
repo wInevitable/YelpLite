@@ -23,11 +23,12 @@ YelpLite.Collections.Businesses = Backbone.Collection.extend({
     var business = this.get(id);
 
     if (business) {
-      business.fetch({
-        success: function() {
-          callback(business);
-        }
-      });
+      callback(business);
+      // business.fetch({
+ //        success: function() {
+ //          callback(business);
+ //        }
+ //      });
     } else {
       business = new YelpLite.Models.Business({
         id: id,

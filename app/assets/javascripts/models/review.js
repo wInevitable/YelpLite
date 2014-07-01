@@ -6,5 +6,14 @@ YelpLite.Models.Business = Backbone.Model.extend({
     else {
       this.author = options.author;
     }
+  },
+
+  validate: function (attributes) {
+    if (!attributes || !attributes.rating) {
+      return "must have a rating";
+    }
+    else if (!attributes || !attributes.content || attributes.content == "") {
+      return "must have content"
+    }
   }
 });

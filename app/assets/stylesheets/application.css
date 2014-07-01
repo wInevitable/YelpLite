@@ -83,11 +83,11 @@ textarea {
 
 .header {
   background: #777;
-  border-radius: 5px;
   margin-top: 1px;
 }
 
 .header-wrap {
+  position: relative;
   width: 900px;
   margin: auto;
   border-left: 1px solid #fff;
@@ -100,43 +100,56 @@ textarea {
 
 .header-logo > a {
   display: block;
+  font-size: 24px;
   font-weight: bold;
-  padding: 10px 20px;
+  padding: 20px 20px;
   color: #fff;
 }
 
+.header-middle {
+  position: absolute;
+  width: 600px;
+  top: 0;
+  left: 200px;
+}
+
 .search-form {
-  margin: ;
-  background: ;
-  padding : ;
+  margin-top: 10px;
+  padding: ;
 }
 
 .search-form > .post-form-input {
-  margin: ;
+  float: left;
+  background: #fff;
+  margin: 0 15px 0 0;
 }
 
 .search-form > .post-form-input > label {
   display: inline-block;
   font-weight: bold;
-  padding: ;
+  padding: 0 0 0 5px;
 }
 
 .search-form > .post-form-input > input[type="text"] {
   background: ;
   border: ;
-  padding: ;
-  width: ;
+  padding: 5px;
+  width: 150px;
 }
 
 .search-form > .post-form-submit > input[type="submit"] {
-  padding: ;
-  background: ;
-  border: ;
+  padding: 2px;
+  background: #555;
+  border: 1px solid #333;
   /* background image */
 }
 
 .header-nav {
   float: right;
+}
+
+.header-nav {
+  float: left;
 }
 
 .header-nav > ul > li {
@@ -146,7 +159,37 @@ textarea {
 .header-nav > ul > li > a {
   display: block;
   padding: 10px 20px;
+  font-size: 12px;
   color: #fff;
+}
+
+.header-buttons {
+  float: right;
+}
+
+.header-buttons > .user-thumb {
+}
+
+.header-buttons > .header-dropdown {
+}
+
+.header-buttons > .header-sessions {
+  padding: 10px 40px 10px 0;
+}
+
+.header-buttons > .header-sessions > .header-sign-up {
+  display: block;
+  border: 1px solid #333;
+  padding: 2px;
+  margin-bottom: 5px;
+  background: #555;
+  color: #fff;
+}
+
+.header-buttons > .header-sessions > .header-log-in {
+  color: #fff;
+  margin: auto;
+  padding: 0 0 0 10px;
 }
 
 /* --- ERRORS and NOTICES --- */

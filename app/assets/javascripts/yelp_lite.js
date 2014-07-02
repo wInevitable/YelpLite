@@ -9,8 +9,8 @@ window.YelpLite = {
     
     YelpLite.users = new YelpLite.Collections.Users(data.users,
       { parse: true });
-    YelpLite.businesses = new YelpLite.Collections.Businesses(data.businesses,
-      { parse: true });
+    //YelpLite.businesses = new YelpLite.Collections.Businesses(data.businesses,
+     // { parse: true });
     YelpLite.reviews = new YelpLite.Collections.Reviews(data.reviews,
       { parse: true });
 

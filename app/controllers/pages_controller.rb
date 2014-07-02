@@ -27,6 +27,10 @@ class PagesController < ApplicationController
   end
 
   def root
+    @users = User.all
+    @businesses = Business.all
+    @reviews = Review.all
+    
     render layout: "backbone"
   end
 end

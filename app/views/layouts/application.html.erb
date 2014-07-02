@@ -10,7 +10,7 @@
   <header class="header">
     <div class="header-wrap group">
       <h1 class="header-logo">
-        <a href="<%= root_url %>">YelpLite</a>
+        <a class="no-underline" href="<%= root_url %>">YelpLite</a>
       </h1>
 
       <div class="header-middle">
@@ -32,15 +32,15 @@
 
         <nav class="header-nav">
           <ul>
-            <li><a href="/">Home</a></li>
+            <li><a class="no-underline" href="/">Home</a></li>
 
             <% if current_user %>
-              <li><a href="<%= user_url current_user %>">About Me</a></li>
+              <li><a class="no-underline" href="<%= user_url current_user %>">About Me</a></li>
             <% else %>
-              <li><a href="<%= new_user_url %>">About Me</a></li>
+              <li><a class="no-underline" href="<%= new_user_url %>">About Me</a></li>
             <% end %>
 
-            <li><a href="<%= search_url %>">Write a Review</a></li>
+            <li><a class="no-underline" href="<%= search_url %>">Write a Review</a></li>
           </ul>
         </nav>
       </div>
@@ -53,14 +53,14 @@
             <% end %>
           </div>
           <ul class="header-dropdown">
-            <li><a href="<%= user_url current_user %>">About Me</a></li>
-            <li><a href="<%= search_url %>">Write a Review</a></li>
-            <li><a href="<%= new_business_url %>">Add a Business</a></li>
+            <li><a class="no-underline" href="<%= user_url current_user %>">About Me</a></li>
+            <li><a class="no-underline" href="<%= search_url %>">Write a Review</a></li>
+            <li><a class="no-underline" href="<%= new_business_url %>">Add a Business</a></li>
             <li><%= button_to "Log Out", session_url, method: :delete %></li>
           </ul>
         <% else %>
           <div class="header-sessions">
-            <a class="header-sign-up" href="<%= new_user_url %>">Sign Up</a>
+            <a class="header-sign-up no-underline" href="<%= new_user_url %>">Sign Up</a>
             <a class="header-log-in" href="<%= new_session_url %>">Log In</a>
           </div>
         <% end %>

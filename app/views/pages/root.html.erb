@@ -1,9 +1,19 @@
 <div id="content"></div>
 
-<script type="text/javascript" charset="utf-8">
+<script type="application/json" id="bootstrapped-data">
+  {
+    "users": <%= @users.to_json.html_safe %>,
+    "businesses": <%= @businesses.to_json.html_safe %>,
+    "reviews": <%= @reviews.to_json.html_safe %>
+  }
+</script>
+
+<script>
   $(document).ready(function(){
     YelpLite.initialize({
-      currentUserID: <%= current_user.try(:id) || 'null' %>
+      currentUserID: <%= current_user.try(:id) || 'null' %>,
+      $rootEl: $('#content'),
+      bootstrappedData: JSON.parse($("#bootstrapped-data").html())
     });
   });
 </script>

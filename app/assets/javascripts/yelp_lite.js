@@ -3,18 +3,19 @@ window.YelpLite = {
   Collections: {},
   Views: {},
   Routers: {},
-  initialize: function() {
+  initialize: function(options) {
     this.currentUserID = options.currentUserID;
-
-    YelpLite.users = new YelpLite.Collections.Users();
-    YelpLite.users.fetch();
-    YelpLite.businesses = new YelpLite.Collections.Businesses({});
-    YelpLite.businesses.fetch();
-    YelpLite.reviews = new YelpLite.Collections.Reviews({});
-    YelpLite.reviews.fetch();
+    var data = options.bootstrappedData;
+    
+    YelpLite.users = new YelpLite.Collections.Users(data.users,
+      { parse: true });
+    YelpLite.businesses = new YelpLite.Collections.Businesses(data.businesses,
+      { parse: true });
+    YelpLite.reviews = new YelpLite.Collections.Reviews(data.reviews,
+      { parse: true });
 
     new YelpLite.Routers.Router({
-      $rootEl: $('#content'),
+      $rootEl: options.$rootEl,
       users: YelpLite.users,
       businesses: YelpLite.businesses,
       reviews: YelpLite.reviews

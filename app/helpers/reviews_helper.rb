@@ -8,6 +8,20 @@ module ReviewsHelper
   end
 
   def time_ago(review)
-    "#{((Time.now - review.created_at)/60).to_i} minutes ago"
+    minutes = (Time.now - review.created_at) / 60
+    
+    #minutes
+    if minutes < 60
+      "#{(minutes/60).to_i} minutes ago"
+    #hours
+    elsif minutes < 1440
+      "#{(minutes/60/60).to_i} hours ago"
+    #days
+    elsif (minutes/60/60/24) < 365
+      "#{(minutes/60/60/24).to_i} days ago"
+    #years
+    else
+      "#{(minutes/60/60/24/365).to_i} years ago"
+    end
   end
 end

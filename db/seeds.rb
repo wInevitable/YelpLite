@@ -65,7 +65,7 @@ FactoryGirl.define do
     end
 
     created_at do
-      author.created_at.days.ago
+      author.created_at
     end
   end
 end

@@ -1,9 +1,13 @@
 YelpLite.Views.Home = Backbone.View.extend({
-  // tagName
+  tagName: 'section',
+  
+  classname: 'home-content',
 
-  template: JST["home"],
+  template: JST['pages/home'],
 
-  //events -> build out corresponding functions
+  events: {
+    
+  },
 
   initialize: function(options) {
     this.business = options.business,

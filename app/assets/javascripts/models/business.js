@@ -1,18 +1,21 @@
 YelpLite.Models.Business = Backbone.Model.extend({
-  owner: function(model) {
-    if (!this._owner) {
-      this._owner = model;
-      this.collection = model.businesses;
-      model.businesses.add(this);
-    }
-    return this._owner;
+  initialize: function(options) {
+    this.owner = options.owner;
   },
+  
+  //deprecated code. delete if not needed
+  // owner: function(model) {
+  //   if (!this._owner) {
+  //     this._owner = model;
+  //     this.collection = model.businesses;
+  //     model.businesses.add(this);
+  //   }
+  //   return this._owner;
+  // },
 
   reviews: function() {
    if(!this._reviews) {
-     this._reviews = new YelpLite.Collections.Reviews([], {
-       business: this,
-     });
+     this._reviews = new YelpLite.Collections.Reviews();
    }
    return this._reviews;
   },

@@ -55,7 +55,7 @@ img {
 }
 
 input[type="text"], input[type="password"], input[type="submit"],
-/*input[type="checkbox"],*/ input[type="radio"], input[type="file"],
+/*input[type="checkbox"], */ input[type="radio"], input[type="file"],
 button,
 textarea {
   display: inline-block;
@@ -82,6 +82,14 @@ textarea {
 a.cancel {
   padding: 5px;
   color: #0000FF;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a.no-underline:hover {
+  text-decoration: none;
 }
 
 /* --- HEADER --- */
@@ -212,7 +220,7 @@ a.cancel {
 
 .content {
   width: 860px;
-  padding: 20px;
+  padding: 10px;
   margin: auto;
   background: #fff;
   border-left: 1px solid #eee;
@@ -228,47 +236,78 @@ a.cancel {
 
 .next-review > h1 {
   border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  padding: 10px;
-  margin-bottom: 20px;
+  padding: 20px;
   font-size: 24px;
   font-weight: bold;
 }
 
 .next-review > .biz-thumb {
+    float: left;
   width: 50px;
   height: 50px;
+  padding: 0 0 0 20px;
 }
 
 .next-review > .biz-thumb > img {
-  float: left;
+
   width: 50px;
   height: 50px;
 }
 
 .next-review > .review-form {
+  padding: 0 0 0 100px;
 }
 
-.next-review > .review-form > input[type="radio"] {
+.next-review > .review-form > .rating-radio {
   width: 10px;
   height: 10px;
-  background: #f99;
+  background: #777;
 }
 
 .next-review > .review-form > label {
   display: none;
+  font-style: italic;
+}
+
+.next_review > .review-form > input[type="radio"]:hover {
+  cursor: pointer;
+}
+
+.next_review > .review-form > input[type="radio"]:checked {
+  width: 20px;
+  height: 20px;
+  background: #333;
+}
+
+.next_review > .review-form > input[type="radio"]:checked + label {
+  display: inline-block;
+  background: #333;
 }
 
 .next-review > .review-form > textarea {
   width: 400px;
-  height: 100px;
+  height: 20px;
   border: 1px solid #ccc;
   padding: 5px;
   display: block;
   margin-bottom: 10px;
 }
 
+.next-review > .review-form > textarea:focus {
+ height: 100px; 
+}
+
+.next-review > .review-form > textarea:focus + a {
+ display: inline-block; 
+}
+
+.next-review > .review-form > textarea:focus + a + input[type="submit"] {
+ display: inline-block; 
+}
+
 .next-review > .review-form > input[type="submit"] {
+  float: right;
+  display: none;
   background: #0c6;
   padding: 10px 15px;
   color: #fff;
@@ -276,13 +315,18 @@ a.cancel {
   border-bottom: 2px solid #ccc;
 }
 
+.next-review > .review-form > a {
+  float: right;
+  display: none;
+}
+
 .content > .home-content > .recent-activity {
-  padding: 20px;
+  padding: 10px;
 }
 
 .content > .home-content > .recent-activity > h1 {
   border-top: 1px solid #ccc;
-  padding: 10px;
+  padding: 20px;
   margin-bottom: 0px;
   font-size: 24px;
   font-weight: bold;

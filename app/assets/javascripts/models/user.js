@@ -1,7 +1,9 @@
-YelpLite.Models.User = Backbone.Model.extend({
+YelpLite.Models.User = Backbone.Model.extend({  
   businesses: function() {
    if(!this._businesses) {
-     this._businesses = new YelpLite.Collections.Businesses([], { owner: this });
+     this._businesses = new YelpLite.Collections.Businesses([], {
+       owner: this
+     });
    }
    return this._businesses;
   },

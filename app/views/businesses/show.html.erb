@@ -26,7 +26,7 @@
 </div>
 
 <section class="business-reviews">
-  <%= render partial: 'reviews', locals: { business: @business } %>
+  <%= render partial: 'reviews/business_reviews', locals: { business: @business } %>
 </section>
 
 <a href="<%= edit_business_url @business %>">Edit</a>

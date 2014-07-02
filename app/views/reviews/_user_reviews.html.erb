@@ -1,7 +1,11 @@
 <% if user.reviews.length > 0 %>
 
-  <h4><%= user.fname + "'s Reviews" %></h4>
-   
+  <% if current_user == user %>
+    <h4>Your Reviews</h4>
+  <% else %>
+    <h4><%= user.fname + "'s Reviews" %></h4>
+  <% end  %>
+  
     <ul class="reviews">
       <% user.reviews.reverse.each do |review| %>
         <ul>

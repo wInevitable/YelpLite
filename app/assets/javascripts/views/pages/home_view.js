@@ -1,4 +1,4 @@
-YelpLite.Views.Home = Backbone.View.extend({
+YelpLite.Views.HomeView = Backbone.View.extend({
   tagName: 'section',
   
   classname: 'home-content',
@@ -10,8 +10,8 @@ YelpLite.Views.Home = Backbone.View.extend({
   },
 
   initialize: function(options) {
-    this.business = options.business,
-    this.reviews = options.reviews
+    this.business = options.business;
+    this.reviews = options.reviews;
   },
 
   render: function() {

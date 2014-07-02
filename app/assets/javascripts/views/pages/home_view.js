@@ -15,6 +15,7 @@ YelpLite.Views.HomeView = Backbone.View.extend({
   },
 
   render: function() {
+    debugger
     var renderedContent = this.template({
       business: this.business,
       reviews: this.reviews

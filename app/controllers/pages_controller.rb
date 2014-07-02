@@ -28,7 +28,7 @@ class PagesController < ApplicationController
 
   def root
     @users = User.all
-    @businesses = Business.order("RANDOM()").first
+    @business = Business.order("RANDOM()").first
     @reviews = Review.order(created_at: :desc).first(5)
     
     render layout: "backbone"

@@ -1,1 +1,1 @@
-json.id user.id
+json.(user, :id, :fname, :lname, :nickname, :location, :things_i_love, :hometown, :avatar, :lat, :long, :created_at, :reviews, :businesses)

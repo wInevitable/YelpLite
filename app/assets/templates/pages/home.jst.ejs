@@ -3,12 +3,10 @@
     <h1>Your Next Review Awaits</h1>
 
     <div class="biz-thumb">
-      Biz Thumb
+      <img src="<%= asset_path(business.avatar.url(:mini)) %>">
     </div>
       <form class="review-form">
-        <div class="biz-name"><a href="#">Business Name</a></div>
-
-        ...Insert Form Auth Token...
+        <div class="biz-name"><a href="#"><%= business.get('name') %></a></div>
 
           <input type="radio" class="rating-radio" name="review[rating]"
             id="rating-1" value="1">

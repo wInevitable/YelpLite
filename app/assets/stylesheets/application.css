@@ -220,11 +220,12 @@ a.no-underline:hover {
 
 .content {
   width: 860px;
-  padding: 10px;
+  padding: 20px;
   margin: auto;
   background: #fff;
-  border-left: 1px solid #eee;
-  border-right: 1px solid #eee;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
 }
 
 .content > .home-content {
@@ -332,14 +333,59 @@ a.no-underline:hover {
   font-weight: bold;
 }
 
-.content > .home-content > .recent-activity > .review {
+.review {
   border-top: 1px solid #ccc;
   padding: 20px 0 5px 0;
 }
 
-.recent-activity > .review {
-  /* pull from pages partial - reviews */
+.review > .user-thumb {
+  float: left;
+  width: 50px;
+  height: 50px;
 }
+
+.review > .user-thumb > img {
+  width: 50px;
+  height: 50px;
+}
+
+.review > .review-info {
+  position: relative;
+  padding: 0 0 0 80px;
+}
+
+.review > .review-info > .user-headline {
+}
+
+.review > .review-info > .review-edit {
+  float: right;
+}
+
+.review > .review-info > .review-remove {
+ float: right; 
+}
+
+.review > .review-info > .time-ago {
+  position: absolute;
+  top: 0;
+  right: 0;
+  float: right;
+  font-size: 12px;
+  color: #aaa;
+}
+
+.review > .review-info > .review-rating {
+  float: left;
+}
+
+.review > .review-info > .review-date {
+  padding: 0 0 0 130px;
+}
+
+.review > .review-info > .review-content {
+  
+}
+
 
 </section>
 
@@ -351,6 +397,7 @@ a.no-underline:hover {
 .footer-wrap {
   width: 900px;
   margin: auto;
+  margin-top: 20px;
   margin-bottom: 30px;
   color: #333;
 }

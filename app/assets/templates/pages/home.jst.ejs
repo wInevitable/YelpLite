@@ -6,7 +6,7 @@
   </div>
     <form class="review-form">
       <div class="biz-name">
-        <a href="#"><%= business.escape('name') %></a>
+        <a href="/businesses/<%= business.escape('id') %>"><%= business.escape('name') %></a>
       </div>
 
         <input type="radio" class="rating-radio" name="review[rating]"
@@ -42,30 +42,32 @@
     <% _.each(reviews, function(review) { %>
       <article class="review">
         <div class="user-thumb">
-          
         </div>
-        <div class="review-headline">
-          <a class="user-show" href="#">
-            <%= review.escape('author_name') %>
-          </a> 
-          wrote a review for
-          <a class="biz-show" href="#">
-            <%= review.escape('business_name') %>
-          </a>
-         </div>
+        
+        <div class="review-info">
+          <div class="review-headline">
+            <a class="user-show" href="#">
+              <%= review.escape('author_name') %>
+            </a> 
+            wrote a review for
+            <a class="biz-show" href="#">
+              <%= review.escape('business_name') %>
+            </a>
+           </div>
 
-        <% if (review.get('author') === YelpLite.currentUser) { %>
-          <div class="review-edit"><a href="#">Edit Review</a></div>
-          <div class="review-remove"><button>Remove Review</button></div> 
-        <% } %>
+          <% if (review.escape('author') === YelpLite.currentUser) { %>
+            <div class="review-remove"><button>Remove Review</button></div> 
+            <div class="review-edit"><a href="#">Edit Review</a></div>
+          <% } %>
 
-        <div class="time-ago"><%= review.escape('time_ago') %></div>
+          <div class="time-ago"><%= review.escape('time_ago') %></div>
 
-        <div class="review-rating"><%= review.escape('rating') %></div>
+          <div class="review-rating"><%= review.escape('rating') %></div>
 
-        <div class="review-date"><%= review.escape('created_at') %></div>
+          <div class="review-date"><%= review.escape('created_at') %></div>
 
-        <div class="review-content"><%= review.escape('content') %></div>
+          <div class="review-content"><%= review.escape('content') %></div>
+        </div>
       </article>
       <br>
     <% }); %>

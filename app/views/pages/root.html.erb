@@ -1,4 +1,4 @@
-<div id="content"></div>
+<div class="content"></div>
 
 <script type="application/json" id="bootstrapped-data">
   <%= render(partial: 'root.json').html_safe %>
@@ -7,8 +7,8 @@
 <script>
   $(document).ready(function(){
     YelpLite.initialize({
-      currentUserID: <%= current_user.try(:id) || 'null' %>,
-      $rootEl: $('#content'),
+      currentUser: <%= current_user || 'null' %>,
+      $rootEl: $('.content'),
       bootstrappedData: JSON.parse($("#bootstrapped-data").html())
     });
   });

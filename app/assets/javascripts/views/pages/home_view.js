@@ -1,7 +1,7 @@
 YelpLite.Views.HomeView = Backbone.View.extend({
   tagName: 'section',
 
-  classname: 'home-content',
+  className: 'home-content',
 
   template: JST['pages/home'],
 
@@ -15,7 +15,6 @@ YelpLite.Views.HomeView = Backbone.View.extend({
   },
 
   render: function() {
-    debugger
     var renderedContent = this.template({
       business: this.business,
       reviews: this.reviews

@@ -4,7 +4,7 @@ window.YelpLite = {
   Views: {},
   Routers: {},
   initialize: function(options) {
-    this.currentUserID = options.currentUserID;
+    this.currentUser = options.currentUser;
     var data = options.bootstrappedData;
     
     YelpLite.users = new YelpLite.Collections.Users(data.users,

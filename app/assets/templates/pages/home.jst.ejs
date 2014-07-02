@@ -1,69 +1,72 @@
-<section class="home-content">
-  <div class="next-review">
-    <h1>Your Next Review Awaits</h1>
+<div class="next-review">
+  <h1>Your Next Review Awaits</h1>
 
-    <div class="biz-thumb">
-      <img src="<%= asset_path(business.avatar.url(:mini)) %>">
-    </div>
-      <form class="review-form">
-        <div class="biz-name"><a href="#"><%= business.get('name') %></a></div>
-
-          <input type="radio" class="rating-radio" name="review[rating]"
-            id="rating-1" value="1">
-          <label for="rating-1">Cockroaches, Rats, and Things...</label>
-      
-          <input type="radio" class="rating-radio" name="review[rating]"
-            id="rating-2" value="2">
-          <label for="rating-2">Eh, I've had better.</label>
-
-          <input type="radio" class="rating-radio" name="review[rating]"
-            id="rating-3" value="3">
-          <label for="rating-3">Okay.</label>
-      
-          <input type="radio" class="rating-radio" name="review[rating]"  
-            id="rating-4" value="4">
-          <label for="rating-4">New favorite place!</label>
-      
-          <input type="radio" class="rating-radio" name="review[rating]" 
-            id="rating-5" value="5">
-          <label for="rating-5">Oh baby, that was delicious!</label>
-
-        <br>
-        <textarea id="review-content" name="review[content]"></textarea>
-
-        <a class="cancel" href="#">Cancel</a>
-        <input type="submit" class="post-submit" value="Post Review">
-      </form>
+  <div class="biz-thumb">
+    
   </div>
+    <form class="review-form">
+      <div class="biz-name">
+        <a href="#"><%= business.escape('name') %></a>
+      </div>
 
-  <div class="recent-activity">
-    <h1>Recent Activity</h1>
-      <% _.each(this.reviews, function(review) { %>
-        <article class="review">
-          <div class="user-thumb">
-            User Thumb
-          </div>
-          <div class="review-headline">
-            <a class="user-show" href="#">Author Name</a> wrote a review for
-             <a class="biz-show" href="#">Business Name</a>
-           </div>
+        <input type="radio" class="rating-radio" name="review[rating]"
+          id="rating-1" value="1">
+        <label for="rating-1">Cockroaches, Rats, and Things...</label>
+    
+        <input type="radio" class="rating-radio" name="review[rating]"
+          id="rating-2" value="2">
+        <label for="rating-2">Eh, I've had better.</label>
 
-          <% if (1 === 1) { %>
-            if review.author equals YelpLite.currentUserID
-            <div class="review-edit"><a href="#">Edit Review</a></div>
-            <div class="review-remove"><button>Remove Review</button></div> 
-          <% } %>
+        <input type="radio" class="rating-radio" name="review[rating]"
+          id="rating-3" value="3">
+        <label for="rating-3">Okay.</label>
+    
+        <input type="radio" class="rating-radio" name="review[rating]"  
+          id="rating-4" value="4">
+        <label for="rating-4">New favorite place!</label>
+    
+        <input type="radio" class="rating-radio" name="review[rating]" 
+          id="rating-5" value="5">
+        <label for="rating-5">Oh baby, that was delicious!</label>
 
-          <div class="time-ago">Call helper method time ago on review</div>
+      <br>
+      <textarea id="review-content" name="review[content]"></textarea>
 
-          <div class="review-rating"><%= review.get('rating') %></div>
+      <a class="cancel" href="#">Cancel</a>
+      <input type="submit" class="post-submit" value="Post Review">
+    </form>
+</div>
 
-          <div class="review-date"><%= review.get('created_at') %></div>
-<!--.strftime('%m/%d/%Y') -->
-          <div class="review-content"><%= review.get('content') %></div>
-        </article>
-        <br>
-      <% }); %>
-  </div>
+<div class="recent-activity">
+  <h1>Recent Activity</h1>
+    <% _.each(reviews, function(review) { %>
+      <article class="review">
+        <div class="user-thumb">
+          
+        </div>
+        <div class="review-headline">
+          <a class="user-show" href="#">
+            <%= review.escape('author_name') %>
+          </a> 
+          wrote a review for
+          <a class="biz-show" href="#">
+            <%= review.escape('business_name') %>
+          </a>
+         </div>
 
-</section>
+        <% if (review.get('author') === YelpLite.currentUser) { %>
+          <div class="review-edit"><a href="#">Edit Review</a></div>
+          <div class="review-remove"><button>Remove Review</button></div> 
+        <% } %>
+
+        <div class="time-ago"><%= review.escape('time_ago') %></div>
+
+        <div class="review-rating"><%= review.escape('rating') %></div>
+
+        <div class="review-date"><%= review.escape('created_at') %></div>
+
+        <div class="review-content"><%= review.escape('content') %></div>
+      </article>
+      <br>
+    <% }); %>
+</div>

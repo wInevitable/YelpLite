@@ -21,7 +21,7 @@ class Review < ActiveRecord::Base
   )
 
   def self.latest_activity
-    latest_reviews = Review.find(:all, order: 'id desc', limit: 5)
+    latest_reviews = Review.find(:all, order: 'created_at desc', limit: 5)
   end
   
   private

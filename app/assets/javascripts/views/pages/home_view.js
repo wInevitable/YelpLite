@@ -1,6 +1,6 @@
 YelpLite.Views.HomeView = Backbone.View.extend({
   tagName: 'section',
-  
+
   classname: 'home-content',
 
   template: JST['pages/home'],

@@ -5,9 +5,9 @@ module Api
     end
 
     def show
-      @user = User.find(params[:id], include: [:reviews, :businesses])
+      @user = User.find(params[:id], include: [reviews: :business])
 
-      render json: @user
+      render partial: 'users/users.json'
     end
   end
 end

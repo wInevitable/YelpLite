@@ -47,7 +47,7 @@
   </section>
 
   <section class="user-reviews">
-    <% if (user.reviews.length > 0) { %>
+    <% if (user.reviews().length > 0) { %>
       <% if (user.escape('id') == YelpLite.currentUser.escape('id')) { %>
         <h4>Your Reviews</h4>
       <% } else { %>
@@ -55,7 +55,7 @@
       <% } %>
 
       <ul class="reviews">
-        <% _.each(user.reviews, function(review) { %>
+        <% _.each(user.reviews(), function(review) { %>
           <article class="review">
             <div class="user-thumb">
               <img src="<%= review.business.escape('avatar_mini') %>">

@@ -41,11 +41,9 @@
   </ul>
 
 <% elsif (current_user == user) %>
-
-  <p>You haven't posted any reviews yet. Why not post one <a href="#">now</a>?</p>
-
+  <div class="no-reviews">
+    You haven't posted any reviews yet. Why not post one <a href="#">now</a>?
+  </div>
 <% else %>
-
-  <p>This user has yet to post a review.</p>
-
+  <div class="no-reviews">This user has yet to post a review.</div>
 <% end %>

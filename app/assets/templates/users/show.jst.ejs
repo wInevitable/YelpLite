@@ -1,103 +1,108 @@
 <section class="user-profile">
   <section class="user-greeting group">
-    <% if @user.nickname %>
-      <h2><%= @user.fname + " \"" %><em><%= @user.nickname %></em> <%= "\" " + @user.lname[0] %>.'s Profile</h2>
-    <% else %>
-      <h2><%= @user.fname + " " + @user.lname[0] %>.'s Profile</h2>
-    <% end %>
+    <% if (user.escape('nickname')) { %>
+      <h2><%= user.escape('fname') + " \"" %><em><%= user.escape('nickname') %></em> <%= "\" " + user.escape('lname')[0] %>.'s Profile</h2>
+    <% } else { %>
+      <h2><%= user.escape('fname') + " " + user.escape('lname')[0] %>.'s Profile</h2>
+    <% } %>
 
-    <% if @user == current_user %>
-      <a class="nickname" href="<%= edit_user_url @user %>">
-        <%= @user.nickname ? "[Edit nickname]" : "[Add nickname]" %></a>
-    <% end  %>
+    <% if (user.escape('id') == YelpLite.currentUser.escape('id')) { %>
+      <a class="nickname" href="/users/<%= user.escape('id') %>/edit">
+        <%= user.escape('nickname') ? "[Edit nickname]" : "[Add nickname]" %></a>
+    <% } %>
   </section>
 
   <section class="user-info">
     <div class="user-thumb">
-      <img src="<%= @user.avatar.url(:profile) %>">
+      <img src="<%= user.escape('avatar_profile') %>">
     </div>
 
     <!-- <p>&#9733; Follower Count...</p> -->
 
     <ul class="user-data">
-      <% if @user != current_user %>
+      <% if (user.escape('id') != YelpLite.currentUser.escape('id')) { %>
         <li>&hearts;<a href="#">Follow this Reviewer</a></li>
-      <% end %>
+      <% } %>
       <li>Location<br>
-        <%= @user.location %>
+        <%= user.escape('location') %>
       </li>
       <li>Yelping Since<br>
-        <%= Date::MONTHNAMES[@user.created_at.strftime("%m").to_i] + " " +
-            @user.created_at.strftime("%Y") %>
+        <%= user.escape('created_at') + " " +
+            user.escape('created_at') %>
       </li>
       <li>Things I Love<br>
-        <% if @user != current_user %>
-          <%= @user.things_i_love || "They haven't told us yet ..." %>
-        <% else %>
-          <%= @user.things_i_love || "You haven't told us yet ... do tell!" %>
-        <% end %>
+        <% if (user.escape('id') != YelpLite.currentUser.escape('id')) { %>
+          <%= user.escape('things_i_love') || "They haven't told us yet ..." %>
+        <% } else { %>
+          <%= user.escape('things_i_love') || "You haven't told us yet ... do tell!" %>
+        <% } %>
       </li>
-      <% if @user.hometown %>
+      <% if (user.escape('hometown')) { %>
         <li>My Hometown<br>
-          <%= @user.hometown %>
+          <%= user.escape('hometown') %>
         </li>
-      <% end %>
-      <li><a href="<%= edit_user_url @user %>">Update Your Profile</a></li>
+      <% } %>
+      <li><a href="/users/<%= user.escape('id') %>/edit">Update Your Profile</a></li>
     </ul>
   </section>
 
   <section class="user-reviews">
-    <% if user.reviews.length > 0 %>
-      <% if current_user == user %>
+    <% if (user.reviews.length > 0) { %>
+      <% if (user.escape('id') == YelpLite.currentUser.escape('id')) { %>
         <h4>Your Reviews</h4>
-      <% else %>
-        <h4><%= user.fname + "'s Reviews" %></h4>
-      <% end  %>
+      <% } else { %>
+        <h4><%= user.escape('fname') + "'s Reviews" %></h4>
+      <% } %>
 
       <ul class="reviews">
-        <% user.reviews.reverse.each do |review| %>
+        <% _.each(user.reviews, function(review) { %>
           <article class="review">
             <div class="user-thumb">
-              <img src="<%= review.business.avatar.url(:mini) %>">
+              <img src="<%= review.business.escape('avatar_mini') %>">
             </div>
 
             <div class="review-info">
               <div class="review-headline">
-                <a href="<%= business_url review.business %>"><%= review.business.name %></a>
+                <a href="/businesses/<%= review.business.escape('id') %>"><%= review.business.escape('name') %></a>
               </div>
 
-              <% if review.author == current_user %>
-                <%= render partial: 'reviews/delete', locals: { review: review } %>
-                <%= render partial: 'reviews/edit', locals: { review: review } %>
-              <% end %>
+              <% if (review.author.escape('id') == current_user.escape('id')) { %>
+                <div class="review-remove">
+                  <button class="delete-review" data-id="<%= review.escape('id') %>">
+                    Remove Review
+                  </button>
+                </div>
+                <div class="review-edit">
+                  <a href="/reviews/<%= review.escape('id') %>/edit">
+                    Edit Review
+                  </a>
+                </div>
+              <% } %>
 
               <div class="time-ago">
-                <%= review.business.address %><br>
-                <%= review.business.city_state_zip %><br>
-                <%= review.business.country %>
+                <%= review.business.escape('address') %><br>
+                <%= review.business.escape('city_state_zip') %><br>
+                <%= review.business.escape('country') %>
               </div>
 
-              <div class="review-rating"><%= review.rating %></div>
+              <div class="review-rating"><%= review.escape('rating') %></div>
 
               <div class="review-date">
-                <%= review.created_at.strftime("%m/%d/%Y") %>
+                <%= review.escape('created_at') %>
               </div>
 
-              <div class="review-content"><%= review.content %></div>
+              <div class="review-content"><%= review.escape('content') %></div>
             </div>
           </article>
-        <% end %>
+        <% }); %>
       </ul>
-
-    <% elsif (current_user == user) %>
-
-      <p>You haven't posted any reviews yet. Why not post one <a href="#">now</a>?</p>
-
-    <% else %>
-
-      <p>This user has yet to post a review.</p>
-
-    <% end %>
+    <% } else if (user.escape('id') == YelpLite.currentUser.escape('id')) { %>
+      <div class="no-reviews">
+        You haven't posted any reviews yet. Why not post one <a href="#">now</a>?
+      </div>
+    <% } else { %>
+      <div class="no-reviews">This user has yet to post a review.</div>
+    <% } %>
   </section>
 
   <!-- <section class="followings">

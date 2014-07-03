@@ -27,7 +27,7 @@ class PagesController < ApplicationController
   end
 
   def root
-    @users = User.all
+    @user = current_user
     @business = Business.order("RANDOM()").first
     @reviews = Review.order(created_at: :desc).first(5)
 

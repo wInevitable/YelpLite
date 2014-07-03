@@ -1,5 +1,5 @@
 json.users do
-  json.partial! 'users/user.json', collection: @users, as: :user
+  json.partial! 'users/user.json', user: @user
 end
 
 json.business do

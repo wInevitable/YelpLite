@@ -7,7 +7,6 @@
 <script>
   $(document).ready(function(){
     YelpLite.initialize({
-      currentUser: <%= current_user || 'null' %>,
       $rootEl: $('.content'),
       bootstrappedData: JSON.parse($("#bootstrapped-data").html())
     });

@@ -7,7 +7,8 @@ YelpLite.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
-    '': 'home'
+    '': 'home',
+    'users/:id': 'userShow'
   },
 
   home: function() {
@@ -16,6 +17,15 @@ YelpLite.Routers.Router = Backbone.Router.extend({
       reviews: this.reviews.models // 5 most recent reviews
     });
     this._swapView(homeView);
+  },
+
+  userShow: function(id) {
+    var that = this;
+
+    YelpLite.users.getOrFetch(id, function(user) {
+      var userShow = new YelpLite.Views.UserShow({ user: user });
+      that._swapView(userShow);
+    });
   },
 
   _swapView: function(view) {

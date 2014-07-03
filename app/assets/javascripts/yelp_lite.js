@@ -5,9 +5,10 @@ window.YelpLite = {
   Views: {},
   Routers: {},
   initialize: function(options) {
-    this.currentUser = options.currentUser;
     var data = options.bootstrappedData;
 
+    this.currentUser = new this.Models.User(data.users,
+      { parse: true });
     this.users = new this.Collections.Users(data.users,
       { parse: true });
     this.businesses = new this.Collections.Businesses(data.business,

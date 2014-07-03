@@ -42,13 +42,12 @@
     <% _.each(reviews, function(review) { %>
       <article class="review">
         <div class="user-thumb">
-          <%= console.log(review.author) %>
           <img src="<%= review._author.escape('avatar_mini') %>">
         </div>
 
         <div class="review-info">
           <div class="review-headline">
-            <a class="user-show" href="/users/<%= review._author.escape('id') %>">
+            <a class="user-show" href="#/users/<%= review._author.escape('id') %>">
               <%= review.escape('author_name') %>
             </a>
             wrote a review for

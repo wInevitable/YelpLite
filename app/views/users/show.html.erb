@@ -1,56 +1,57 @@
-<!-- <p>Ad</p> -->
+<section class="user-profile">
+  <section class="user-greeting">
+  <% if @user.nickname %>
+    <h2><%= @user.fname + " \"" + @user.nickname + "\" " + @user.lname[0] %>.'s Profile</h2>
+  <% else %>
+    <h2><%= @user.fname + " " + @user.lname[0] %>.'s Profile</h2>
+  <% end %>
 
-<% if @user.nickname %>
-  <h2><%= @user.fname + " \"" + @user.nickname + "\" " + @user.lname[0] %>.'s Profile</h2>
-<% else %>
-  <h2><%= @user.fname + " " + @user.lname[0] %>.'s Profile</h2>
-<% end %>
-
-<% if @user == current_user %>
-  <a href="<%= edit_user_url @user %>">
-    <%= @user.nickname ? "[Edit nickname]" : "[Add nickname]" %></a>
-<% end  %>
-
-<section class="user-info">
-  <div class="user-thumb">
-    <% if @user.avatar %>
-      <img src="<%= @user.avatar.url(:profile) %>">
-    <% end %>
-  </div>
-
-  <!-- <p>&#9733; Follower Count...</p> -->
-
-  <ul class="user-info">
-    <% if @user != current_user %>
-      <li>&hearts;<a href="#">Follow this Reviewer</a></li>
-    <% end %>
-    <li>Location<br>
-      <%= @user.location %>
-    </li>
-    <li>Yelping Since<br>
-      <%= Date::MONTHNAMES[@user.created_at.strftime("%m").to_i] + " " +
-          @user.created_at.strftime("%Y") %>
-    </li>
-    <li>Things I Love<br>
-      <% if @user != current_user %>
-        <%= @user.things_i_love || "They haven't told us yet ..." %>
-      <% else %>
-        <%= @user.things_i_love || "You haven't told us yet ... do tell!" %>
+  <% if @user == current_user %>
+    <a href="<%= edit_user_url @user %>">
+      <%= @user.nickname ? "[Edit nickname]" : "[Add nickname]" %></a>
+  <% end  %>
+  </section>
+  <section class="user-info">
+    <div class="user-thumb">
+      <% if @user.avatar %>
+        <img src="<%= @user.avatar.url(:profile) %>">
       <% end %>
-    </li>
-    <% if @user.hometown %>
-      <li>My Hometown<br>
-        <%= @user.hometown %>
+    </div>
+
+    <!-- <p>&#9733; Follower Count...</p> -->
+
+    <ul class="user-info">
+      <% if @user != current_user %>
+        <li>&hearts;<a href="#">Follow this Reviewer</a></li>
+      <% end %>
+      <li>Location<br>
+        <%= @user.location %>
       </li>
-    <% end %>
-    <li><a href="<%= edit_user_url @user %>">Update Your Profile</a></li>
-  </ul>
-</section>
+      <li>Yelping Since<br>
+        <%= Date::MONTHNAMES[@user.created_at.strftime("%m").to_i] + " " +
+            @user.created_at.strftime("%Y") %>
+      </li>
+      <li>Things I Love<br>
+        <% if @user != current_user %>
+          <%= @user.things_i_love || "They haven't told us yet ..." %>
+        <% else %>
+          <%= @user.things_i_love || "You haven't told us yet ... do tell!" %>
+        <% end %>
+      </li>
+      <% if @user.hometown %>
+        <li>My Hometown<br>
+          <%= @user.hometown %>
+        </li>
+      <% end %>
+      <li><a href="<%= edit_user_url @user %>">Update Your Profile</a></li>
+    </ul>
+  </section>
 
-<section class="user-reviews">
-  <%= render partial: 'reviews/user_reviews', locals: { user: @user } %>
-</section>
+  <section class="user-reviews">
+    <%= render partial: 'reviews/user_reviews', locals: { user: @user } %>
+  </section>
 
-<!-- <section class="followings">
-  <p>Plug in Users Following and Businesses Bookmarked</p>
-</section> -->
+  <!-- <section class="followings">
+    <p>Plug in Users Following and Businesses Bookmarked</p>
+  </section> -->
+</section>

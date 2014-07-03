@@ -1,9 +1,7 @@
 <% Review.latest_activity.each do |review| %>
   <article class="review">
     <div class="user-thumb">
-      <% if review.author.avatar %>
-        <img src="<%= review.author.avatar.url(:mini) %>">
-      <% end %>
+      <img src="<%= review.author.avatar.url(:mini) %>">
     </div>
 
     <div class="review-info">
@@ -30,5 +28,4 @@
       <div class="review-content"><%= review.content %></div>
     </div>
   </article>
-  <br>
 <% end %>

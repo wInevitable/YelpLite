@@ -1,1 +1,106 @@
-<h1>User Show!</h1>
+<section class="user-profile">
+  <section class="user-greeting group">
+    <% if @user.nickname %>
+      <h2><%= @user.fname + " \"" %><em><%= @user.nickname %></em> <%= "\" " + @user.lname[0] %>.'s Profile</h2>
+    <% else %>
+      <h2><%= @user.fname + " " + @user.lname[0] %>.'s Profile</h2>
+    <% end %>
+
+    <% if @user == current_user %>
+      <a class="nickname" href="<%= edit_user_url @user %>">
+        <%= @user.nickname ? "[Edit nickname]" : "[Add nickname]" %></a>
+    <% end  %>
+  </section>
+
+  <section class="user-info">
+    <div class="user-thumb">
+      <img src="<%= @user.avatar.url(:profile) %>">
+    </div>
+
+    <!-- <p>&#9733; Follower Count...</p> -->
+
+    <ul class="user-data">
+      <% if @user != current_user %>
+        <li>&hearts;<a href="#">Follow this Reviewer</a></li>
+      <% end %>
+      <li>Location<br>
+        <%= @user.location %>
+      </li>
+      <li>Yelping Since<br>
+        <%= Date::MONTHNAMES[@user.created_at.strftime("%m").to_i] + " " +
+            @user.created_at.strftime("%Y") %>
+      </li>
+      <li>Things I Love<br>
+        <% if @user != current_user %>
+          <%= @user.things_i_love || "They haven't told us yet ..." %>
+        <% else %>
+          <%= @user.things_i_love || "You haven't told us yet ... do tell!" %>
+        <% end %>
+      </li>
+      <% if @user.hometown %>
+        <li>My Hometown<br>
+          <%= @user.hometown %>
+        </li>
+      <% end %>
+      <li><a href="<%= edit_user_url @user %>">Update Your Profile</a></li>
+    </ul>
+  </section>
+
+  <section class="user-reviews">
+    <% if user.reviews.length > 0 %>
+      <% if current_user == user %>
+        <h4>Your Reviews</h4>
+      <% else %>
+        <h4><%= user.fname + "'s Reviews" %></h4>
+      <% end  %>
+
+      <ul class="reviews">
+        <% user.reviews.reverse.each do |review| %>
+          <article class="review">
+            <div class="user-thumb">
+              <img src="<%= review.business.avatar.url(:mini) %>">
+            </div>
+
+            <div class="review-info">
+              <div class="review-headline">
+                <a href="<%= business_url review.business %>"><%= review.business.name %></a>
+              </div>
+
+              <% if review.author == current_user %>
+                <%= render partial: 'reviews/delete', locals: { review: review } %>
+                <%= render partial: 'reviews/edit', locals: { review: review } %>
+              <% end %>
+
+              <div class="time-ago">
+                <%= review.business.address %><br>
+                <%= review.business.city_state_zip %><br>
+                <%= review.business.country %>
+              </div>
+
+              <div class="review-rating"><%= review.rating %></div>
+
+              <div class="review-date">
+                <%= review.created_at.strftime("%m/%d/%Y") %>
+              </div>
+
+              <div class="review-content"><%= review.content %></div>
+            </div>
+          </article>
+        <% end %>
+      </ul>
+
+    <% elsif (current_user == user) %>
+
+      <p>You haven't posted any reviews yet. Why not post one <a href="#">now</a>?</p>
+
+    <% else %>
+
+      <p>This user has yet to post a review.</p>
+
+    <% end %>
+  </section>
+
+  <!-- <section class="followings">
+    <p>Plug in Users Following and Businesses Bookmarked</p>
+  </section> -->
+</section>

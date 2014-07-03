@@ -374,6 +374,7 @@ a.no-underline:hover {
   float: right;
   font-size: 12px;
   color: #aaa;
+  text-align: right;
 }
 
 .review > .review-info > .review-rating {
@@ -388,8 +389,53 @@ a.no-underline:hover {
 
 }
 
+/* --- USER SHOW --- */
 
-</section>
+.user-profile {
+
+}
+
+.user-profile > .user-greeting {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  margin: 20px;
+}
+
+.user-profile > .user-greeting > h2 {
+  float: left;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.user-profile > .user-greeting > .nickname {
+  font-size: 12px;
+  padding: 25px 0;
+  float: left;
+}
+
+.user-profile > .user-info {
+}
+
+.user-profile > .user-info > .user-thumb {
+}
+
+.user-profile > .user-info > .user-data {
+}
+
+.user-profile > .user-info > .user-data > li {
+}
+
+.user-profile > .user-reviews {
+}
+
+.user-profile > .user-reviews > h4 {
+}
+
+.user-profile > .user-reviews > .reviews {
+}
+
+
 
 /* --- FOOTER --- */
 

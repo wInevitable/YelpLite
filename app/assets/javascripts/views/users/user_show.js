@@ -10,12 +10,12 @@ YelpLite.Views.UserShow = Backbone.View.extend({
   },
 
   initialize: function(options) {
-    this.model = options.user;
+    this.user = options.model;
   },
 
   render: function() {
     var renderedContent = this.template({
-      user: this.model
+      user: this.user
     });
     this.$el.html(renderedContent);
     return this;

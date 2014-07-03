@@ -16,7 +16,6 @@ YelpLite.Collections.Users = Backbone.Collection.extend({
     } else {
       user = new YelpLite.Models.User({ id: id });
       user.collection = YelpLite.users;
-          debugger
       user.fetch({
         success: function() {
 

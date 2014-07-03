@@ -1,27 +1,44 @@
 <% if user.reviews.length > 0 %>
-
   <% if current_user == user %>
     <h4>Your Reviews</h4>
   <% else %>
     <h4><%= user.fname + "'s Reviews" %></h4>
   <% end  %>
-  
-    <ul class="reviews">
-      <% user.reviews.reverse.each do |review| %>
-        <ul>
-          <li><a href="<%= business_url review.business %>"><%= review.business.name %></a></li>
-          <li><%= review.business.address %></li>
 
-          <li><%= review.rating %></li>
-          <li><%= review.created_at.strftime("%m/%d/%Y") %></li>
-          <li><%= review.content %></li>
-        </ul>
-        <% if review.author == current_user %>
-          <%= button_to "Remove Review", delete_review_url(review), method: :get %>
-        <% end %>
-        <br>
-      <% end %>
-    </ul>
+  <ul class="reviews">
+    <% user.reviews.reverse.each do |review| %>
+      <article class="review">
+        <div class="user-thumb">
+          <img src="<%= review.business.avatar.url(:mini) %>">
+        </div>
+
+        <div class="review-info">
+          <div class="review-headline">
+            <a href="<%= business_url review.business %>"><%= review.business.name %></a>
+          </div>
+
+          <% if review.author == current_user %>
+            <%= render partial: 'reviews/delete', locals: { review: review } %>
+            <%= render partial: 'reviews/edit', locals: { review: review } %>
+          <% end %>
+
+          <div class="time-ago">
+            <%= review.business.address %><br>
+            <%= review.business.city_state_zip %><br>
+            <%= review.business.country %>
+          </div>
+
+          <div class="review-rating"><%= review.rating %></div>
+
+          <div class="review-date">
+            <%= review.created_at.strftime("%m/%d/%Y") %>
+          </div>
+
+          <div class="review-content"><%= review.content %></div>
+        </div>
+      </article>
+    <% end %>
+  </ul>
 
 <% elsif (current_user == user) %>
 

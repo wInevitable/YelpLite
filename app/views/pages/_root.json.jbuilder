@@ -1,5 +1,7 @@
-json.users do
-  json.partial! 'users/user.json', user: @user
+if @user
+  json.users do
+    json.partial! 'users/user.json', user: @user
+  end
 end
 
 json.business do

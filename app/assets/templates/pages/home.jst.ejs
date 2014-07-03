@@ -2,7 +2,7 @@
   <h1>Your Next Review Awaits</h1>
 
   <div class="biz-thumb">
-    
+    <img src="<%= business.escape('avatar_mini') %>">
   </div>
     <form class="review-form">
       <div class="biz-name">
@@ -12,7 +12,7 @@
         <input type="radio" class="rating-radio" name="review[rating]"
           id="rating-1" value="1">
         <label for="rating-1">Cockroaches, Rats, and Things...</label>
-    
+
         <input type="radio" class="rating-radio" name="review[rating]"
           id="rating-2" value="2">
         <label for="rating-2">Eh, I've had better.</label>
@@ -20,12 +20,12 @@
         <input type="radio" class="rating-radio" name="review[rating]"
           id="rating-3" value="3">
         <label for="rating-3">Okay.</label>
-    
-        <input type="radio" class="rating-radio" name="review[rating]"  
+
+        <input type="radio" class="rating-radio" name="review[rating]"
           id="rating-4" value="4">
         <label for="rating-4">New favorite place!</label>
-    
-        <input type="radio" class="rating-radio" name="review[rating]" 
+
+        <input type="radio" class="rating-radio" name="review[rating]"
           id="rating-5" value="5">
         <label for="rating-5">Oh baby, that was delicious!</label>
 
@@ -42,21 +42,23 @@
     <% _.each(reviews, function(review) { %>
       <article class="review">
         <div class="user-thumb">
+          <%= console.log(review.author) %>
+          <img src="<%= review._author.escape('avatar_mini') %>">
         </div>
-        
+
         <div class="review-info">
           <div class="review-headline">
-            <a class="user-show" href="#">
+            <a class="user-show" href="/users/<%= review._author.escape('id') %>">
               <%= review.escape('author_name') %>
-            </a> 
+            </a>
             wrote a review for
-            <a class="biz-show" href="#">
-              <%= review.escape('business_name') %>
+            <a class="biz-show" href="/businesses/<%= review._business.escape('id') %>">
+              <%= review._business.escape('name') %>
             </a>
            </div>
 
           <% if (review.escape('author') === YelpLite.currentUser) { %>
-            <div class="review-remove"><button>Remove Review</button></div> 
+            <div class="review-remove"><button>Remove Review</button></div>
             <div class="review-edit"><a href="#">Edit Review</a></div>
           <% } %>
 

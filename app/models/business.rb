@@ -3,7 +3,8 @@ class Business < ActiveRecord::Base
   pg_search_scope :search_by_name, :against => :name
 
   has_attached_file :avatar, styles: {profile: "300x300>", thumb: "100x100>",
-                  mini: "50x50>"}, default_url: 'default_business_image.png'
+                  mini: "50x50>"},
+                  default_url: ActionController::Base.helpers.asset_path('default_business_image.png')
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   validates :name, :city_state_zip, :address, :owner, presence: true

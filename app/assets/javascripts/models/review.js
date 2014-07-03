@@ -3,21 +3,33 @@ YelpLite.Models.Review = Backbone.Model.extend({
     this.author = options.author;
     this.business = options.business;
   },
-  
-  business: function(model) {
+
+  parse: function(jsonResp) {
+    if (jsonResp.author) {
+      this.author().set(jsonResp.author, { parse: true })
+      delete jsonResp.author;
+    }
+    if (jsonResp.business) {
+      this.business().set(jsonResp.business, { parse: true })
+      delete jsonResp.business;
+    }
+    return jsonResp;
+  },
+
+  business: function() {
     if (!this._business) {
-      this._business = model;
-      this.collection = model.reviews;
-      model.reviews.add(this);
+      this._business = new YelpLite.Models.User();
+      this.collection = this._business.reviews();
+      this._business.reviews().add(this);
     }
     return this._business;
   },
 
-  author: function(model) {
+  author: function() {
     if (!this._author) {
-      this._author = model;
-      this.collection = model.reviews;
-      model.reviews.add(this);
+      this._author = new YelpLite.Models.User();
+      this.collection = this._author.reviews();
+      this._author.reviews().add(this);
     }
     return this._author;
   },

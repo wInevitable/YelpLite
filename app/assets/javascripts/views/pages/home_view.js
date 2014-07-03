@@ -6,7 +6,7 @@ YelpLite.Views.HomeView = Backbone.View.extend({
   template: JST['pages/home'],
 
   events: {
-    
+
   },
 
   initialize: function(options) {

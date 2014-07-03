@@ -15,7 +15,7 @@
 
     <div class="biz-thumb">
       <% if @business && @business.avatar %>
-        <img src="<%= asset_path(@business.avatar.url(:mini)) %>">
+        <img src="<%= @business.avatar.url(:mini) %>">
       <% end %>
     </div>
     <%= render partial: 'shared/insert_review', locals: { review: Review.new, business: @business } %>

@@ -55,7 +55,7 @@ img {
 }
 
 input[type="text"], input[type="password"], input[type="submit"],
-/*input[type="checkbox"], */ input[type="radio"], input[type="file"],
+/*input[type="checkbox"], input[type="radio"],*/  input[type="file"],
 button,
 textarea {
   display: inline-block;
@@ -266,7 +266,7 @@ a.no-underline:hover {
 }
 
 .next-review > .review-form > label {
-  display: none;
+
   font-style: italic;
 }
 
@@ -277,7 +277,9 @@ a.no-underline:hover {
 .next_review > .review-form > input[type="radio"]:checked {
   width: 20px;
   height: 20px;
-  background: #333;
+  background: #fff;
+  color: #fff;
+  border: 5px solid #333;
 }
 
 .next_review > .review-form > input[type="radio"]:checked + label {
@@ -295,15 +297,15 @@ a.no-underline:hover {
 }
 
 .next-review > .review-form > textarea:focus {
- height: 100px; 
+ height: 100px;
 }
 
 .next-review > .review-form > textarea:focus + a {
- display: inline-block; 
+ display: inline-block;
 }
 
 .next-review > .review-form > textarea:focus + a + input[type="submit"] {
- display: inline-block; 
+ display: inline-block;
 }
 
 .next-review > .review-form > input[type="submit"] {
@@ -362,7 +364,7 @@ a.no-underline:hover {
 }
 
 .review > .review-info > .review-remove {
- float: right; 
+ float: right;
 }
 
 .review > .review-info > .time-ago {
@@ -383,7 +385,7 @@ a.no-underline:hover {
 }
 
 .review > .review-info > .review-content {
-  
+
 }
 
 

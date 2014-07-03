@@ -21,7 +21,7 @@
 
 <div class="biz-thumb">
   <% if @business.avatar %>
-    <img src="<%= asset_path(@business.avatar.url(:profile)) %>">
+    <img src="<%= @business.avatar.url(:profile) %>">
   <% end %>
 </div>
 

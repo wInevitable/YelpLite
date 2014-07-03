@@ -61,7 +61,7 @@ FactoryGirl.define do
     business { Business.find(rand(1..50)) }
 
     content do
-      [Faker::Company.catch_phrase, Faker::Company.bs, Faker::Lorem.word].sample
+      [Faker::Company.catch_phrase, Faker::Company.bs, Faker::Lorem.paragraph].sample
     end
 
     created_at do

@@ -14,7 +14,7 @@
 <section class="user-info">
   <div class="user-thumb">
     <% if @user.avatar %>
-      <img src="<%= asset_path(@user.avatar.url(:profile)) %>">
+      <img src="<%= @user.avatar.url(:profile) %>">
     <% end %>
   </div>
 

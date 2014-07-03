@@ -2,10 +2,10 @@
   <article class="review">
     <div class="user-thumb">
       <% if review.author.avatar %>
-        <img src="<%= asset_path(review.author.avatar.url(:thumb)) %>">
+        <img src="<%= review.author.avatar.url(:mini) %>">
       <% end %>
     </div>
-    
+
     <div class="review-info">
       <div class="review-headline">
         <a href="<%= user_url review.author %>">

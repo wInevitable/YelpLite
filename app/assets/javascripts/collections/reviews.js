@@ -11,7 +11,7 @@ YelpLite.Collections.Reviews = Backbone.Collection.extend({
   },
 
   comparator: function(review) {
-    return review.get('rating');
+    return -review.get('created_at');
   },
 
   //save for later. can be used with any attribute

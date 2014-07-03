@@ -7,7 +7,7 @@ YelpLite.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
-    '': 'home',
+    '': 'home'
   },
 
   home: function() {

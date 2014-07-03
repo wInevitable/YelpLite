@@ -10,8 +10,10 @@ YelpLite.Models.Business = Backbone.Model.extend({
 
   reviews: function() {
    if (!this._reviews) {
-     this._reviews = new YelpLite.Collections.Reviews([], {
-       business: this
+     this._reviews = new YelpLite.Subsets.BusinessReviews([], {
+       business: this,
+       parse: true,
+       parentCollection: new YelpLite.Collections.Reviews()
      });
    }
    return this._reviews;

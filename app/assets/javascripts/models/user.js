@@ -10,8 +10,10 @@ YelpLite.Models.User = Backbone.Model.extend({
 
   reviews: function() {
    if (!this._reviews) {
-     this._reviews = new YelpLite.Collections.Reviews([], {
-       author: this
+     this._reviews = new YelpLite.Subsets.AuthorReviews([], {
+       author: this,
+       parse: true,
+       parentCollection: new YelpLite.Collections.Reviews()
      });
    }
    return this._reviews;

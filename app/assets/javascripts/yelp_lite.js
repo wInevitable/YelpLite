@@ -8,18 +8,18 @@ window.YelpLite = {
     this.currentUser = options.currentUser;
     var data = options.bootstrappedData;
 
-    YelpLite.users = new YelpLite.Collections.Users(data.users,
+    this.users = new this.Collections.Users(data.users,
       { parse: true });
-    YelpLite.businesses = new YelpLite.Collections.Businesses(data.business,
+    this.businesses = new this.Collections.Businesses(data.business,
       { parse: true });
-    YelpLite.reviews = new YelpLite.Collections.Reviews(data.reviews,
+    this.reviews = new this.Collections.Reviews(data.reviews,
       { parse: true });
 
     new YelpLite.Routers.Router({
       $rootEl: options.$rootEl,
-      users: YelpLite.users,
-      businesses: YelpLite.businesses,
-      reviews: YelpLite.reviews
+      users: this.users,
+      businesses: this.businesses,
+      reviews: this.reviews
     });
 
     Backbone.history.start();

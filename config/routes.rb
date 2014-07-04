@@ -5,7 +5,9 @@ YelpLite::Application.routes.draw do
   root to: 'pages#home'
 
   namespace :api, defaults: { format: :json } do
-    resources :users, only: [:show, :edit, :update]
+    resources :users, only: [:show, :edit, :update] do
+      resources :reviews, only: [:index]
+    end
   end
 
   shallow do

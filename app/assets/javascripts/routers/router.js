@@ -23,6 +23,7 @@ YelpLite.Routers.Router = Backbone.Router.extend({
     var that = this;
 
     YelpLite.users.getOrFetch(id, function(user) {
+      debugger
       var userShow = new YelpLite.Views.UserShow({ model: user });
       that._swapView(userShow);
     });

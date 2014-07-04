@@ -296,15 +296,15 @@ a.no-underline:hover {
   margin-bottom: 10px;
 }
 
-.next-review > .review-form > textarea:focus {
+.next-review > .review-form > .show {
  height: 100px;
 }
 
-.next-review > .review-form > textarea:focus + a {
+.next-review > .review-form > .show + a {
  display: inline-block;
 }
 
-.next-review > .review-form > textarea:focus + a + input[type="submit"] {
+.next-review > .review-form > .show + a + input[type="submit"] {
  display: inline-block;
 }
 

@@ -4,8 +4,8 @@ YelpLite.Models.Review = Backbone.Model.extend({
   },
 
   initialize: function(options) {
-    this.author = options.author;
-    this.business = options.business;
+    // this.author = options.author;
+    // this.business = options.business;
   },
 
   parse: function(jsonResp) {

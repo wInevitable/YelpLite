@@ -16,6 +16,7 @@
 //= require backbone
 //= require backbone_subset
 //= require yelp_lite
+//= require serializeJSON
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections

@@ -15,12 +15,15 @@ window.YelpLite = {
       { parse: true });
     this.reviews = new this.Collections.Reviews(data.reviews,
       { parse: true });
+    this.lastReview = new this.Models.Review(data.review,
+      { parse: true });
 
     new YelpLite.Routers.Router({
       $rootEl: options.$rootEl,
       users: this.users,
       businesses: this.businesses,
-      reviews: this.reviews
+      reviews: this.reviews,
+      lastReview: this.lastReview
     });
 
     Backbone.history.start();

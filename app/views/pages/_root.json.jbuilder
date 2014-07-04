@@ -11,3 +11,7 @@ end
 json.reviews do
   json.partial! 'reviews/review.json', collection: @reviews, as: :review
 end
+
+json.review do
+  json.partial! 'reviews/review.json', review: @last_review
+end

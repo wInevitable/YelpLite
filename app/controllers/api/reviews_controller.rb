@@ -17,5 +17,13 @@ module Api
 
       render partial: 'reviews/review.json', locals: { review: @review }
     end
+
+    def create
+
+    end
+
+    def update
+      @review = Review.find()
+    end
   end
 end

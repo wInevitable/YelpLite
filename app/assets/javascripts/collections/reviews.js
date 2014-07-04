@@ -5,7 +5,6 @@ YelpLite.Collections.Reviews = Backbone.Collection.extend({
   },
 
   url: function() {
-     return "/api/businesses/" + this.business.id + "/reviews";
   },
 
   comparator: function(review) {

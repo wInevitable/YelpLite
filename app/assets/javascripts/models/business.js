@@ -1,4 +1,8 @@
 YelpLite.Models.Business = Backbone.Model.extend({
+  url: function () {
+    return "/api/businesses/" + this.id;
+  },
+
   owner: function() {
     if (!this._owner) {
       this._owner = new YelpLite.Models.User();

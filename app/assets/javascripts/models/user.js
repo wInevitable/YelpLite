@@ -1,4 +1,8 @@
 YelpLite.Models.User = Backbone.Model.extend({
+  url: function() {
+    return "/api/users/" + this.id;
+  },
+
   businesses: function() {
    if (!this._businesses) {
      this._businesses = new YelpLite.Collections.Businesses([], {

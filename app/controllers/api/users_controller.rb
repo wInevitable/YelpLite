@@ -7,7 +7,7 @@ module Api
     def show
       @user = User.find(params[:id], include: [reviews: :business])
 
-      render partial: 'users/users.json'
+      render partial: 'users/user.json', locals: { user: @user }
     end
   end
 end

@@ -1,4 +1,8 @@
 YelpLite.Models.Review = Backbone.Model.extend({
+  url: function () {
+    return "api/reviews/" + this.id
+  },
+
   initialize: function(options) {
     this.author = options.author;
     this.business = options.business;
@@ -6,13 +10,38 @@ YelpLite.Models.Review = Backbone.Model.extend({
 
   parse: function(jsonResp) {
     if (jsonResp.author) {
-      this.author().set(jsonResp.author, { parse: true })
+      this.author().set(jsonResp.author, { parse: true });
       delete jsonResp.author;
     }
+    // else if (jsonResp.author_id) {
+    //   var that = this;
+    //   var author = new YelpLite.Models.User({ id: jsonResp.author_id });
+    //
+    //   author.fetch({
+    //     success: function() {
+    //       debugger
+    //       that.author().set(author, { parse: true });
+    //       delete jsonResp.author_id;
+    //     }
+    //   });
+    // }
     if (jsonResp.business) {
-      this.business().set(jsonResp.business, { parse: true })
+      this.business().set(jsonResp.business, { parse: true });
       delete jsonResp.business;
     }
+    // else if (jsonResp.business_id) {
+  //     var that = this;
+  //     var business = new YelpLite.Models.Business({ id: jsonResp.business_id });
+  //
+  //     business.fetch({
+  //       success: function() {
+  //         debugger
+  //         that.business().set(business, { parse: true });
+  //         delete jsonResp.business_id;
+  //       }
+  //     });
+  //   }
+
     return jsonResp;
   },
 

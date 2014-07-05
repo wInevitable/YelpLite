@@ -26,3 +26,5 @@
 
 # Ignore application configuration
 /config/application.yml
+/config/flickr.yml
+/config/token_cache.yml

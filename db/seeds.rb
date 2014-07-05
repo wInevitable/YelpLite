@@ -6,6 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+client = Yelp::Client.new
+include Yelp::V2::Business::Request
+
 FactoryGirl.define do
   factory :user do
     #avatar
@@ -26,22 +29,23 @@ FactoryGirl.define do
   end
 
   factory :business do
-    #avatar
-    #location
-
     rec = [true, false]
+    owner { User.find(rand(1..50)) }
 
-    owner { User.find(rand(1..100)) }
-    name { Faker::Company.name }
-    address { Faker::Address.street_address }
+    name { response[:name] }
+    avatar {response[:image_url] }
+    address { response[:location][:address] }
 
     city_state_zip do
-      Faker::Address.city + ", " + Faker::Address.state + " "+ Faker::Address.zip
+      response[:location][:city] + ", " + response[:location][:state_code]
+        + " "+ response[:location][:postal_code]
     end
 
-    country { Faker::Address.country }
-    phone_number { Faker::PhoneNumber.phone_number }
-    website_url { Faker::Internet.url(name.downcase.gsub(/\s+/, "")) }
+    display_address { response[:display_address] }
+    country { response[:location][:country_code] }
+    phone_number { response[:phone] }
+    website_url { response[:url] }
+
     recent { rec.sample }
 
     created_at do
@@ -54,14 +58,13 @@ FactoryGirl.define do
   end
 
   factory :review do
-    #improve content
 
-    rating { rand(1..5) }
-    author { User.find(rand(1..100)) }
-    business { Business.find(rand(1..50)) }
+    rating { response[:reviews][:rating] }
+    author { User.find(rand(1..50)) }
+    business { Business.last }
 
     content do
-      [Faker::Company.catch_phrase, Faker::Company.bs, Faker::Lorem.paragraph].sample
+      response[:reviews][:excerpt]
     end
 
     created_at do
@@ -70,6 +73,17 @@ FactoryGirl.define do
   end
 end
 
-FactoryGirl.create_list(:user, 100)
-FactoryGirl.create_list(:business, 50)
-FactoryGirl.create_list(:review, 150)
+FactoryGirl.create_list(:user, 50)
+
+50.times do
+  fake_city Faker::Address.city
+
+  request = Location.new(
+              term: 'food',
+              city: fake_city
+            )
+  response = client.search(request)
+
+  FactoryGirl.create(:business)
+  FactoryGirl.create(:review)
+end

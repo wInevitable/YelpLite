@@ -30,7 +30,6 @@ class PagesController < ApplicationController
     @user = current_user
     @business = Business.order("RANDOM()").first
     @reviews = Review.order(created_at: :desc).first(5)
-    @last_review = Review.last
 
     render layout: "backbone"
   end

@@ -114,8 +114,15 @@
 
   <script>
     $(document).ready(function() {
-      $('#review-content').click(function() {
-        $('#review-content').toggleClass("show");
+
+      $('#review-content').focus(function() {
+        $(this).addClass("show");
+      });
+
+      $('#review-content').blur(function() {
+        if ($(this).val() == "") {
+          $(this).removeClass("show");
+        }
       });
     });
   </script>

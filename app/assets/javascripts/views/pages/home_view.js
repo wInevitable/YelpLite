@@ -12,7 +12,9 @@ YelpLite.Views.HomeView = Backbone.View.extend({
   initialize: function(options) {
     this.model = options.business;
     this.collection = options.reviews;
-    this.lastReview = options.lastReview;
+
+    this.listenTo(this.model, 'change sync add remove reset', this.render);
+    this.listenTo(this.collection, 'chance sync add remove reset', this.help);
   },
 
   render: function() {
@@ -30,7 +32,6 @@ YelpLite.Views.HomeView = Backbone.View.extend({
     var formData = $(event.target).serializeJSON();
 
     this.review = new YelpLite.Models.Review({
-      id: (this.lastReview.id + 1),
       author_id: YelpLite.currentUser.id,
       business_id: this.model.id
     });
@@ -39,12 +40,15 @@ YelpLite.Views.HomeView = Backbone.View.extend({
     //remove last from collection first to only display five?
     // YelpLite.reviews.pop();
     this.review.collection = YelpLite.reviews;
-
     this.review.save({ wait: true }, {
       success: function() {
-        that.lastReview = that.review;
-        that.review.fetch();
-        Backbone.history.navigate("#/", { trigger: true });
+        that.collection.pop();
+        that.collection.unshift(that.review, { parse: true });
+        that.review.fetch({
+          success: function() {
+            Backbone.history.navigate("#/", { trigger: true });
+          }
+        });
       }
     });
   }

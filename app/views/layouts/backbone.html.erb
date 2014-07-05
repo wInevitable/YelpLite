@@ -111,11 +111,18 @@
   </footer>
 
   <script>
-    $(document).ready(function() {
-      $('#review-content').click(function() {
-        $('#review-content').toggleClass("show");
-      });
+  $(document).ready(function() {
+
+    $('#review-content').focus(function() {
+      $(this).addClass("show");
     });
+
+    $('#review-content').blur(function() {
+      if ($(this).val() == "") {
+        $(this).removeClass("show");
+      }
+    });
+  });
   </script>
 </body>
 </html>

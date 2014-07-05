@@ -19,11 +19,29 @@ module Api
     end
 
     def create
+      @review = Review.new(review_params)
 
+      if @review.save
+        render partial: 'reviews/review.json', locals: { review: @review }
+      else
+        render json: { errors: @review.errors.full_messages }, status: 422
+      end
     end
 
     def update
-      @review = Review.find()
+      fail
+      @review = Review.find(params[:id])
+
+      if @review.update_attributes(review_params)
+        render partial: 'reviews/review.kson', locals: { review: @review }
+      else
+        render json: { errors: @review.errors.full_messages }, status: 422
+      end
+    end
+
+    private
+    def review_params
+      params.require(:review).permit(:rating, :content, :author_id, :business_id)
     end
   end
 end

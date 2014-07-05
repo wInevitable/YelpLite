@@ -39,7 +39,7 @@
 
 <div class="recent-activity">
   <h1>Recent Activity</h1>
-    <% _.each(reviews, function(review) { %>
+    <% reviews.each(function(review) { %>
       <article class="review">
         <div class="user-thumb">
           <img src="<%= review._author.escape('avatar_mini') %>">
@@ -56,7 +56,7 @@
             </a>
            </div>
 
-          <% if (review.escape('author') === YelpLite.currentUser) { %>
+          <% if (review.author().id == YelpLite.currentUser.id) { %>
             <div class="review-remove"><button>Remove Review</button></div>
             <div class="review-edit"><a href="#">Edit Review</a></div>
           <% } %>

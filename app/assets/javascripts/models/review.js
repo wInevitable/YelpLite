@@ -1,6 +1,11 @@
 YelpLite.Models.Review = Backbone.Model.extend({
   url: function () {
-    return "api/reviews/" + this.id
+    if (this.id) {
+      return "api/reviews/" + this.id;
+    }
+    else {
+      return "api/businesses/" + this.escape('business_id') + "/reviews";
+    }
   },
 
   initialize: function(options) {

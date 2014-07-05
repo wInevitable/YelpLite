@@ -4,7 +4,6 @@ YelpLite.Routers.Router = Backbone.Router.extend({
     this.users = options.users;
     this.businesses = options.businesses;
     this.reviews = options.reviews;
-    this.lastReview = options.lastReview;
   },
 
   routes: {
@@ -15,8 +14,7 @@ YelpLite.Routers.Router = Backbone.Router.extend({
   home: function() {
     var homeView = new YelpLite.Views.HomeView({
       business: this.businesses.first(), // random business to review
-      reviews: this.reviews.models, // 5 most recent reviews
-      lastReview: this.lastReview
+      reviews: this.reviews, // 5 most recent reviews
     });
     this._swapView(homeView);
   },

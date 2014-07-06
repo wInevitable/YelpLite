@@ -35,22 +35,22 @@ FactoryGirl.define do
 
   factory :business do
     #grab business from Yelp
-    @cities = ['New York City', 'San Francisco', 'London', 'Philadelphia',
+    cities = ['New York City', 'San Francisco', 'London', 'Philadelphia',
                'Baltimore', 'Berlin', 'Paris', 'Dallas', 'Los Angeles',
-               'Chicago', 'Madrid', 'Tokyo']
+               'Chicago', 'Raleigh', 'Washinton D.C.', 'Seattle', 'San Diego']
 
-    @terms = ['food', 'seafood', 'dessert', 'thai', 'chinese', 'italian',
+    terms = ['food', 'seafood', 'dessert', 'thai', 'chinese', 'italian',
              'mexican', 'spicy', 'polish', 'middle eastern']
 
     request = Location.new(
-                term: @terms.sample,
-                city: @cities.sample
+                term: terms.sample,
+                city: cities.sample
               )
     response = client.search(request)
     business = response["businesses"].sample
 
     rec = [true, false]
-    owner { User.find(rand(1..50)) }
+    owner { User.find(rand(1..25)) }
 
     name { business["name"] }
     avatar { business["image_url"] }
@@ -78,23 +78,22 @@ FactoryGirl.define do
 
   factory :review do
     #grab business from Yelp
-    @cities = ['New York City', 'San Francisco', 'London', 'Beijing', 'Philadelphia',
-              'Baltimore', 'Rome', 'Casablanca', 'Berlin', 'Paris', 'Dallas',
-              'Los Angeles', 'Chicago', 'Madrid', 'Tokyo', 'Moscow', 'Prague',
-              'Bolivia', 'Delhi']
+    cities = ['New York City', 'San Francisco', 'London', 'Philadelphia',
+               'Baltimore', 'Berlin', 'Paris', 'Dallas', 'Los Angeles',
+               'Chicago', 'Raleigh', 'Washinton D.C.', 'Seattle', 'San Diego']
 
-    @terms = ['food', 'seafood', 'dessert', 'tai', 'chinese', 'italian',
-             'mexican', 'spicy', 'authentic', 'polish', 'middle eastern']
+    terms = ['food', 'seafood', 'dessert', 'thai', 'chinese', 'italian',
+             'mexican', 'spicy', 'polish', 'middle eastern']
 
     request = Location.new(
-                term: @terms.sample,
-                city: @cities.sample
+                term: terms.sample,
+                city: cities.sample
               )
     response = client.search(request)
 
     rating { rand(1..5) }
-    author { User.find(rand(1..50)) }
-    business { Business.find(rand(1..50)) }
+    author { User.find(rand(1..25)) }
+    business { Business.find(rand(1...2)) }
 
     content do
       response["businesses"].sample["snippet_text"]
@@ -106,6 +105,6 @@ FactoryGirl.define do
   end
 end
 
-FactoryGirl.create_list(:user, 50)
-FactoryGirl.create_list(:business, 50)
-FactoryGirl.create_list(:review, 100)
+FactoryGirl.create_list(:user, 25)
+FactoryGirl.create_list(:business, 1)
+FactoryGirl.create_list(:review, 50)

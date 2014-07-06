@@ -7,10 +7,10 @@ class PagesController < ApplicationController
 
   def yelp
     client = Yelp::Client.new
-    fake_city = 'New York City'
+    fake_city = 'San Francisco'
 
     request = Location.new(
-                term: 'food',
+                term: 'seafood',
                 city: fake_city
               )
     @response = client.search(request)

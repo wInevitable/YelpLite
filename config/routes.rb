@@ -34,6 +34,7 @@ YelpLite::Application.routes.draw do
     end
   end
 
+  get '/yelp', to: 'pages#yelp'
   get '/root', to: 'pages#root'
   get '/search', to: 'pages#search'
 

@@ -4,4 +4,4 @@ require File.expand_path('../application', __FILE__)
 # Initialize the Rails application.
 YelpLite::Application.initialize!
 
-require 'flickr-fu'
+#require 'flickr_fu'

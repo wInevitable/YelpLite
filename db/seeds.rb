@@ -5,17 +5,18 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-require 'flickr_fu'
 
-flickr = Flickr.new('flickr.yml')
-photos = flickr.photos.search(tags: 'people')
+# require 'flickr_fu'
+#
+# flickr = Flickr.new('flickr.yml')
+# photos = flickr.photos.search(tags: 'people')
 
 client = Yelp::Client.new
-include Yelp::V2::Business::Request
+include Yelp::V2::Search::Request
 
 FactoryGirl.define do
   factory :user do
-    avatar { photos.sample.url(:original) }
+   # avatar { photos.sample.url(:original) }
 
     email { Faker::Internet.safe_email }
     password { Faker::Internet.password(6) }
@@ -33,22 +34,36 @@ FactoryGirl.define do
   end
 
   factory :business do
+    #grab business from Yelp
+    @cities = ['New York City', 'San Francisco', 'London', 'Philadelphia',
+               'Baltimore', 'Berlin', 'Paris', 'Dallas', 'Los Angeles',
+               'Chicago', 'Madrid', 'Tokyo']
+
+    @terms = ['food', 'seafood', 'dessert', 'thai', 'chinese', 'italian',
+             'mexican', 'spicy', 'polish', 'middle eastern']
+
+    request = Location.new(
+                term: @terms.sample,
+                city: @cities.sample
+              )
+    response = client.search(request)
+    business = response["businesses"].sample
+
     rec = [true, false]
     owner { User.find(rand(1..50)) }
 
-    name { response[:name] }
-    avatar {response[:image_url] }
-    address { response[:location][:address] }
+    name { business["name"] }
+    avatar { business["image_url"] }
+    address { business["location"]["address"][0] }
 
     city_state_zip do
-      response[:location][:city] + ", " + response[:location][:state_code]
-        + " "+ response[:location][:postal_code]
+      business["location"]["city"] + ", " + business["location"]["state_code"] + " " + business["location"]["postal_code"]
     end
 
-    display_address { response[:display_address] }
-    country { response[:location][:country_code] }
-    phone_number { response[:phone] }
-    website_url { response[:url] }
+    display_address { business["location"]["display_address"].join(", ") }
+    country { business["location"]["country_code"] }
+    phone_number { business["phone"] }
+    website_url { business["url"] }
 
     recent { rec.sample }
 
@@ -62,13 +77,27 @@ FactoryGirl.define do
   end
 
   factory :review do
+    #grab business from Yelp
+    @cities = ['New York City', 'San Francisco', 'London', 'Beijing', 'Philadelphia',
+              'Baltimore', 'Rome', 'Casablanca', 'Berlin', 'Paris', 'Dallas',
+              'Los Angeles', 'Chicago', 'Madrid', 'Tokyo', 'Moscow', 'Prague',
+              'Bolivia', 'Delhi']
 
-    rating { response[:reviews][:rating] }
+    @terms = ['food', 'seafood', 'dessert', 'tai', 'chinese', 'italian',
+             'mexican', 'spicy', 'authentic', 'polish', 'middle eastern']
+
+    request = Location.new(
+                term: @terms.sample,
+                city: @cities.sample
+              )
+    response = client.search(request)
+
+    rating { rand(1..5) }
     author { User.find(rand(1..50)) }
-    business { Business.last }
+    business { Business.find(rand(1..50)) }
 
     content do
-      response[:reviews][:excerpt]
+      response["businesses"].sample["snippet_text"]
     end
 
     created_at do
@@ -78,16 +107,5 @@ FactoryGirl.define do
 end
 
 FactoryGirl.create_list(:user, 50)
-
-50.times do
-  fake_city Faker::Address.city
-
-  request = Location.new(
-              term: 'food',
-              city: fake_city
-            )
-  response = client.search(request)
-
-  FactoryGirl.create(:business)
-  FactoryGirl.create(:review)
-end
+FactoryGirl.create_list(:business, 50)
+FactoryGirl.create_list(:review, 100)

@@ -1,7 +1,20 @@
 class PagesController < ApplicationController
+  include Yelp::V2::Search::Request
 
   def home #home page/root_url
     @business = Business.find(:all, order: "RANDOM()", limit: 1).first #order by
+  end
+
+  def yelp
+    client = Yelp::Client.new
+    fake_city = 'New York City'
+
+    request = Location.new(
+                term: 'food',
+                city: fake_city
+              )
+    @response = client.search(request)
+    fail
   end
 
   def search

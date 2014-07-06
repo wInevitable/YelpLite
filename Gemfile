@@ -6,6 +6,8 @@ gem 'backbone-on-rails'
 gem 'bcrypt'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
+gem 'factory_girl_rails'
+gem 'faker'
 gem 'figaro'
 gem 'flickr-fu'
 gem 'geocoder'
@@ -32,8 +34,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'factory_girl_rails'
-  gem 'faker'
   gem 'rspec-rails'
   gem 'rspec-collection_matchers'
 end

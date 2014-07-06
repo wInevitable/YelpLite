@@ -36,6 +36,13 @@ class PagesController < ApplicationController
       end
 
       @results = Kaminari.paginate_array(@businesses).page(params[:page])
+
+      @names = []
+      @addresses = []
+      @results.each do |result|
+        @addresses.push(result.full_address)
+        @names.push(result.name)
+      end
     end
   end
 

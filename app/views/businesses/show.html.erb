@@ -17,7 +17,7 @@
   <% end %>
 </ul>
 
-<p>Info with Google Map</p>
+<div id='map' class="map"></div>
 
 <div class="biz-thumb">
   <% if @business.avatar %>
@@ -30,3 +30,34 @@
 </section>
 
 <a href="<%= edit_business_url @business %>">Edit</a>
+
+<script type="text/javascript">
+  var geocoder = L.mapbox.geocoder('winevitable.imnbaln0');
+  var map = L.mapbox.map('map', 'winevitable.imnbaln0');
+
+  var showMap = function(err, data) {
+    if (data.latlng) {
+      map.setView([data.latlng[0], data.latlng[1]], 16);
+
+      L.mapbox.featureLayer({
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [
+            data.latlng[1],
+            data.latlng[0]
+          ]
+        },
+        properties: {
+          title: '<%= @business.name %>',
+          description: '<%= @business.address %>',
+          'marker-size': 'medium',
+          'marker-color': '#f44',
+          'marker-symbol': 'star'
+        }
+      }).addTo(map);
+    }
+  };
+
+  geocoder.query('<%= @business.full_address %>', showMap);
+</script>

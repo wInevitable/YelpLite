@@ -435,7 +435,12 @@ a.no-underline:hover {
 .user-profile > .user-reviews > .reviews {
 }
 
+/* --- BUSINESS SHOW --- */
 
+.map {
+  width: 200px;
+  height: 200px;
+}
 
 /* --- FOOTER --- */
 

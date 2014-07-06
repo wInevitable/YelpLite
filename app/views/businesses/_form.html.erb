@@ -1,30 +1,30 @@
 <% if business.persisted? %>
-  <form action="<%= business_url business %>" method="post" enctype="multipart/form-data">
+  <form class="new-biz-form" action="<%= business_url business %>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="_method" value="put">
 <% else %>
-  <form action="<%= businesses_url %>" method="post" enctype="multipart/form-data">
+  <form class="new-biz-form" action="<%= businesses_url %>" method="post" enctype="multipart/form-data">
 <% end %>
 
   <%= form_token %>
 
   <label for="name">Business Name</label>
   <br>
-  <input type="text" name="business[name]" value="<%= business.name %>" id="name">
+  <input type="text" name="business[name]" value="<%= business.name %>" id="name" class="map-info">
   <br>
 
   <label for="address">Address</label>
   <br>
-  <input type="text" name="business[address]" value="<%= business.address %>" id="address">
+  <input type="text" name="business[address]" value="<%= business.address %>" id="address" class="map-info">
   <br>
 
   <label for="city_state_zip">City, State, and Zip</label>
   <br>
-  <input type="text" name="business[city_state_zip]" value="<%= business.city_state_zip %>" id="city_state_zip">
+  <input type="text" name="business[city_state_zip]" value="<%= business.city_state_zip %>" id="city_state_zip" class="map-info">
   <br>
 
   <label for="country">Country</label>
   <br>
-  <input type="text" name="business[country]" value="<%= business.country %>" id="country">
+  <input type="text" name="business[country]" value="<%= business.country %>" id="country" class="map-info">
   <br>
 
   <label for="phone_number">Phone Number</label>
@@ -58,3 +58,50 @@
   <input type="submit" value="<%= verb %> Business">
   <%= link_to 'Cancel', :back %>
 </form>
+
+<div id="map" class="map"></div>
+
+<script type="text/javascript">
+  var userLocation = [parseFloat("<%= current_user.lat %>"),
+                      parseFloat("<%= current_user.long %>")
+                      ];
+  var geocoder = L.mapbox.geocoder('winevitable.imnbaln0');
+  var map = L.mapbox.map('map', 'winevitable.imnbaln0')
+                    .setView(userLocation, 16);
+
+  $('.map-info').keypress(function(event) {
+
+    var address = document.getElementById("address").value;
+    var addressTwo = document.getElementById("city_state_zip").value;
+    var country = document.getElementById("country").value;
+    var businessLocation = address + " " + addressTwo + " " + country;
+
+    var showMap = function(err, data) {
+      if (data.latlng) {
+        map.setView([data.latlng[0], data.latlng[1]], 16);
+
+        L.mapbox.featureLayer({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [
+              data.latlng[1],
+              data.latlng[0]
+            ]
+          },
+          properties: {
+            title: document.getElementById("name").value,
+            description: businessLocation,
+            'marker-size': 'medium',
+            'marker-color': '#f44',
+            'marker-symbol': 'star'
+          }
+        }).addTo(map);
+      }
+    };
+
+    if (businessLocation) {
+      geocoder.query(businessLocation, showMap);
+    }
+  });
+</script>

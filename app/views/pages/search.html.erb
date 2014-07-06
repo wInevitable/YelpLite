@@ -1,14 +1,64 @@
+<div class="header">
+  <h2>
+    <strong>
+      <%= params[:query][:find] %>
+    </strong>
+    <%= params[:query][:near] %>
+  </h2>
+</div>
+
 <% if @results %>
-  <div class="header">
-    <h2><strong><%= params[:query][:find] %></strong> <%= params[:query][:near] %></h2>
-  </div>
-  
   <div class="search-results">
     <% @results.each do |result| %>
       <%= render result %>
       <br>
     <% end %>
   </div>
+  <div class="pagination">
+    <%= paginate @results %>
+  </div>
 
-  <%= paginate @results %>
+  <div id="map" class="map"></div>
+
+  <div class="addresses">
+    <%= @addresses %>
+  </div>
+  <div class="names" display: none>
+    <%= @names %>
+  </div>
+  <script type="text/javascript">
+    var geocoder = L.mapbox.geocoder('winevitable.imnbaln0');
+    var map = L.mapbox.map('map', 'winevitable.imnbaln0');
+    var addresses = JSON.parse($("div.addresses").text());
+    var names = JSON.parse($("div.names").text());
+
+    var showMap = function(err, data) {
+      if (data.latlng) {
+        map.setView([data.latlng[0], data.latlng[1]], 16);
+
+        L.mapbox.featureLayer({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [
+              data.latlng[1],
+              data.latlng[0]
+            ]
+          },
+          properties: {
+            title: names[0],
+            description: addresses[0],
+            'marker-size': 'medium',
+            'marker-color': '#f44',
+            'marker-symbol': 'star'
+          }
+        }).addTo(map);
+      }
+    };
+
+    geocoder.query(addresses[0], showMap);
+  </script>
+
+<% else %>
+  <h4>No Results Match Your Query</h4>
 <% end %>

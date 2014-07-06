@@ -6,10 +6,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-# require 'flickr_fu'
-#
-# flickr = Flickr.new('flickr.yml')
-# photos = flickr.photos.search(tags: 'people')
+require 'flickr'
+
+flickr = Flickr.new(
+  api_key: ENV['FLICKR_KEY'],
+  shared_secret: ENV['FLICKR_SECRET'],
+  tags: 'people'
+)
+@photos = flickr.photos
 
 client = Yelp::Client.new
 include Yelp::V2::Search::Request
@@ -18,7 +22,10 @@ FactoryGirl.define do
   factory :user do
    # avatar { photos.sample.url(:original) }
 
-    email { Faker::Internet.safe_email }
+    email do
+      Faker::Internet.safe_email
+    end
+
     password { Faker::Internet.password(6) }
     fname { Faker::Name.first_name }
     lname { Faker::Name.last_name }

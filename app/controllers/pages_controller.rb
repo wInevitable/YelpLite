@@ -1,3 +1,5 @@
+require 'flickr'
+
 class PagesController < ApplicationController
   include Yelp::V2::Search::Request
 
@@ -14,6 +16,16 @@ class PagesController < ApplicationController
                 city: fake_city
               )
     @response = client.search(request)
+    fail
+  end
+
+  def flicker
+    flickr = Flickr.new(
+      api_key: ENV['FLICKR_KEY'],
+      shared_secret: ENV['FLICKR_SECRET'],
+      tags: 'people'
+    )
+    @photos = flickr.photos
     fail
   end
 

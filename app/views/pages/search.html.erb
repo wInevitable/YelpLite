@@ -23,7 +23,7 @@
   <div class="addresses">
     <%= @addresses %>
   </div>
-  <div class="names" display: none>
+  <div class="names">
     <%= @names %>
   </div>
   <script type="text/javascript">
@@ -32,31 +32,36 @@
     var addresses = JSON.parse($("div.addresses").text());
     var names = JSON.parse($("div.names").text());
 
-    var showMap = function(err, data) {
-      if (data.latlng) {
-        map.setView([data.latlng[0], data.latlng[1]], 16);
+    var i = 0;
+    _.each(addresses, function(address) {
 
-        L.mapbox.featureLayer({
-          type: 'Feature',
-          geometry: {
-            type: 'Point',
-            coordinates: [
-              data.latlng[1],
-              data.latlng[0]
-            ]
-          },
-          properties: {
-            title: names[0],
-            description: addresses[0],
-            'marker-size': 'medium',
-            'marker-color': '#f44',
-            'marker-symbol': 'star'
-          }
-        }).addTo(map);
-      }
-    };
+      var showMap = function(err, data) {
+        if (data.latlng) {
+          map.setView([data.latlng[0], data.latlng[1]], 12);
 
-    geocoder.query(addresses[0], showMap);
+          L.mapbox.featureLayer({
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [
+                data.latlng[1],
+                data.latlng[0]
+              ]
+            },
+            properties: {
+              title: names[i],
+              description: address,
+              'marker-size': 'medium',
+              'marker-color': '#f44',
+              'marker-symbol': 'star'
+            }
+          }).addTo(map);
+        }
+      };
+
+      geocoder.query(address, showMap);
+      i++;
+    });
   </script>
 
 <% else %>

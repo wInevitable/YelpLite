@@ -32,12 +32,11 @@
     <script type="text/javascript">
       var geocoder = L.mapbox.geocoder('winevitable.imnbaln0');
       var map = L.mapbox.map('map', 'winevitable.imnbaln0');
-      var addresses = JSON.parse($("div.addresses").text());
-      var names = JSON.parse($("div.names").text());
+      var addresses = JSON.parse($("div.search-addresses").text());
+      var names = JSON.parse($("div.search-names").text());
 
       var i = 0;
       _.each(addresses, function(address) {
-
         var showMap = function(err, data) {
           if (data.latlng) {
             map.setView([data.latlng[0], data.latlng[1]], 12);

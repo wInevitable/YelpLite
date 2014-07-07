@@ -1,36 +1,40 @@
-<h3>Sign up for YelpLite</h3>
-<h4>Connect with great local businesses</h4>
+<section class="user-new-page">
+  <h3>Sign up for YelpLite</h3>
+  <h4>Connect with great local businesses</h4>
 
-<a href="/auth/facebook">Sign up with Facebook</a>
-<a href="/auth/twitter">Sign up with Twitter</a>
+  <div class="social-media-buttons">
+    <a class="facebook no-underline" href="/auth/facebook">Sign up with Facebook</a>
+    <a class="twitter no-underline" href="/auth/twitter">Sign up with Twitter</a>
+  </div>
 
-<p>Don't worry, we never post without your permission.</p>
+  <p class="disclaimer">
+    Don't worry, we never post without your permission.
+  </p>
 
-<p>OR</p>
+  <form class="user-edit-form" action="<%= users_url %>" method="POST" enctype="multipart/form-data">
+    <%= form_token %>
 
-<form action="<%= users_url %>" method="POST" enctype="multipart/form-data">
-  <%= form_token %>
+    <label for="first-name">First Name</label>
+    <input type="text" id="first-name" name="user[fname]" value="<%= @user.fname if @user %>">
 
-  <label for="first-name">First Name</label>
-  <label for="last-name">Last Name</label>
-  <br>
-  <input type="text" id="first-name" name="user[fname]" value="<%= @user.fname if @user %>">
-  <input type="text" id="last-name" name="user[lname]" value="<%= @user.lname if @user %>">
-  <br>
-  <label for="email">Email</label>
-  <input type="text" id="email" name="user[email]" value="<%= @user.email if @user %>">
-  <br>
-  <label for="password">Password</label>
-  <input type="password" id="password" name="user[password]">
+    <label for="last-name">Last Name</label>
+    <input type="text" id="last-name" name="user[lname]" value="<%= @user.lname if @user %>">
 
-  <label for="photo">Upload a Photo</label><br>
-  <input type="file" id="photo" name="user[avatar]">
+    <label for="email">Email</label>
+    <input type="text" id="email" name="user[email]" value="<%= @user.email if @user %>">
 
-  <p>By creating an account, you agree to YelpLite’s <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="user[password]">
 
-  <input type="submit" value="Sign Up">
-</form>
+    <label for="photo">Upload a Photo</label><br>
+    <input type="file" id="photo" name="user[avatar]">
 
-<p>Already on YelpLite? <a href="<%= new_session_url %>">Log in</p>
+    <p class="second-disclaimer">
+      By creating an account, you agree to YelpLite’s <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+    </p>
 
-<p>"Sign Up Image"</p>
+    <input type="submit" value="Sign Up">
+  </form>
+
+  <!-- <p>Already on YelpLite? <a href="<%= new_session_url %>">Log in</p> -->
+</section>

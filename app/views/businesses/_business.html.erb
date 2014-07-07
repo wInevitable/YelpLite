@@ -32,7 +32,7 @@
   <div class="biz-review">
     <img src="<%= asset_path(business.reviews.last.author.avatar.url(:mini)) %>">
     <div class="biz-review-content">
-      <%= business.reviews.last.content %>
+      <%= business.reviews.last.content[0..100] %>...
     </div>
   </div>
 </div>

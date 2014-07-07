@@ -231,12 +231,11 @@ a.no-underline:hover {
 }
 
 .header-buttons > .header-sessions {
-  padding: 10px 40px 10px 0;
+  padding: 10px 20px 10px 0;
 }
 
 .header-buttons > .header-sessions > .header-sign-up {
   display: block;
-  border: 3px solid #333;
   border-radius: 5px;
   padding: 5px 15px;
   margin-bottom: 5px;
@@ -253,7 +252,7 @@ a.no-underline:hover {
 .header-buttons > .header-sessions > .header-log-in {
   color: #fff;
   margin: auto;
-  padding: 0 0 0 23px;
+  padding: 0 0 0 20px;
   font-size: 12px;
   font-weight: bold;
 }
@@ -579,24 +578,271 @@ a.no-underline:hover {
 }
 
 .user-profile > .user-info {
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
 .user-profile > .user-info > .user-thumb {
+  display: block;
+  float: left;
+  width: 200px;
+  height: 200px;
+}
+
+.user-profile > .user-info > .user-thumb > img {
+  width: 200px;
+  height: 200px;
 }
 
 .user-profile > .user-info > .user-data {
+  float: right;
 }
 
 .user-profile > .user-info > .user-data > li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+}
+
+.user-profile > .user-info > .user-data > li > ul {
+}
+
+.user-profile > .user-info > .user-data > li > ul > li {
+  padding: 10px;
+  font-weight: normal;
 }
 
 .user-profile > .user-reviews {
 }
 
 .user-profile > .user-reviews > h4 {
+  border-top: 1px solid #ccc;
+  padding: 20px;
+  font-weight: bold;
 }
 
 .user-profile > .user-reviews > .reviews {
+}
+
+/* --- USER EDIT --- */
+
+.user-edit-page {
+  padding: 20px;
+}
+
+.user-edit-page > h2 {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.user-edit-page > .phrase {
+  padding: 0 20px;
+  font-style: italic;
+}
+
+.user-edit-form {
+  padding: 20px;
+}
+
+.user-edit-form > .user-thumb {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 20px;
+}
+
+.user-edit-form > .user-thumb > img {
+  width: 200px;
+  height: 200px;
+}
+
+.user-edit-form > label {
+  cursor: pointer;
+  display: block;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.user-edit-form input {
+  cursor: pointer;
+}
+
+.user-edit-form > small {
+  display: block;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.user-edit-form > input[type="text"], input[type="password"] {
+  display: block;
+  border: 1px solid #ccc;
+  height: 20px;
+  width: 400px;
+  margin-bottom: 20px;
+  padding: 5px;
+}
+
+.user-edit-form > input[type="text"]:hover {
+  border: 1px solid #003264;
+}
+
+.user-edit-form > input[type="password"]:hover {
+  border: 1px solid #003264;
+}
+
+.user-edit-form > input[type="file"] {
+  display: block;
+}
+
+.user-edit-form > .biz-file {
+  margin-bottom: 20px;
+}
+
+.user-edit-form > .user-form-buttons {
+  float: right;
+}
+
+.user-edit-form > .user-form-buttons > .cancel {
+  padding: 10px;
+}
+
+.user-edit-form input[type="submit"] {
+  cursor: pointer;
+  float: right;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  background: #003264;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.user-edit-form input[type="submit"]:hover {
+  background: #333;
+}
+
+/* --- USER NEW --- */
+
+.user-new-page {
+  padding: 20px;
+}
+
+.user-new-page > h3 {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.user-new-page > h4 {
+  padding: 0 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.user-new-page > .social-media-buttons {
+  padding: 20px;
+}
+
+.user-new-page > .social-media-buttons > .facebook {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #003264;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.user-new-page > .social-media-buttons > .facebook:hover {
+  background: #ccc;
+}
+
+.user-new-page > .social-media-buttons > .twitter {
+  display: inline-block;
+  margin-left: 20px;
+  padding: 10px 20px;
+  background: #4099FF;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.user-new-page > .social-media-buttons > .twitter:hover {
+  background: #ccc;
+}
+
+.user-new-page .disclaimer {
+  padding: 0 75px;
+  font-size: 12px;
+}
+
+
+.user-new-page .second-disclaimer {
+  padding: 20px 0;
+  font-size: 12px;
+}
+
+/* --- NEW SESSION --- */
+
+.log-in {
+  padding: 20px;
+}
+
+.log-in > h3 {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.log-in > p {
+  padding: 0 20px;
+}
+
+.log-in > .user-edit-form > input[type="submit"] {
+  padding: 10px 20px;
+  font-size: 24px;
+}
+
+.sign-up {
+  padding: 20px;
+}
+
+.sign-up > h3 {
+  padding: 20px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 20px;
+  font-weight: bold;
+}
+
+.sign-up > p {
+  padding: 20px;
+}
+
+.sign-up > .last-p {
+}
+
+.sign-up > .sign-up-button {
+  cursor: pointer;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  background: #003264;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-left: 60px;
+  font-size: 24px;
+}
+
+.sign-up > .sign-up-button:hover {
+  background: #333;
 }
 
 /* --- BUSINESS SHOW --- */
@@ -852,10 +1098,9 @@ a.no-underline:hover {
 /* --- REVIEW FORM --- */
 
 .review-portion {
-  width: 500px;
+  width: 440px;
   float: left;
-  padding: 0 20px 0 0;
-  border-right: 1px solid #ccc;
+  padding: 0 40px 0 0;
 }
 
 .review-portion > .review-biz-info > h3 {
@@ -881,7 +1126,7 @@ a.no-underline:hover {
   float: right;
   padding: 20px;
   color: #ccc;
-  width: 200px;
+  width: 160px;
 }
 
 .review-portion > .review-biz-info > .your-review {
@@ -893,15 +1138,36 @@ a.no-underline:hover {
   padding: 20px;
 }
 
+.review-biz-info > .review-form > .review-words {
+  padding: 0 50px 0 0;
+}
+
+.review-biz-info > .review-form > textarea {
+  margin-top: 40px;
+}
+
+.review-biz-info > .review-form > .form-buttons {
+  display: inline-block;
+}
+
 .review-biz-info > .review-form > small {
   display: block;
   padding: 20px 20px 10px 20px;
   font-weight: italic;
 }
 
+.review-biz-info > .disclaimer {
+  padding: 0 30px;
+}
+
+.review-biz-info > .disclaimer > small {
+  font-size: 12px;
+}
 .review-sidebar {
-  float: right;
-  width: 300px;
+  width: 350px;
+  float: left;
+  padding: 0 0 0 20px;
+  border-left: 1px solid #ccc;
 }
 
 .review-sidebar > h4 {
@@ -910,7 +1176,7 @@ a.no-underline:hover {
 }
 
 .review-sidebar > .reviews > li > .review-info > .review-content {
-  width: 300px;
+  width: 200px;
 }
 
 /* --- BUSINESS && REVIEW DELETE CONFIRMATION --- */
@@ -1069,6 +1335,7 @@ a.no-underline:hover {
 }
 
 .biz-listing > .biz-review {
+  margin-top: 20px;
   margin-left: 130px;
 }
 

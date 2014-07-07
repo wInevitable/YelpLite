@@ -1,50 +1,46 @@
-<h2>Your Public Profile</h2>
-<p>So who are you, then? Tell the rest of YelpLite about your pretty little self.</p>
+<section class="user-edit-page">
+  <h2>Your Public Profile</h2>
+  <p class="phrase">
+    So who are you, then? Tell the rest of YelpLite about your self.
+  </p>
 
-<form class="user-edit" action="<%= user_url @user %>" method="post" enctype="multipart/form-data">
-  <input type="hidden" name="_method" value="put">
+  <form class="user-edit-form" action="<%= user_url @user %>" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="_method" value="put">
 
-  <%= form_token %>
+    <%= form_token %>
 
-  <input type="submit" value="Save Changes">
+    <input type="submit" value="Save Changes">
 
-  <p>User Image</p>
+    <div class="user-thumb">
+      <img src="<%= @user.avatar.url(:profile) %>">
+    </div>
 
-  <label for="first-name">First Name</label><br>
-  <small>This field is required.</small><br>
-  <input type="text" id="first-name" name="user[fname]" value="<%= @user.fname %>">
-  <br>
+    <label for="first-name">First Name</label>
+    <small>This field is required.</small>
+    <input type="text" id="first-name" name="user[fname]" value="<%= @user.fname %>">
 
-  <label for="last-name">Last Name</label><br>
-  <small>This field is required. Only your last initial will show on your profile.</small><br>
-  <input type="text" id="last-name" name="user[lname]" value="<%= @user.lname %>">
-  <br>
+    <label for="last-name">Last Name</label>
+    <small>This field is required. Only your last initial will show on your profile.</small>
+    <input type="text" id="last-name" name="user[lname]" value="<%= @user.lname %>">
 
-  <label for="nickname">Nickname</label><br>
-  <small>Primetime, Captain America, wInevitable</small><br>
-  <input type="text" id="nickname" name="user[nickname]" value="<%= @user.nickname %>">
-  <br>
+    <label for="nickname">Nickname</label>
+    <small>Primetime, Captain America, wInevitable</small>
+    <input type="text" id="nickname" name="user[nickname]" value="<%= @user.nickname %>">
 
-  <label for="loves">I Love...</label><br>
-  <small>Comma separated phrases (e.g. barbeque, beer, long walks on the beach)</small><br>
-  <input type="text" id="loves" name="user[things_i_love]" value="<%= @user.things_i_love %>">
-  <br>
+    <label for="loves">I Love...</label>
+    <small>Comma separated phrases (e.g. barbeque, beer, long walks on the beach)</small>
+    <input type="text" id="loves" name="user[things_i_love]" value="<%= @user.things_i_love %>">
 
-  <label for="hometown">Hometown</label><br>
-  <small>Baltimore, MD</small><br>
-  <input type="text" id="hometown" name="user[hometown]" value="<%= @user.hometown %>">
-  <br>
+    <label for="hometown">Hometown</label>
+    <small>Baltimore, MD</small>
+    <input type="text" id="hometown" name="user[hometown]" value="<%= @user.hometown %>">
 
-  <label for="photo">Photo</label><br>
-  <input type="file" id="photo" name="user[avatar]">
+    <label for="photo">Photo</label>
+    <input type="file" id="photo" name="user[avatar]">
 
-  <input type="submit" value="Save Changes">
-  <a href="<%= user_url @user %>">Cancel</a>
-</form>
-
-
-
-
-
-
-
+    <div class="user-form-buttons">
+      <input type="submit" value="Save Changes">
+      <a class="cancel" href="<%= user_url @user %>">Cancel</a>
+    </div>
+  </form>
+</section>

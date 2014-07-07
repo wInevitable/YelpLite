@@ -59,7 +59,9 @@
       </div>
     </form>
 
+    <div class="disclaimer">
       <small>* You can always edit or remove reviews later.</small>
+    </div>
   </section>
 </section>
 
@@ -96,7 +98,7 @@
             </div>
 
             <div class="review-content">
-              <%= review.content %>
+              <%= review.content[0..100] %>...
             </div>
           </div>
         </li>

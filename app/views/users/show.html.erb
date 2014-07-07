@@ -12,7 +12,7 @@
     <% end  %>
   </section>
 
-  <section class="user-info">
+  <section class="user-info group">
     <div class="user-thumb">
       <img src="<%= @user.avatar.url(:profile) %>">
     </div>
@@ -23,26 +23,41 @@
       <% if @user != current_user %>
         <li>&hearts;<a href="#">Follow this Reviewer</a></li>
       <% end %>
-      <li>Location<br>
-        <%= @user.location %>
+      <li>Location
+        <ul>
+          <li><%= @user.location %></li>
+        </ul>
       </li>
-      <li>Yelping Since<br>
-        <%= Date::MONTHNAMES[@user.created_at.strftime("%m").to_i] + " " +
+      <li>Yelping Since
+        <ul>
+          <li><%= Date::MONTHNAMES[@user.created_at.strftime("%m").to_i] + " " +
             @user.created_at.strftime("%Y") %>
+          </li>
+        </ul>
       </li>
-      <li>Things I Love<br>
-        <% if @user != current_user %>
-          <%= @user.things_i_love || "They haven't told us yet ..." %>
-        <% else %>
-          <%= @user.things_i_love || "You haven't told us yet ... do tell!" %>
-        <% end %>
+      <li>Things I Love
+        <ul>
+          <% if @user != current_user %>
+            <li>
+              <%= @user.things_i_love || "They haven't told us yet ..." %>
+            </li>
+          <% else %>
+            <li>
+              <%= @user.things_i_love || "You haven't told us yet ... do tell!" %>
+            </li>
+          <% end %>
+        </ul>
       </li>
       <% if @user.hometown %>
-        <li>My Hometown<br>
-          <%= @user.hometown %>
+        <li>My Hometown
+          <ul>
+            <li><%= @user.hometown %></li>
+          </ul>
         </li>
       <% end %>
-      <li><a href="<%= edit_user_url @user %>">Update Your Profile</a></li>
+      <li>
+        <a href="<%= edit_user_url @user %>">Update Your Profile</a>
+      </li>
     </ul>
   </section>
 

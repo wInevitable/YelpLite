@@ -103,7 +103,7 @@ FactoryGirl.define do
     response = client.search(request)
 
     rating { rand(1..5) }
-    author { User.find(rand(1..25)) }
+    author { User.find(rand(2..25)) }
     business { Business.find(rand(1...2)) }
 
     content do
@@ -117,7 +117,7 @@ FactoryGirl.define do
 end
 
 FactoryGirl.create_list(:user, 25)
-FactoryGirl.create_list(:business, 1)
+FactoryGirl.create_list(:business, 5)
 FactoryGirl.create_list(:review, 25)
 User.create!(email: "demo@yelplite.com", password: "secret",
   fname: "John", lname: "Doe")

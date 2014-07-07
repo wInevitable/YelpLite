@@ -32,9 +32,13 @@
         <% end %>
        </div>
 
-      <div class="review-date"><%= review.created_at.strftime('%m/%d/%Y') %></div>
+      <div class="review-date">
+        <%= review.created_at.strftime('%m/%d/%Y') %>
+      </div>
 
-      <div class="review-content"><%= review.content %></div>
+      <div class="review-content">
+        <%= review.content %>
+      </div>
     </div>
   </article>
 <% end %>

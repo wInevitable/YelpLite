@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   before_validation :ensure_session_token
 
   has_attached_file :avatar, styles: {profile: "300x300>", thumb: "100x100>", mini: "50x50>"},
-             default_url: ActionController::Base.helpers.asset_path('default_user_image.png')
+             default_url: ActionController::Base.helpers.asset_path('images/default_user_image.png')
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   validates :email, :encrypted_password, presence: true, if: :traditional_login?

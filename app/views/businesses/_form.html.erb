@@ -7,56 +7,47 @@
 
   <%= form_token %>
 
-  <label for="name">Business Name</label>
-  <br>
+  <label for="name">Business Name<small>*</small></label>
   <input type="text" name="business[name]" value="<%= business.name %>" id="name" class="map-info">
-  <br>
 
-  <label for="address">Address</label>
-  <br>
+  <label for="address">Address<small>*</small></label>
   <input type="text" name="business[address]" value="<%= business.address %>" id="address" class="map-info">
-  <br>
 
-  <label for="city_state_zip">City, State, and Zip</label>
-  <br>
+  <label for="city_state_zip">City, State, and Zip<small>*</small></label>
   <input type="text" name="business[city_state_zip]" value="<%= business.city_state_zip %>" id="city_state_zip" class="map-info">
-  <br>
 
   <label for="country">Country</label>
-  <br>
   <input type="text" name="business[country]" value="<%= business.country %>" id="country" class="map-info">
-  <br>
 
   <label for="phone_number">Phone Number</label>
-  <br>
   <input type="text" name="business[phone_number]" value="<%= business.phone_number %>" id="phone_number">
-  <br>
 
   <label for="website_url">Website Address</label>
-  <br>
   <input type="text" name="business[website_url]" value="<%= business.website_url %>" id="website_url">
-  <br>
 
-  <input type="checkbox" name="business[recent]" id="recent" value="true" <%= "checked" if business.recent == true %>>
-  <label for"recent">This business recently opened or is opening soon.</label>
-  <br>
+  <input type="checkbox" class="checker" name="business[recent]" id="recent" value="true" <%= "checked" if business.recent == true %>>
+  <label class="checker-label" for"recent">This business recently opened or is opening soon.</label>
 
-  <label for="photo">Storefront Photo</label><br>
-  <input type="file" id="photo" name="business[avatar]">
-  <br>
+  <label for="photo">Storefront Photo</label>
+  <input type="file" class="biz-file"id="photo" name="business[avatar]">
 
   <% if !business.persisted? %>
-  <input type="checkbox" name="business[review]" id="review" value="true" <%= "checked" %>>
-  <label for"review">Write a review for this business.</label>
-  <br>
+  <input type="checkbox" class="checker" name="business[review]" id="review" value="true" <%= "checked" %>>
+  <label class="checker-label" for"review">Write a review for this business.</label>
 
-  <div class="biz-review">
+  <div class="next-review">
+    <div class="review-form">
     <%= render partial: 'shared/insert_review', locals: { review: Review.new, business: business} %>
+    </div>
   </div>
   <% end %>
 
-  <input type="submit" value="<%= verb %> Business">
-  <%= link_to 'Cancel', :back %>
+  <div class="biz-bottom">
+    <div class="biz-form-buttons">
+      <input type="submit" class="submit-biz" value="<%= verb %> Business">
+      <%= link_to 'Cancel', :back, class: "cancel" %>
+    </div>
+  </div>
 </form>
 
 <div id="map" class="map"></div>

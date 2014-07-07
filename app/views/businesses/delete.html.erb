@@ -1,6 +1,14 @@
-<h3>Confirm Removal</h3>
+<section class="delete-confirm">
+  <h3>Confirm Removal</h3>
 
-<p>Are you sure you want to delete <%= @business.name %> from <%= @business.created_at.strftime('%m/%d/%Y') %> in <%= @business.city_state_zip.split(",")[0] %>?</p>
+  <p>Are you sure you want to delete
+    <a href="<%= business_url @business %>">
+      <%= @business.name %>
+    </a> from <%= @business.created_at.strftime('%m/%d/%Y') %> in <%= @business.city_state_zip.split(",")[0] %>?
+  </p>
 
-<%= button_to "Confirm", business_url(@business), method: :delete %>
-<%= link_to "Cancel", :back %>
+  <div class="delete-remove">
+    <%= button_to "Confirm", business_url(@business), method: :delete, class: "delete-remove-button" %>
+  </div>
+  <%= link_to "Cancel", :back, class: "cancel" %>
+</section>

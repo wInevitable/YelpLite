@@ -8,18 +8,42 @@
           <img src="<%= review.author.avatar.url(:mini) %>">
         </a>
       </div>
-      <div class="review-headline"><a href="<%= user_url review.author %>"><%= user_name(review.author)  %></a></div>
-      <div class="reviewer-location"><%= review.author.location %></div>
 
-      <div class="review-rating"><%= review.rating %></div>
-      <div class="review-date"><%= review.created_at.strftime("%m/%d/%Y") %></div>
-      <div class="review-content"><%= review.content %></div>
+      <div class="review-info">
+        <% if review.author == current_user %>
+          <%= render partial: 'reviews/delete', locals: { review: review } %>
+          <%= render partial: 'reviews/edit', locals: { review: review } %>
+        <% end %>
 
-      <% if review.author == current_user %>
-        <%= render partial: 'reviews/edit', locals: { review: review } %>
-        <%= render partial: 'reviews/delete', locals: { review: review } %>
-      <% end %>
+        <div class="review-headline">
+          <a href="<%= user_url review.author %>">
+            <%= user_name(review.author)  %>
+          </a>
+        </div>
 
+        <div class="reviewer-location">
+          <% if review.author.full_address %>
+            <%= review.author.full_address.split(" ")[-1] %>
+          <% end %>
+        </div>
+
+        <div class="review-rating">
+          <% (review.rating.to_i).times do %>
+            ★
+          <% end %>
+          <% (5 - review.rating.to_i).times do %>
+            &#9734
+          <% end %>
+        </div>
+
+        <div class="review-date">
+          <%= review.created_at.strftime("%m/%d/%Y") %>
+        </div>
+
+        <div class="review-content">
+          <%= review.content %>
+        </div>
+      </div>
     </article>
     <br>
   <% end %>

@@ -1,63 +1,81 @@
-<h2><%= @business.name %></h2>
+<section class="biz-show">
+  <h2><%= @business.name %></h2>
 
-<div class="biz-ratings">
-  <%= @business.average_rating %>
-  <%= @business.num_reviews + " reviews"  %>
-</div>
+  <div class ="biz-header group">
+    <div class="biz-thumb">
+      <img src="<%= @business.avatar.url(:profile) %>">
+    </div>
 
-<ul class="biz-buttons">
-  <li><%= button_to "Write a Review", new_business_review_url(@business), class: "write-review", method: :get %></li>
+    <ul class="biz-buttons">
+      <li class="biz-review-button">
+        <%= button_to "Write a Review", new_business_review_url(@business), class: "write-review", method: :get, class: "biz-review-button" %>
+      </li>
 
-  <li><%= button_to "Add Photo", root_url, class: "biz-button" %></li>
-  <li><%= button_to "Share", root_url, class: "biz-button" %></li>
-  <li><%= button_to "Bookmark", root_url, class: "biz-button" %></li>
+      <li><%= button_to "Add Photo", root_url, class: "biz-button" %></li>
+      <li><%= button_to "Share", root_url, class: "biz-button" %></li>
+      <li><%= button_to "Bookmark", root_url, class: "biz-button" %></li>
+    </ul>
 
-  <% if @business.owner == current_user %>
-    <li><%= button_to "Remove Business", delete_business_url(@business), class: "biz-button", method: :get %></li>
-  <% end %>
-</ul>
+    <% if @business.owner == current_user %>
+      <ul class="biz-owner-buttons">
+        <li>
+          <%= button_to "Remove Business", delete_business_url(@business), class: "biz-button", method: :get %>
+        </li>
+        <li>
+          <a class="no-underline" href="<%= edit_business_url @business %>">Edit</a>
+        </li>
+      </ul>
+    <% end %>
 
-<div id='map' class="map"></div>
+    <div id='map' class="map"></div>
 
-<div class="biz-thumb">
-  <% if @business.avatar %>
-    <img src="<%= @business.avatar.url(:profile) %>">
-  <% end %>
-</div>
+    <div class="biz-ratings">
+      <div class="biz-rating">
+        <% (@business.average_rating.to_i).times do %>
+          ★
+        <% end %>
+        <% (5 - @business.average_rating.to_i).times do %>
+          &#9734
+        <% end %>
+      </div>
+      <div class="biz-num-reviews">
+        <%= @business.num_reviews + " reviews"  %>
+      </div>
+    </div>
+  </div>
 
-<section class="business-reviews">
-  <%= render partial: 'reviews/business_reviews', locals: { business: @business } %>
+  <section class="business-reviews">
+    <%= render partial: 'reviews/business_reviews', locals: { business: @business } %>
+  </section>
+
+  <script type="text/javascript">
+    var geocoder = L.mapbox.geocoder('winevitable.imnbaln0');
+    var map = L.mapbox.map('map', 'winevitable.imnbaln0');
+
+    var showMap = function(err, data) {
+      if (data.latlng) {
+        map.setView([data.latlng[0], data.latlng[1]], 16);
+
+        L.mapbox.featureLayer({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [
+              data.latlng[1],
+              data.latlng[0]
+            ]
+          },
+          properties: {
+            title: '<%= @business.name %>',
+            description: '<%= @business.address %>',
+            'marker-size': 'medium',
+            'marker-color': '#f44',
+            'marker-symbol': 'star'
+          }
+        }).addTo(map);
+      }
+    };
+
+    geocoder.query('<%= @business.full_address %>', showMap);
+  </script>
 </section>
-
-<a href="<%= edit_business_url @business %>">Edit</a>
-
-<script type="text/javascript">
-  var geocoder = L.mapbox.geocoder('winevitable.imnbaln0');
-  var map = L.mapbox.map('map', 'winevitable.imnbaln0');
-
-  var showMap = function(err, data) {
-    if (data.latlng) {
-      map.setView([data.latlng[0], data.latlng[1]], 16);
-
-      L.mapbox.featureLayer({
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates: [
-            data.latlng[1],
-            data.latlng[0]
-          ]
-        },
-        properties: {
-          title: '<%= @business.name %>',
-          description: '<%= @business.address %>',
-          'marker-size': 'medium',
-          'marker-color': '#f44',
-          'marker-symbol': 'star'
-        }
-      }).addTo(map);
-    }
-  };
-
-  geocoder.query('<%= @business.full_address %>', showMap);
-</script>

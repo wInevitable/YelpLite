@@ -183,13 +183,11 @@ a.no-underline:hover {
 }
 
 .search-form > .post-form-submit > input[type="submit"] {
-  padding: 3px;
   cursor: pointer;
   width: 20px;
   height: 20px;
-  margin-top: 10px;
+  margin-top: 15px;
   border-radius: 5px;
-  border: 3px solid #333;
   background: url('search.png') no-repeat scroll 0 0;
   background-color: #fff;
   background-size: cover;
@@ -370,17 +368,17 @@ a.no-underline:hover {
   height: 50px;
 }
 
-.next-review > .review-form {
+.review-form {
   padding: 0 0 0 100px;
   margin-bottom: 25px;
   position: relative;
 }
 
-.next-review > .review-form > .biz-name {
+.review-form > .biz-name {
   margin-bottom: 5px;
 }
 
-.next-review > .review-form > .review-box {
+.review-form > .review-box {
   display: inline-block;
   float: left;
   background: transparent;
@@ -388,15 +386,15 @@ a.no-underline:hover {
   padding: 0 10px;
 }
 
-.next-review > .review-form > .color {
+.review-form > .color {
   background: #FFFFBE;
   color: #003264;
 }
 
-.next-review > .review-form > .review-box:hover + label {
+.review-form > .review-box:hover + label {
 }
 
-.next-review > .review-form > .review-words {
+.review-form > .review-words {
   display: none;
   float: right;
   padding: 0 350px 0 0;
@@ -405,15 +403,15 @@ a.no-underline:hover {
   font-style: italic;
 }
 
-.next-review > .review-form > .review-show-words {
+.review-form > .review-show-words {
   display: inline;
 }
 
-.next_review > .review-form > input[type="radio"] {
+.review-form > input[type="radio"] {
   display: none;
 }
 
-.next-review > .review-form > textarea {
+.review-form > textarea {
   width: 400px;
   max-width: 400px;
   height: 40px;
@@ -421,33 +419,33 @@ a.no-underline:hover {
   display: block;
   margin-top: 10px;
   margin-bottom: 10px;
-  padding: 5px;
+  padding: 5px 0;
 }
 
-.next-review > .review-form > textarea:hover {
+.review-form > textarea:hover {
   border: 1px solid #003264;
 }
 
-.next-review > .review-form > .show {
+.review-form > .show {
   height: 100px;
   max-height: 100px;
 }
 
-.next-review > .review-form > .show + a {
+.review-form > .show + a {
  display: inline-block;
 }
 
-.next-review > .review-form > .show +  .form-buttons {
+.review-form > .show +  .form-buttons {
  display: inline-block;
  margin-right: 320px;
 }
 
-.next-review > .review-form > .form-buttons {
+.review-form > .form-buttons {
   display: none;
   float: right;
 }
 
-.next-review > .review-form > .form-buttons > input[type="submit"] {
+.review-form > .form-buttons > input[type="submit"] {
   cursor: pointer;
   float: left;
   background: #003264;
@@ -459,7 +457,7 @@ a.no-underline:hover {
   border-radius: 5px;
 }
 
-.next-review > .review-form > .form-buttons > a {
+.review-form > .form-buttons > a {
   float: left;
   margin: 5px 10px;
 }
@@ -603,22 +601,11 @@ a.no-underline:hover {
 
 /* --- BUSINESS SHOW --- */
 
-.map {
-  width: 200px;
-  height: 200px;
-}
-
-
-/* --- REVIEW DELETE CONFIRMATION --- */
-
-.review-confirm {
-  width: 600px;
-  margin: auto;
-  margin-bottom: 20px;
+.biz-show {
   padding: 20px;
 }
 
-.review-confirm > h3 {
+.biz-show > h2 {
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   padding: 20px;
@@ -627,7 +614,227 @@ a.no-underline:hover {
   font-weight: bold;
 }
 
-.review-confirm > .review-remove {
+.biz-show > .biz-header {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.biz-show > .biz-header > .biz-thumb {
+  float: left;
+  padding: 0 20px;
+  width: 200px;
+  height: 200px;
+}
+
+.biz-show > .biz-header > .biz-thumb > img {
+  width: 200px;
+  height: 200px;
+}
+
+.biz-show > .biz-header > .biz-buttons {
+  float: right;
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.biz-show > .biz-header > .biz-buttons > li {
+  cursor: pointer;
+  float: left;
+  padding: 5px 10px;
+  font-weight: bold;
+  font-size: 12px;
+  color: #fff;
+  background: #003264;
+  border-radius: 5px;
+  border: 1px solid #c0c0c0;
+}
+
+.biz-show > .biz-header > .biz-buttons > li:hover {
+  background: #333;
+}
+
+.biz-show > .biz-header > .biz-buttons > .biz-review-button {
+  color: #FFFFBE;
+  padding: 10px 20px;
+  margin-right: 10px;
+}
+
+.biz-show > .biz-header > .biz-buttons > li .biz-button {
+  cursor: pointer;
+}
+
+.biz-show > .biz-header > .biz-buttons > li .biz-review-button {
+  cursor: pointer;
+}
+
+.biz-show > .biz-header > .biz-owner-buttons {
+  float: right;
+  padding: 0 20px;
+  margin-bottom: 20px;
+  margin-left: 100px;
+}
+
+.biz-show > .biz-header > .biz-owner-buttons > li {
+  cursor: pointer;
+  float: left;
+  padding: 5px 10px;
+  margin: 0 5px;
+  font-weight: bold;
+  font-size: 12px;
+  color: #003264;
+  background: #ccc;
+  border-radius: 5px;
+  border: 1px solid #003264;
+}
+
+.biz-show > .biz-header > .biz-owner-buttons > li:hover {
+  background: #fff;
+}
+
+.biz-show > .biz-header > .biz-owner-buttons > li .biz-button {
+  cursor: pointer;
+}
+
+.biz-show > .biz-header > .biz-owner-buttons > li > a {
+  color: #003264;
+}
+
+.biz-show > .biz-header > .map {
+  float: right;
+  width: 200px;
+  height: 200px;
+  margin-right: 35px;
+  border: 5px solid #003264;
+}
+
+.biz-show > .biz-header > .biz-ratings {
+  position: absolute;
+  top: 200px;
+  left: 20px;
+  padding: 30px 0px;
+}
+
+.biz-show > .biz-header > .biz-ratings > .biz-rating {
+  float: left;
+}
+
+.biz-show > .biz-header > .biz-ratings > .biz-num-reviews {
+  float: left;
+  padding: 0 0 0 10px;
+}
+
+.biz-show > .business-reviews > .review {
+  padding: 40px 20px 0 20px;
+}
+
+.biz-show > .business-reviews > h4 {
+  border-top: 1px solid #ccc;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.biz-show > .business-reviews .reviewer-location {
+  font-size: 12px;
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+.biz-show > .business-reviews > p {
+  border-top: 1px solid #ccc;
+  padding: 20px;
+}
+
+/* --- BUSINESS FORM PAGE --- */
+
+.business-form {
+  padding: 20px;
+}
+
+.business-form > h2 {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.business-form > small {
+  display: block;
+  padding: 20px 20px 10px 20px;
+  font-weight: italic;
+}
+
+.business-form > .new-biz-form {
+  padding: 0px 20px 20px 20px;
+}
+
+.business-form > .new-biz-form > label {
+  cursor: pointer;
+  display: block;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.business-form > .new-biz-form > input {
+  cursor: pointer;
+}
+
+.business-form > .new-biz-form > input[type="text"] {
+  display: block;
+  border: 1px solid #ccc;
+  height: 20px;
+  width: 400px;
+  margin-bottom: 20px;
+  padding: 5px;
+}
+
+.business-form > .new-biz-form > input[type="text"]:hover {
+  border: 1px solid #003264;
+}
+
+.business-form > .new-biz-form > .checker {
+  cursor: pointer;
+  display: inline-block;
+  float: left;
+  margin-right: 20px;
+}
+
+.business-form > .new-biz-form > .checker-label {
+  cursor: pointer;
+  width: 350px;
+  margin-bottom: 20px;
+  padding: 0 0 0 40px;
+}
+
+.business-form > .new-biz-form > input[type="file"] {
+  display: block;
+}
+
+.business-form > .new-biz-form > .biz-file {
+  margin-bottom: 20px;
+}
+
+.business-form > .new-biz-form > .next-review {
+  margin-left: -100px;
+  padding: 0;
+}
+
+.business-form > .new-biz-form > .biz-bottom {
+  width: 400px;
+  float: left;
+}
+
+.business-form > .new-biz-form > .biz-bottom > .biz-form-buttons {
+  float: right;
+}
+
+.business-form > .new-biz-form > .biz-bottom > .biz-form-buttons > .cancel {
+  padding: 10px;
+}
+
+.business-form > .new-biz-form > .biz-bottom  > .biz-form-buttons > .submit-biz {
   cursor: pointer;
   float: right;
   color: #fff;
@@ -638,19 +845,116 @@ a.no-underline:hover {
   border-radius: 5px;
 }
 
-.review-confirm > .review-remove:hover {
+.business-form > .new-biz-form > .biz-bottom  > .biz-form-buttons > .submit-biz:hover {
   background: #333;
 }
 
-.review-confirm > p {
+/* --- REVIEW FORM --- */
+
+.review-portion {
+  width: 500px;
+  float: left;
+  padding: 0 20px 0 0;
+  border-right: 1px solid #ccc;
+}
+
+.review-portion > .review-biz-info > h3 {
+  border-bottom: 1px solid #ccc;
+  padding: 0 20px 20px 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.review-portion > .review-biz-info > .review-biz-header > .biz-thumb {
+  float: left;
+  padding: 20px;
+  width: 150px;
+  height: 150px;
+}
+
+.review-portion > .review-biz-info > .review-biz-header > .biz-thumb > img {
+  width: 150px;
+  height: 150px;
+}
+
+.review-biz-info > .review-biz-header > .business-address {
+  float: right;
+  padding: 20px;
+  color: #ccc;
+  width: 200px;
+}
+
+.review-portion > .review-biz-info > .your-review {
+  border-top: 1px solid #ccc;
   padding: 20px;
 }
 
-.review-confirm > .review-remove .review-remove-button {
+.review-biz-info > .review-form {
+  padding: 20px;
+}
+
+.review-biz-info > .review-form > small {
+  display: block;
+  padding: 20px 20px 10px 20px;
+  font-weight: italic;
+}
+
+.review-sidebar {
+  float: right;
+  width: 300px;
+}
+
+.review-sidebar > h4 {
+  padding: 0 20px 20px 20px;
+  font-weight: bold;
+}
+
+.review-sidebar > .reviews > li > .review-info > .review-content {
+  width: 300px;
+}
+
+/* --- BUSINESS && REVIEW DELETE CONFIRMATION --- */
+
+.delete-confirm {
+  width: 600px;
+  margin: auto;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.delete-confirm > h3 {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.delete-confirm > .delete-remove {
+  cursor: pointer;
+  float: right;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  background: #003264;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.delete-confirm > .delete-remove:hover {
+  background: #333;
+}
+
+.delete-confirm > p {
+  padding: 20px;
+}
+
+.delete-confirm > .delete-remove .delete-remove-button {
   cursor: pointer;
 }
 
-.review-confirm > .cancel {
+.delete-confirm > .cancel {
   padding: 5px 20px;
   float: right;
 }
@@ -658,7 +962,6 @@ a.no-underline:hover {
 /* --- SEARCH PAGE --- */
 
 .search {
-
 }
 
 .search > .search-header {

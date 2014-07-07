@@ -1,48 +1,66 @@
-<section class="review">
-  <h3><%= @business.name %></h3>
+<section class="review-portion">
+  <section class="review-biz-info">
+    <h3><%= @business.name %></h3>
 
-  <div class="business-address">
-    <p><%= @business.address %></p>
-    <p><%= @business.city_state_zip %></p>
-  </div>
+    <div class="review-biz-header group">
+      <div class="biz-thumb">
+        <img src="<%= @business.avatar.url(:profile) %>">
+      </div>
 
-<% if @review.persisted? %>
-  <form action="<%= review_url @review %>" method="post">
-    <input type="hidden" name="_method" value="put">
-<% else %>
-  <form action="<%= business_reviews_url @business %>" method="post">
-<% end %>
+      <div class="business-address">
+        <p><%= @business.address.split(", ")[0] %></p>
+        <p><%= @business.city_state_zip %></p>
+      </div>
+    </div>
 
-    <%= form_token %>
+    <h3 class="your-review">Your Review</h3>
 
-    <label>Rating</label>
+  <% if @review.persisted? %>
+    <form class="review-form" action="<%= review_url @review %>" method="post">
+      <input type="hidden" name="_method" value="put">
+  <% else %>
+    <form class="review-form" action="<%= business_reviews_url @business %>" method="post">
+  <% end %>
 
-    <input type="radio" name="review[rating]" id="rating-1" value="1" <%= "checked" if @review.rating == 1 %>>
+      <%= form_token %>
 
-    <input type="radio" name="review[rating]" id="rating-2" value="2" <%= "checked" if @review.rating == 2 %>>
+      <p class="review-words">Call the FSIS!</p>
+      <label for="1" class="review-box">☆</label>
+      <p class="review-words">Eh, I've had better.</p>
+      <label for="2" class="review-box">☆</label>
+      <p class="review-words">Not the worst...</p>
+      <label for="3" class="review-box">☆</label>
+      <p class="review-words">New favorite place!</p>
+      <label for="4" class="review-box">☆</label>
+      <p class="review-words">Mi Amore!</p>
+      <label for="5" class="review-box">☆</label>
 
-    <input type="radio" name="review[rating]" id="rating-3" value="3" <%= "checked" if @review.rating == 3 %>>
+      <input type="radio" class="rating-radio" name="review[rating]" id="1" value="1" <%= "checked" if @review.rating == 1 %>>
 
-    <input type="radio" name="review[rating]" id="rating-4" value="4" <%= "checked" if @review.rating == 4 %>>
+      <input type="radio" class="rating-radio" name="review[rating]" id="2" value="2" <%= "checked" if @review.rating == 2 %>>
 
-    <input type="radio" name="review[rating]" id="rating-5" value="5" <%= "checked" if @review.rating == 5 %>>
+      <input type="radio" class="rating-radio" name="review[rating]" id="3" value="3" <%= "checked" if @review.rating == 3 %>>
 
-    <label for="rating-1">Cockroaches, Rats, and Things...</label>
-    <label for="rating-2">Eh, I've had better.</label>
-    <label for="rating-3">Okay.</label>
-    <label for="rating-4">New favorite place!</label>
-    <label for="rating-5">Oh baby, that was delicious!</label>
+      <input type="radio" class="rating-radio" name="review[rating]" id="4" value="4" <%= "checked" if @review.rating == 4 %>>
 
-    <br>
-    <label for="review-content">Your review</label>
-    <textarea id="review-content" name="review[content]"><%= @review.content %></textarea>
-    <a href="#" class="guidelines-link">Read our review guidelines</a>
+      <input type="radio" class="rating-radio" name="review[rating]" id="5" value="5" <%= "checked" if @review.rating == 5 %>>
 
-    <%= link_to "Cancel", :back %>
-    <input type="submit" value="Post">
-  </form>
+      <textarea id="review-content" name="review[content]">
+        <%= @review.content %>
+      </textarea>
 
-    <small>* You can always edit or remove reviews later.</small>
+      <a href="#" class="guidelines-link no-underline"><small>
+        Read our review guidelines
+      </small></a>
+
+      <div class="form-buttons group">
+        <%= link_to "Cancel", :back, class: "cancel" %>
+        <input type="submit" class="post-submit" value="Post">
+      </div>
+    </form>
+
+      <small>* You can always edit or remove reviews later.</small>
+  </section>
 </section>
 
 <section class="review-sidebar">
@@ -51,18 +69,37 @@
   <ul class="reviews">
     <% if @business.reviews.length > 0 %>
       <% reviews(@business, 5).each do |review| %>
-        <div class="user-thumb">
-          <% if review.author.avatar %>
-             <img src="<%= review.author.avatar.url(:thumb) %>">
-             <img src="<%= review.author.avatar.url %>">
-           <% end %>
-        </div>
-        <ul>
-          <li><a href="<%=  user_url review.author %>"><%= review.author.fname + " " + review.author.lname[0] + "." %></a></li>
-          <li><%= review.rating %></li>
-          <li><%= review.created_at.strftime("%m/%d/%Y") %></li>
-          <li><%= review.content %></li>
-        </ul>
+        <li class="review">
+          <div class="user-thumb">
+            <a href="<%= user_url review.author %>">
+             <img src="<%= review.author.avatar.url(:mini) %>">
+            </a>
+          </div>
+          <div class="review-info">
+            <div class="review-headline">
+              <a href="<%=  user_url review.author %>">
+                <%= review.author.fname + " " + review.author.lname[0] + "." %>
+              </a>
+            </div>
+
+            <div class="review-rating">★
+              <% (review.rating.to_i - 1).times do %>
+                ★
+              <% end %>
+              <% (5 - review.rating.to_i).times do %>
+                &#9734
+              <% end %>
+            </div>
+
+            <div class="review-date">
+              <%= review.created_at.strftime('%m/%d/%Y') %>
+            </div>
+
+            <div class="review-content">
+              <%= review.content %>
+            </div>
+          </div>
+        </li>
       <% end %>
     <% end %>
   </ul>

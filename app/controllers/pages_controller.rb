@@ -7,27 +7,27 @@ class PagesController < ApplicationController
     @business = Business.find(:all, order: "RANDOM()", limit: 1).first #order by
   end
 
-  def yelp
-    client = Yelp::Client.new
-    fake_city = 'San Francisco'
-
-    request = Location.new(
-                term: 'seafood',
-                city: fake_city
-              )
-    @response = client.search(request)
-    fail
-  end
-
-  def flicker
-    flickr = Flickr.new(
-      api_key: ENV['FLICKR_KEY'],
-      shared_secret: ENV['FLICKR_SECRET'],
-      tags: 'people'
-    )
-    @photos = flickr.photos
-    fail
-  end
+  # def yelp
+  #   client = Yelp::Client.new
+  #   fake_city = 'San Francisco'
+  #
+  #   request = Location.new(
+  #               term: 'seafood',
+  #               city: fake_city
+  #             )
+  #   @response = client.search(request)
+  #   fail
+  # end
+  #
+  # def flicker
+  #   flickr = Flickr.new(
+  #     api_key: ENV['FLICKR_KEY'],
+  #     shared_secret: ENV['FLICKR_SECRET'],
+  #     tags: 'people'
+  #   )
+  #   @photos = flickr.photos
+  #   fail
+  # end
 
   def search
 

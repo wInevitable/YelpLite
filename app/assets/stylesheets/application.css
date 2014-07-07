@@ -28,7 +28,7 @@ form, label {
 
 body {
   font-family: sans-serif;
-  background: #eee;
+  background: rgb(51, 204, 255);
   color: #333;
   font-size: 16px;
   line-height: normal;
@@ -95,7 +95,8 @@ a.no-underline:hover {
 /* --- HEADER --- */
 
 .header {
-  background: #777;
+  background-image: url('header_stars.png');
+  background-color: rgb(51,102,255);
   margin-top: 1px;
 }
 
@@ -134,6 +135,10 @@ a.no-underline:hover {
   float: left;
   background: #fff;
   margin: 0 15px 0 0;
+}
+
+.search-form > .post-form-input:hover {
+  border: 1px solid #333;
 }
 
 .search-form > .post-form-input > label {

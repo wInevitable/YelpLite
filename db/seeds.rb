@@ -13,17 +13,35 @@ flickr = Flickr.new(
   shared_secret: ENV['FLICKR_SECRET'],
   tags: 'people'
 )
-@photos = flickr.photos
+$photos = flickr.photos
 
 client = Yelp::Client.new
 include Yelp::V2::Search::Request
 
+$cities = ['New York City', 'San Francisco', 'Houston', 'Philadelphia',
+           'Baltimore', 'Berlin', 'Paris', 'Dallas', 'Los Angeles',
+           'Chicago', 'Raleigh', 'Washinton D.C.', 'Seattle', 'San Diego',
+           'San Jose', 'Palo Alto', 'Amsterdam', 'Atlanta', 'Boston', 'Toronto']
+
+$terms = ['food', 'seafood', 'dessert', 'thai', 'chinese', 'italian',
+         'mexican', 'spicy', 'polish', 'middle eastern', 'pizza', 'american',
+         'automotive', 'nightlife', 'shopping']
+
 FactoryGirl.define do
   factory :user do
-   # avatar { photos.sample.url(:original) }
+    avatar { $photos.shift.source }
 
     email do
       Faker::Internet.safe_email
+      # cond = false
+      # until cond
+      #   cond = true
+      #   e = Faker::Internet.safe_email
+      #   if User.where("email = ?", e)
+      #     cond = false
+      #   end
+      # end
+      # return e
     end
 
     password { Faker::Internet.password(6) }
@@ -42,16 +60,9 @@ FactoryGirl.define do
 
   factory :business do
     #grab business from Yelp
-    cities = ['New York City', 'San Francisco', 'London', 'Philadelphia',
-               'Baltimore', 'Berlin', 'Paris', 'Dallas', 'Los Angeles',
-               'Chicago', 'Raleigh', 'Washinton D.C.', 'Seattle', 'San Diego']
-
-    terms = ['food', 'seafood', 'dessert', 'thai', 'chinese', 'italian',
-             'mexican', 'spicy', 'polish', 'middle eastern']
-
     request = Location.new(
-                term: terms.sample,
-                city: cities.sample
+                term: $terms.sample,
+                city: $cities.sample
               )
     response = client.search(request)
     business = response["businesses"].sample
@@ -84,17 +95,10 @@ FactoryGirl.define do
   end
 
   factory :review do
-    #grab business from Yelp
-    cities = ['New York City', 'San Francisco', 'London', 'Philadelphia',
-               'Baltimore', 'Berlin', 'Paris', 'Dallas', 'Los Angeles',
-               'Chicago', 'Raleigh', 'Washinton D.C.', 'Seattle', 'San Diego']
-
-    terms = ['food', 'seafood', 'dessert', 'thai', 'chinese', 'italian',
-             'mexican', 'spicy', 'polish', 'middle eastern']
-
+    #grab review from Yelp
     request = Location.new(
-                term: terms.sample,
-                city: cities.sample
+                term: $terms.sample,
+                city: $cities.sample
               )
     response = client.search(request)
 

@@ -34,8 +34,8 @@ YelpLite::Application.routes.draw do
     end
   end
 
-  get '/flickr', to: 'pages#flicker'
-  get '/yelp', to: 'pages#yelp'
+  # get '/flickr', to: 'pages#flicker'
+  # get '/yelp', to: 'pages#yelp'
   get '/root', to: 'pages#root'
   get '/search', to: 'pages#search'
 

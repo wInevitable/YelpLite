@@ -116,8 +116,7 @@ FactoryGirl.define do
   end
 end
 
-# FactoryGirl.create_list(:user, 25)
-# FactoryGirl.create_list(:business, 5)
+
 FactoryGirl.create_list(:review, 25)
 User.create!(email: "demo@yelplite.com", password: "secret",
   fname: "John", lname: "Doe")

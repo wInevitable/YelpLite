@@ -1,7 +1,9 @@
 <% Review.latest_activity.each do |review| %>
   <article class="review">
     <div class="user-thumb">
-      <img src="<%= review.author.avatar.url(:mini) %>">
+      <a href="<%= user_url review.author %>">
+        <img src="<%= review.author.avatar.url(:mini) %>">
+      </a>
     </div>
 
     <div class="review-info">
@@ -21,7 +23,14 @@
 
       <div class="time-ago"><%= time_ago(review) %></div>
 
-      <div class="review-rating"><%= review.rating %></div>
+      <div class="review-rating">★
+        <% (review.rating.to_i - 1).times do %>
+          ★
+        <% end %>
+        <% (5 - review.rating.to_i).times do %>
+          &#9734
+        <% end %>
+       </div>
 
       <div class="review-date"><%= review.created_at.strftime('%m/%d/%Y') %></div>
 

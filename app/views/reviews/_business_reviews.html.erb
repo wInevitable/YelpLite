@@ -4,9 +4,9 @@
   <% business.reviews.reverse.each do |review| %>
     <article class="review">
       <div class="user-thumb">
-          <% if review.author.avatar %>
-            <img src="<%= review.author.avatar.url(:thumb) %>">
-          <% end %>
+        <a href="<%= user_url review.author %>">
+          <img src="<%= review.author.avatar.url(:mini) %>">
+        </a>
       </div>
       <div class="review-headline"><a href="<%= user_url review.author %>"><%= user_name(review.author)  %></a></div>
       <div class="reviewer-location"><%= review.author.location %></div>

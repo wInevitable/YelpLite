@@ -23,12 +23,17 @@
           <% end %>
 
           <div class="time-ago">
-            <%= review.business.address %><br>
-            <%= review.business.city_state_zip %><br>
-            <%= review.business.country %>
+            <%= review.business.display_address %><br>
           </div>
 
-          <div class="review-rating"><%= review.rating %></div>
+          <div class="review-rating">★
+            <% (review.rating.to_i - 1).times do %>
+              ★
+            <% end %>
+            <% (5 - review.rating.to_i).times do %>
+              &#9734
+            <% end %>
+          </div>
 
           <div class="review-date">
             <%= review.created_at.strftime("%m/%d/%Y") %>

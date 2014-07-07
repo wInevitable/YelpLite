@@ -1,32 +1,42 @@
 <% if business && business.persisted? %>
 
   <form class="review-form" action="<%= business_reviews_url business %>" method="post">
-    <div class="biz-name"><a href="<%= business_url business %>"><%= business.name %></a></div>
+    <div class="biz-name">
+      <a href="<%= business_url business %>"><%= business.name %></a>
+    </div>
 
     <%= form_token %>
 
 <% end %>
+      <p class="review-words">Call the FSIS!</p>
+      <label for="1" class="review-box">☆</label>
+      <p class="review-words">Eh, I've had better.</p>
+      <label for="2" class="review-box">☆</label>
+      <p class="review-words">Not the worst...</p>
+      <label for="3" class="review-box">☆</label>
+      <p class="review-words">New favorite place!</p>
+      <label for="4" class="review-box">☆</label>
+      <p class="review-words">Mi Amore!</p>
+      <label for="5" class="review-box">☆</label>
 
-      <input type="radio" class="rating-radio" name="review[rating]" id="rating-1" value="1" <%= "checked" if review.rating == 1 %>>
-      <label for="rating-1">Cockroaches, Rats, and Things...</label>
-      
-      <input type="radio" class="rating-radio" name="review[rating]" id="rating-2" value="2" <%= "checked" if review.rating == 2 %>>
-      <label for="rating-2">Eh, I've had better.</label>
+      <input type="radio" class="rating-radio" name="review[rating]" id="1" value="1" <%= "checked" if review.rating == 1 %>>
 
-      <input type="radio" class="rating-radio" name="review[rating]" id="rating-3" value="3" <%= "checked" if review.rating == 3 %>>
-      <label for="rating-3">Okay.</label>
-      
-      <input type="radio" class="rating-radio" name="review[rating]" id="rating-4" value="4" <%= "checked" if review.rating == 4 %>>
-      <label for="rating-4">New favorite place!</label>
-      
-      <input type="radio" class="rating-radio" name="review[rating]" id="rating-5" value="5" <%= "checked" if review.rating == 5 %>>
-      <label for="rating-5">Oh baby, that was delicious!</label>
+      <input type="radio" class="rating-radio" name="review[rating]" id="2" value="2" <%= "checked" if review.rating == 2 %>>
 
-    <br>
-    <textarea id="review-content" name="review[content]"><%= review.content %></textarea>
+      <input type="radio" class="rating-radio" name="review[rating]" id="3" value="3" <%= "checked" if review.rating == 3 %>>
+
+      <input type="radio" class="rating-radio" name="review[rating]" id="4" value="4" <%= "checked" if review.rating == 4 %>>
+
+      <input type="radio" class="rating-radio" name="review[rating]" id="5" value="5" <%= "checked" if review.rating == 5 %>>
+
+    <textarea id="review-content" name="review[content]">
+      <%= review.content %>
+    </textarea>
 
 <% if business && business.persisted? %>
-    <a class="cancel" href="#">Cancel</a>
-    <input type="submit" class="post-submit" value="Post Review">
+    <div class="form-buttons group">
+      <a class="cancel" href="#">Cancel</a>
+      <input type="submit" class="post-submit" value="Post Review">
+    </div>
   </form>
 <% end %>

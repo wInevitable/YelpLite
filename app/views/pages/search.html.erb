@@ -1,69 +1,90 @@
-<div class="header">
-  <h2>
-    <strong>
-      <%= params[:query][:find] %>
-    </strong>
-    <%= params[:query][:near] %>
-  </h2>
-</div>
-
-<% if @results %>
-  <div class="search-results">
-    <% @results.each do |result| %>
-      <%= render result %>
-      <br>
+<section class="search group">
+  <div class="search-header">
+    <% if params[:query] %>
+      <h2>
+        <strong>
+          <%= params[:query][:find] %>
+        </strong>
+          <%= params[:query][:near] %>
+      </h2>
     <% end %>
   </div>
-  <div class="pagination">
-    <%= paginate @results %>
-  </div>
 
-  <div id="map" class="map"></div>
+  <% if @results.length > 0 %>
+    <div class="search-results">
+      <% @results.each do |result| %>
+        <%= render result %>
+        <br>
+      <% end %>
+    </div>
+    <div class="search-pagination">
+      <%= paginate @results %>
+    </div>
 
-  <div class="addresses">
-    <%= @addresses %>
-  </div>
-  <div class="names">
-    <%= @names %>
-  </div>
-  <script type="text/javascript">
-    var geocoder = L.mapbox.geocoder('winevitable.imnbaln0');
-    var map = L.mapbox.map('map', 'winevitable.imnbaln0');
-    var addresses = JSON.parse($("div.addresses").text());
-    var names = JSON.parse($("div.names").text());
+    <div id="map" class="map"></div>
 
-    var i = 0;
-    _.each(addresses, function(address) {
+    <div class="search-addresses">
+      <%= @addresses %>
+    </div>
+    <div class="search-names">
+      <%= @names %>
+    </div>
+    <script type="text/javascript">
+      var geocoder = L.mapbox.geocoder('winevitable.imnbaln0');
+      var map = L.mapbox.map('map', 'winevitable.imnbaln0');
+      var addresses = JSON.parse($("div.addresses").text());
+      var names = JSON.parse($("div.names").text());
 
-      var showMap = function(err, data) {
-        if (data.latlng) {
-          map.setView([data.latlng[0], data.latlng[1]], 12);
+      var i = 0;
+      _.each(addresses, function(address) {
 
-          L.mapbox.featureLayer({
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              coordinates: [
-                data.latlng[1],
-                data.latlng[0]
-              ]
-            },
-            properties: {
-              title: names[i],
-              description: address,
-              'marker-size': 'medium',
-              'marker-color': '#f44',
-              'marker-symbol': 'star'
-            }
-          }).addTo(map);
-        }
-      };
+        var showMap = function(err, data) {
+          if (data.latlng) {
+            map.setView([data.latlng[0], data.latlng[1]], 12);
 
-      geocoder.query(address, showMap);
-      i++;
-    });
-  </script>
+            L.mapbox.featureLayer({
+              type: 'Feature',
+              geometry: {
+                type: 'Point',
+                coordinates: [
+                  data.latlng[1],
+                  data.latlng[0]
+                ]
+              },
+              properties: {
+                title: names[i],
+                description: address,
+                'marker-size': 'medium',
+                'marker-color': '#f44',
+                'marker-symbol': 'star'
+              }
+            }).addTo(map);
+          }
+        };
 
-<% else %>
-  <h4>No Results Match Your Query</h4>
-<% end %>
+        geocoder.query(address, showMap);
+        i++;
+      });
+    </script>
+  <% elsif !params[:query] %>
+    <div class="search-field">
+      <form class="search-form" action="<%= search_url %>" method="get">
+        <div class="post-form-input">
+          <label for="find">Find</label>
+          <input type="text" id="find" name="query[find]">
+        </div>
+
+        <div class="post-form-input">
+          <label for="near">Near</label>
+          <input type="text" id="near" name="query[near]" value="<%=  %>">
+        </div>
+
+        <div class="post-form-submit">
+          <input type="submit" id="search-button" value="">
+        </div>
+      </form>
+    </div>
+  <% else %>
+    <h4>No Results Match Your Query</h4>
+  <% end %>
+</section>

@@ -53,9 +53,7 @@
       <div class="header-buttons">
         <% if current_user %>
           <div class="header-user-thumb">
-            <% if current_user.avatar %>
-              <img src="<%= asset_path(current_user.avatar.url(:mini)) %>">
-            <% end %>
+            <img src="<%= asset_path(current_user.avatar.url(:mini)) %>">
           </div>
           <ul class="header-dropdown">
             <li><a class="no-underline" href="<%= user_url current_user %>">About Me</a></li>
@@ -129,6 +127,39 @@
           $(this).removeClass("show");
         }
       });
+
+      $('.header-buttons').click(function(){
+        $('.header-dropdown').toggleClass('show');
+      });
+
+      $('.content').click(function(){
+        $('.header-dropdown').removeClass('show');
+      });
+
+      $('.review-box').hover(function() {
+        if(!$('.rating-radio').is(':checked')) {
+          $(this).prevAll('label').andSelf().text("★");
+          $(this).prevAll('label').andSelf().addClass('color');
+          $(this).prev('p').addClass("review-show-words");
+        }
+      }, function() {
+        if(!$('.rating-radio').is(':checked')) {
+          $(this).prevAll('label').andSelf().text("☆");
+          $(this).prevAll('label').andSelf().removeClass('color');
+          $(this).prev('p').removeClass("review-show-words");
+        }
+      });
+
+      $('.review-box').click(function() {
+        $(this).prevAll('label').andSelf().text("★");
+        $(this).prevAll('label').andSelf().addClass('color');
+        $(this).prevAll('p').removeClass("review-show-words");
+        $(this).prev('p').addClass("review-show-words");
+        $(this).nextAll('label').text("☆");
+        $(this).nextAll('label').removeClass('color');
+        $(this).nextAll('p').removeClass("review-show-words");
+      });
+
     });
   </script>
 </body>

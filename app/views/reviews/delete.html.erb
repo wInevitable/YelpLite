@@ -1,6 +1,10 @@
-<h3>Confirm Removal</h3>
+<section class="review-confirm">
+  <h3>Confirm Removal</h3>
 
-<p>Are you sure you want to delete your review from <%= @review.created_at.strftime('%m/%d/%Y') %> for <%= @review.business.name %> in <%= @review.business.city_state_zip.split(",")[0] %>?</p>
+  <p>Are you sure you want to delete your review from <%= @review.created_at.strftime('%m/%d/%Y') %> for <a href="<%= business_url @review.business %>"><%= @review.business.name %></a> in <%= @review.business.city_state_zip.split(",")[0] %>?</p>
 
-<%= button_to "Confirm", review_url(@review), method: :delete %>
-<%= link_to "Cancel", :back %>
+  <div class="review-remove">
+    <%= button_to "Confirm", review_url(@review), method: :delete, class: "review-remove-button" %>
+  </div>
+  <%= link_to "Cancel", :back, class: "cancel" %>
+</section>

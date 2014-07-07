@@ -12,6 +12,15 @@
  *= require_tree .
  */
 
+/*
+  COLOR SCHEME
+  GREY:   #C0C0C0
+  YELLOW: #FFFFBE
+  BLUE:   #003264
+  FONT: VERDANA
+  SIZE:   16PX
+*/
+
 /* --- RESET --- */
 
 html, body, header, footer, section, article, div,
@@ -27,11 +36,28 @@ form, label {
 /* --- ELEMENTS --- */
 
 body {
-  font-family: sans-serif;
-  background: rgb(51, 204, 255);
+  font-family: verdana;
+  background: #C0C0C0;
   color: #333;
   font-size: 16px;
   line-height: normal;
+  height: 100%;
+  width: 100%;
+  display: block;
+  position: relative;
+}
+
+body::after {
+  content: "";
+  background: url('fireworks_background.jpeg');
+  background-size: cover;
+  opacity: 0.05;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
 }
 
 ul {
@@ -40,6 +66,7 @@ ul {
 
 a {
   text-decoration: none;
+  color: #003264;
 }
 
 strong {
@@ -55,7 +82,7 @@ img {
 }
 
 input[type="text"], input[type="password"], input[type="submit"],
-/*input[type="checkbox"], input[type="radio"],*/  input[type="file"],
+/*input[type="checkbox"],*/ input[type="radio"],  input[type="file"],
 button,
 textarea {
   display: inline-block;
@@ -81,7 +108,9 @@ textarea {
 
 a.cancel {
   padding: 5px;
-  color: #0000FF;
+  font-size: 12px;
+  font-weight: bold;
+  color: #003264;
 }
 
 a:hover {
@@ -96,7 +125,7 @@ a.no-underline:hover {
 
 .header {
   background-image: url('header_stars.png');
-  background-color: rgb(51,102,255);
+  background-color: #003264;
   margin-top: 1px;
 }
 
@@ -116,8 +145,8 @@ a.no-underline:hover {
   display: block;
   font-size: 24px;
   font-weight: bold;
-  padding: 20px 20px;
-  color: #fff;
+  padding: 20px 20px 30px 20px;
+  color: #FFFFBE;
 }
 
 .header-middle {
@@ -128,17 +157,18 @@ a.no-underline:hover {
 }
 
 .search-form {
-  margin-top: 10px;
 }
 
 .search-form > .post-form-input {
   float: left;
   background: #fff;
-  margin: 0 15px 0 0;
+  margin: 10px 15px 0 0;
+  padding: 1px;
 }
 
 .search-form > .post-form-input:hover {
   border: 1px solid #333;
+  padding: 0;
 }
 
 .search-form > .post-form-input > label {
@@ -153,14 +183,20 @@ a.no-underline:hover {
 }
 
 .search-form > .post-form-submit > input[type="submit"] {
-  padding: 2px;
-  background: #555;
-  border: 1px solid #333;
-  /* background image */
+  padding: 3px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 3px solid #333;
+  background: url('search.png') no-repeat scroll 0 0;
+  background-color: #fff;
+  background-size: cover;
 }
 
-.header-nav {
-  float: right;
+.search-form > .post-form-submit > input[type="submit"]:hover {
+  background-color: #eee;
 }
 
 .header-nav {
@@ -169,17 +205,25 @@ a.no-underline:hover {
 
 .header-nav > ul > li {
   float: left;
+  margin-top: 5px;
 }
 
 .header-nav > ul > li > a {
-  display: block;
-  padding: 10px 20px;
+  padding: 5px 10px;
+  margin: 0 10px 0 0;
   font-size: 12px;
   color: #fff;
 }
 
+.header-nav > ul > li > a:hover {
+  background: rgba(34,34,34,0.7);
+  border-radius: 10px;
+}
+
 .header-buttons {
   float: right;
+  position: relative;
+  margin: 10px 50px 0 0;
 }
 
 .header-buttons > .user-thumb {
@@ -194,19 +238,89 @@ a.no-underline:hover {
 
 .header-buttons > .header-sessions > .header-sign-up {
   display: block;
-  border: 1px solid #333;
-  padding: 2px;
+  border: 3px solid #333;
+  border-radius: 5px;
+  padding: 5px 15px;
   margin-bottom: 5px;
-  background: #555;
-  color: #fff;
+  background: #fff;
+  color: #333;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.header-buttons > .header-sessions > .header-sign-up:hover {
+  background: #eee;
 }
 
 .header-buttons > .header-sessions > .header-log-in {
   color: #fff;
   margin: auto;
-  padding: 0 0 0 10px;
+  padding: 0 0 0 23px;
+  font-size: 12px;
+  font-weight: bold;
 }
 
+.header-buttons > .header-user-thumb {
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+}
+
+.header-buttons > .header-user-thumb > img {
+  width: 45px;
+  height: 45px;
+  border: 1px solid #333;
+  float: right;
+}
+
+.header-buttons > .header-dropdown {
+  display: none;
+  position: absolute;
+  top: 45px;
+  right: 0;
+  border: 1px solid #333;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.header-dropdown.show{
+  display: block;
+}
+
+.header-buttons > .header-dropdown > li {
+  display: block;
+  width: 100px;
+  background: #c0c0c0;
+  font-size: 12px;
+  padding: 5px 15px;
+}
+
+.header-buttons > .header-dropdown > li:not(:last-child) {
+  border-bottom: 1px solid #333;
+}
+
+.header-buttons > .header-dropdown > li:last-child {
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.header-buttons > .header-dropdown > li:first-child {
+  border-top-left-radius: 5px;
+}
+
+.header-buttons > .header-dropdown > li:hover {
+  cursor: pointer;
+  background: #eee;
+}
+
+.header-buttons > .header-dropdown > li > a.no-underline {
+  color: #003264;
+}
+
+.header-buttons > .header-dropdown > li > a > button {
+  background: #fff;
+}
 /* --- ERRORS and NOTICES --- */
 
 .errors {
@@ -252,81 +366,106 @@ a.no-underline:hover {
 }
 
 .next-review > .biz-thumb > img {
-
   width: 50px;
   height: 50px;
 }
 
 .next-review > .review-form {
   padding: 0 0 0 100px;
+  margin-bottom: 25px;
+  position: relative;
 }
 
-.next-review > .review-form > .rating-radio {
-  width: 10px;
-  height: 10px;
-  background: #777;
+.next-review > .review-form > .biz-name {
+  margin-bottom: 5px;
 }
 
-.next-review > .review-form > label {
+.next-review > .review-form > .review-box {
+  display: inline-block;
+  float: left;
+  background: transparent;
+  cursor: pointer;
+  padding: 0 10px;
+}
 
+.next-review > .review-form > .color {
+  background: #FFFFBE;
+  color: #003264;
+}
+
+.next-review > .review-form > .review-box:hover + label {
+}
+
+.next-review > .review-form > .review-words {
+  display: none;
+  float: right;
+  padding: 0 350px 0 0;
+  text-align: center;
+  font-size: 12px;
   font-style: italic;
 }
 
-.next_review > .review-form > input[type="radio"]:hover {
-  cursor: pointer;
+.next-review > .review-form > .review-show-words {
+  display: inline;
 }
 
-.next_review > .review-form > input[type="radio"]:checked {
-  width: 20px;
-  height: 20px;
-  background: #fff;
-  color: #fff;
-  border: 5px solid #333;
-}
-
-.next_review > .review-form > input[type="radio"]:checked + label {
-  display: inline-block;
-  background: #333;
+.next_review > .review-form > input[type="radio"] {
+  display: none;
 }
 
 .next-review > .review-form > textarea {
   width: 400px;
-  height: 20px;
+  max-width: 400px;
+  height: 40px;
   border: 1px solid #ccc;
-  padding: 5px;
   display: block;
+  margin-top: 10px;
   margin-bottom: 10px;
+  padding: 5px;
+}
+
+.next-review > .review-form > textarea:hover {
+  border: 1px solid #003264;
 }
 
 .next-review > .review-form > .show {
- height: 100px;
+  height: 100px;
+  max-height: 100px;
 }
 
 .next-review > .review-form > .show + a {
  display: inline-block;
 }
 
-.next-review > .review-form > .show + a + input[type="submit"] {
+.next-review > .review-form > .show +  .form-buttons {
  display: inline-block;
+ margin-right: 320px;
 }
 
-.next-review > .review-form > input[type="submit"] {
-  float: right;
+.next-review > .review-form > .form-buttons {
   display: none;
-  background: #0c6;
+  float: right;
+}
+
+.next-review > .review-form > .form-buttons > input[type="submit"] {
+  cursor: pointer;
+  float: left;
+  background: #003264;
   padding: 10px 15px;
   color: #fff;
+  font-size: 12px;
   font-weight: bold;
   border-bottom: 2px solid #ccc;
+  border-radius: 5px;
 }
 
-.next-review > .review-form > a {
-  float: right;
-  display: none;
+.next-review > .review-form > .form-buttons > a {
+  float: left;
+  margin: 5px 10px;
 }
 
 .content > .home-content > .recent-activity {
-  padding: 10px;
+  padding: 20px;
 }
 
 .content > .home-content > .recent-activity > h1 {
@@ -346,27 +485,47 @@ a.no-underline:hover {
   float: left;
   width: 50px;
   height: 50px;
+  padding: 0 0 0 20px;
 }
 
-.review > .user-thumb > img {
+.review > .user-thumb > a > img {
   width: 50px;
   height: 50px;
 }
 
 .review > .review-info {
   position: relative;
-  padding: 0 0 0 80px;
+  padding: 0 0 0 100px;
 }
 
-.review > .review-info > .user-headline {
+.review > .review-info > .review-headline {
+  margin-bottom: 10px;
 }
 
 .review > .review-info > .review-edit {
   float: right;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px 20px;
 }
 
 .review > .review-info > .review-remove {
- float: right;
+  cursor: pointer;
+  float: right;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  background: #003264;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.review > .review-info > .review-remove:hover {
+  background: #333;
+}
+
+.review > .review-info > .review-remove .review-remove-button {
+  cursor: pointer;
 }
 
 .review > .review-info > .time-ago {
@@ -384,11 +543,16 @@ a.no-underline:hover {
 }
 
 .review > .review-info > .review-date {
-  padding: 0 0 0 130px;
+  padding: 3px 0 5px 130px;
+  margin-bottom: 10px;
+  color: #aaa;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .review > .review-info > .review-content {
-
+  width: 500px;
+  margin-bottom: 20px;
 }
 
 /* --- USER SHOW --- */
@@ -444,6 +608,176 @@ a.no-underline:hover {
   height: 200px;
 }
 
+
+/* --- REVIEW DELETE CONFIRMATION --- */
+
+.review-confirm {
+  width: 600px;
+  margin: auto;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.review-confirm > h3 {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.review-confirm > .review-remove {
+  cursor: pointer;
+  float: right;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  background: #003264;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.review-confirm > .review-remove:hover {
+  background: #333;
+}
+
+.review-confirm > p {
+  padding: 20px;
+}
+
+.review-confirm > .review-remove .review-remove-button {
+  cursor: pointer;
+}
+
+.review-confirm > .cancel {
+  padding: 5px 20px;
+  float: right;
+}
+
+/* --- SEARCH PAGE --- */
+
+.search {
+
+}
+
+.search > .search-header {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.search > .search-header > h2 {
+}
+
+.search > .search-results {
+  float: left;
+  width: 600px;
+}
+
+.search > .search-pagination {
+}
+
+.search > .map {
+  float: right;
+  width: 200px;
+  margin-top: 20px;
+  margin-right: 50px;
+}
+
+.search > .search-addresses {
+  display: none;
+}
+
+.search > .search-names {
+  display: none;
+}
+
+.search > .search-field {
+  width: 600px;
+  margin: auto;
+  background: #c0c0c0;
+  padding: 5px 0 15px 80px;
+}
+
+.search > h4 {
+  padding: 20px;
+}
+
+.biz-listing {
+  width: 550px;
+  margin: auto;
+}
+
+.biz-listing > .biz-thumb {
+  float: left;
+  width: 100px;
+  height: 100px;
+}
+
+.biz-listing > .biz-thumb > img {
+  width: 100px;
+  height: 100px;
+}
+
+.biz-listing > .biz-name {
+  padding: 0 0 0 130px;
+  margin-bottom: 10px;
+}
+
+.biz-listing > .write-review {
+  cursor: pointer;
+  float: right;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  background: #003264;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.biz-listing > .write-review:hover {
+  background: #333;
+}
+
+.biz-listing > .write-review > a {
+  color: #fff;
+}
+
+.biz-listing > .biz-rating {
+  float: left;
+  display: inline-block;
+  padding: 0 30px;
+}
+
+.biz-listing > .biz-ratings {
+  margin-bottom: 10px;
+}
+
+.biz-listing > .biz-address {
+  padding: 0 0 10px 0px;
+  margin-left: 130px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #c0c0c0;
+  color: #c0c0c0;
+  font-size: 12px;
+}
+
+.biz-listing > .biz-review {
+  margin-left: 130px;
+}
+
+.biz-listing > .biz-review > img {
+  height: 50px;
+  width: 50px;
+  float: left;
+}
+
+.biz-listing > .biz-review > .biz-review-content {
+  padding: 0 0 0 60px;
+}
 /* --- FOOTER --- */
 
 .footer {
@@ -475,6 +809,7 @@ a.no-underline:hover {
   font-size: 20px;
   font-weight: bold;
   float: left;
+  color: #003264;
 }
 
 .footer-links > ul > li > ul {
@@ -485,11 +820,11 @@ a.no-underline:hover {
 }
 
 .footer-links > ul > li > ul > li > a {
-  color: #333;
+  color: #222;
 }
 
 .footer-image {
   width: 100%;
-  opacity: .7;
+  opacity: .8;
   height: auto;
 }

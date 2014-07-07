@@ -118,6 +118,6 @@ end
 
 FactoryGirl.create_list(:user, 25)
 FactoryGirl.create_list(:business, 1)
-FactoryGirl.create_list(:review, 50)
+FactoryGirl.create_list(:review, 25)
 User.create!(email: "demo@yelplite.com", password: "secret",
   fname: "John", lname: "Doe")

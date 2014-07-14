@@ -1,6 +1,10 @@
 # YelpLite
 
+A business review web application. Features geographically-linked directory search and a MapBox-based visual display, account creation and authorization, image uploading, a rating and review system, bootstrapped data, nested forms, and more. Inspired by Yelp.
 
+Download the repository, bundle install, and start-up your local server to run the app at home. Or head over to <a href="http://www.yelplite.com">YelpLite</a> to try out the app in a live production environment.
+
+Implemented primarily with Ruby and Rails. Some functionality in Backbone with the intention of fully porting the app over when time allows. All CSS written without the assistance of 3rd-party frameworks. User-authentication is self-written with the help of BCrypt and supplemented with Oauth via Facebook and Twitter. The application makes use of multiple Rails Gems and ties in to several 3rd-party APIs including the Yelp API for access to factual business seed data.
 
 #TODO
 

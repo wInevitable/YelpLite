@@ -1,5 +1,9 @@
 <div class="errors">
-  <% flash[:errors].each do |error| %>
-    <%= error + "." %>
+  <% if flash[:errors].is_a?(Array) %>
+    <% flash[:errors].each do |error| %>
+      <%= error + "." %>
+    <% end %>
+  <% else %>
+    <%= flash[:errors] %>
   <% end %>
 </div>

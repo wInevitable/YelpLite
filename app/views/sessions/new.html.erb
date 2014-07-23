@@ -12,7 +12,7 @@
     <input type="password" id="password" name="user[password]">
 
     <a href="#">Forgot your password?</a>
-
+    <input type="submit" class="demo" value="Demo User">
     <input type="submit" value="Log In">
   </form>
 
@@ -31,3 +31,11 @@
     YelpLite is the fun and easy way to find, review and talk about what's great - and not so great - in your local area. It's about real people giving their honest and personal opinions on everything from restaurants and spas to coffee shops and bars.
   </small></p>
 </section>
+<script>
+  $(".demo").click(function(event) {
+    event.preventDefault();
+
+    $(".user-edit-form :input#email").val("demo@example.com");
+    $(".user-edit-form :input#password").val("secret");
+  });
+</script>

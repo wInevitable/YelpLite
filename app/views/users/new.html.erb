@@ -15,13 +15,16 @@
     <%= form_token %>
 
     <label for="first-name">First Name</label>
-    <input type="text" id="first-name" name="user[fname]" value="<%= @user.fname if @user %>">
+    <input type="text" id="first-name" name="user[fname]"
+      value="<%= @user.fname if @user %>">
 
     <label for="last-name">Last Name</label>
-    <input type="text" id="last-name" name="user[lname]" value="<%= @user.lname if @user %>">
+    <input type="text" id="last-name" name="user[lname]"
+      value="<%= @user.lname if @user %>">
 
     <label for="email">Email</label>
-    <input type="text" id="email" name="user[email]" value="<%= @user.email if @user %>">
+    <input type="text" id="email" name="user[email]"
+      value="<%= @user.email if @user %>">
 
     <label for="password">Password</label>
     <input type="password" id="password" name="user[password]">

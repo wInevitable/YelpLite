@@ -12,64 +12,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <header class="header">
-    <div class="header-wrap group">
-      <h1 class="header-logo">
-        <a class="no-underline" href="<%= root_url %>">YelpLite</a>
-      </h1>
-
-      <div class="header-middle">
-        <form class="search-form" action="<%= search_url %>" method="get">
-          <div class="post-form-input">
-            <label for="find">Find</label>
-            <input type="text" id="find" name="query[find]">
-          </div>
-
-          <div class="post-form-input">
-            <label for="near">Near</label>
-            <input type="text" id="near" name="query[near]" value="<%=  %>">
-          </div>
-
-          <div class="post-form-submit">
-            <input type="submit" id="search-button" value="">
-          </div>
-        </form>
-
-        <nav class="header-nav">
-          <ul>
-            <li><a class="no-underline" href="/">Home</a></li>
-
-            <% if current_user %>
-              <li><a class="no-underline" href="<%= user_url current_user %>">About Me</a></li>
-            <% else %>
-              <li><a class="no-underline" href="<%= new_user_url %>">About Me</a></li>
-            <% end %>
-
-            <li><a class="no-underline" href="<%= search_url %>">Write a Review</a></li>
-          </ul>
-        </nav>
-      </div>
-
-      <div class="header-buttons">
-        <% if current_user %>
-          <div class="header-user-thumb">
-            <img src="<%= asset_path(current_user.avatar.url(:mini)) %>">
-          </div>
-          <ul class="header-dropdown">
-            <li><a class="no-underline" href="<%= user_url current_user %>">About Me</a></li>
-            <li><a class="no-underline" href="<%= search_url %>">Write a Review</a></li>
-            <li><a class="no-underline" href="<%= new_business_url %>">Add a Business</a></li>
-            <li><%= button_to "Log Out", session_url, method: :delete %></li>
-          </ul>
-        <% else %>
-          <div class="header-sessions">
-            <a class="header-sign-up no-underline" href="<%= new_user_url %>">Sign Up</a>
-            <a class="header-log-in" href="<%= new_session_url %>">Log In</a>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </header>
+  <%= render "shared/header" %>
 
   <% if flash[:errors] %>
     <em><%= render "shared/notices" %></em>
@@ -79,41 +22,7 @@
     <%= yield %>
   </div>
 
-  <footer class="footer">
-    <div class="footer-wrap group">
-      <nav class="footer-links">
-        <ul>
-          <li>
-            <h3>About</h3>
-            <ul>
-              <li><a href="#">About YelpLite</a></li>
-              <li><a href="#">Terms of Service</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-            </ul>
-          </li>
-          <li>
-            <h3>Help</h3>
-            <ul>
-              <li><a href="#">FAQ</a></li>
-              <li><a href="#">Content Guidelines</a></li>
-              <li><a href="#">Contact YelpLite</a></li>
-            </ul>
-          </li>
-          <li>
-            <h3>More</h3>
-            <ul>
-              <li><a href="#">Careers</a></li>
-              <li><a href="#">Top Searches</a></li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-
-      <div>
-        <%= image_tag "new_footer.png", class: "footer-image"  %>
-      </div>
-    </div>
-  </footer>
+  <%= render "shared/footer" %>
 
   <script>
     $(document).ready(function() {

@@ -188,7 +188,7 @@ a.no-underline:hover {
   height: 20px;
   margin-top: 15px;
   border-radius: 5px;
-  background-image: asset-data-url('search.png') no-repeat scroll 0 0;
+  background: asset-data-url('search.png') no-repeat scroll 0 0;
   background-color: #fff;
   background-size: cover;
 }

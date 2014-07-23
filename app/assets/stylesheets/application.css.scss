@@ -287,26 +287,27 @@ a.no-underline:hover {
 
 .header-buttons > .header-dropdown > li {
   display: block;
-  width: 100px;
-  background: #c0c0c0;
-  font-size: 12px;
-  padding: 5px 15px;
 }
 
 .header-buttons > .header-dropdown > li:not(:last-child) {
   border-bottom: 1px solid #333;
 }
 
-.header-buttons > .header-dropdown > li:last-child {
+.header-buttons > .header-dropdown > li:first-child > a {
+  border-top-left-radius: 5px;
+}
+
+.header-buttons > .header-dropdown > li:last-child > form > div> input[type="submit"] {
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
 }
 
-.header-buttons > .header-dropdown > li:first-child {
-  border-top-left-radius: 5px;
+.header-buttons > .header-dropdown > li > a:hover {
+  cursor: pointer;
+  background: #eee;
 }
 
-.header-buttons > .header-dropdown > li:hover {
+.header-buttons > .header-dropdown > li > form > div> input[type="submit"]:hover {
   cursor: pointer;
   background: #eee;
 }
@@ -315,9 +316,24 @@ a.no-underline:hover {
   color: #003264;
 }
 
-.header-buttons > .header-dropdown > li > a > button {
-  background: #fff;
+.header-buttons > .header-dropdown > li > a {
+  display: block;
+  width: 100px;
+  background: #c0c0c0;
+  font-size: 12px;
+  padding: 5px 15px;
 }
+
+.header-buttons > .header-dropdown > li > form > div > input[type="submit"] {
+  display: block;
+  width: 100px;
+  background: #c0c0c0;
+  font-size: 12px;
+  text-align: left;
+  padding: 5px 15px;
+  color: #003264;
+}
+
 /* --- ERRORS and NOTICES --- */
 
 .errors {

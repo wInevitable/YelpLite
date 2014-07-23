@@ -30,9 +30,8 @@
       <input type="radio" class="rating-radio" name="review[rating]" id="5" value="5" <%= "checked" if review.rating == 5 %>>
 
       <br>
-    <textarea id="review-content" name="review[content]">
-      <%= review.content %>
-    </textarea>
+    <textarea id="review-content" name="review[content]"
+       value="<%= review.content %>"></textarea>
 
 <% if business && business.persisted? %>
     <div class="form-buttons group">

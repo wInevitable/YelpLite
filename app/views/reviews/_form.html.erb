@@ -45,9 +45,7 @@
 
       <input type="radio" class="rating-radio" name="review[rating]" id="5" value="5" <%= "checked" if @review.rating == 5 %>>
 
-      <textarea id="review-content" name="review[content]">
-        <%= @review.content %>
-      </textarea>
+      <textarea id="review-content" name="review[content]"><%= @review.content %></textarea>
 
       <a href="#" class="guidelines-link no-underline"><small>
         Read our review guidelines

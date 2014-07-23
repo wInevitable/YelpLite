@@ -792,6 +792,22 @@ a.no-underline:hover {
   font-size: 12px;
 }
 
+.user-new-page > .user-edit-form > input[type="submit"] {
+  cursor: pointer;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  background: #003264;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-left: 60px;
+  font-size: 24px;
+}
+
+.user-new-page > .user-edit-form > input[type="submit"]:hover {
+  background: #333;
+}
+
 /* --- NEW SESSION --- */
 
 .log-in {
@@ -814,6 +830,7 @@ a.no-underline:hover {
 .log-in > .user-edit-form > input[type="submit"] {
   padding: 10px 20px;
   font-size: 24px;
+  margin-right: 10px;
 }
 
 .sign-up {
@@ -835,7 +852,7 @@ a.no-underline:hover {
 .sign-up > .last-p {
 }
 
-.sign-up > .sign-up-button {
+.sign-up .sign-up-button {
   cursor: pointer;
   color: #fff;
   font-size: 12px;
@@ -847,7 +864,7 @@ a.no-underline:hover {
   font-size: 24px;
 }
 
-.sign-up > .sign-up-button:hover {
+.sign-up .sign-up-button:hover {
   background: #333;
 }
 

@@ -20,9 +20,9 @@
     <!-- <p>&#9733; Follower Count...</p> -->
 
     <ul class="user-data">
-      <% if @user != current_user %>
+<!--       <% if @user != current_user %>
         <li>&hearts;<a href="#">Follow this Reviewer</a></li>
-      <% end %>
+      <% end %> -->
       <li>Location
         <ul>
           <li><%= @user.location %></li>
@@ -55,9 +55,11 @@
           </ul>
         </li>
       <% end %>
-      <li>
-        <a href="<%= edit_user_url @user %>">Update Your Profile</a>
-      </li>
+      <% if @user == current_user %>
+        <li>
+          <a href="<%= edit_user_url @user %>">Update Your Profile</a>
+        </li>
+      <% end %>
     </ul>
   </section>
 
